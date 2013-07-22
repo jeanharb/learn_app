@@ -1,3 +1,37 @@
 <% provide(:title, 'Sign Up') %>
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+
+<div id="signup_menu">
+	<%= form_for(@user) do |f| %>
+	<%= render 'shared/error_messages' %>
+		<div>
+			<%= f.label :name %>
+		</div>
+		<div>
+			<%= f.text_field :name %>
+		</div>
+
+		<div>
+			<%= f.label :email %>
+		</div>
+		<div>
+			<%= f.text_field :email %>
+		</div>
+		
+		<div>
+			<%= f.label :password %>
+		</div>
+		<div>
+			<%= f.password_field :password %>
+		</div>
+		<div>
+			<%= f.label :password_confirmation, "Confirmation" %>
+		</div>
+		<div>
+			<%= f.password_field :password_confirmation %>
+		</div>
+
+		<div id= "button">
+			<%= f.submit "Create my account", class: "btn-confirm" %>
+		</div>
+	<% end %>
+</div>

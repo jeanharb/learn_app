@@ -1,9 +1,9 @@
 #body-container{
 	padding-top: 40px;
 	font-family: "open sans";
-	margin-left: 130px;
 	left: 0;
-	position: absolute;
+	width: 100%;
+	padding-left: 130px;
 }
 
 img.background{
@@ -73,6 +73,38 @@ img.background{
 	top: -2px;
 }
 
+#new_user{
+	font-size: 0.9em;
+}
+
+#signup_menu{
+	width: 312px;
+	display: block;
+	margin: 50px auto 0 auto;
+	input{
+		width: 300px;
+		margin-bottom: 20px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+		border: solid 1px #ccc;
+		padding: 5px;
+	}
+}
+
+#error_explanation {
+	color: #f00;
+	ul {
+		list-style: none;
+		float: left;
+		margin: 0 0 18px 0;
+	}
+}
+
+.btn-confirm{
+	background: #0cc;
+	margin-left: 6px;
+}
+
 #signin-menu{
 	position: relative;
 	float: right;
@@ -85,6 +117,7 @@ img.background{
 }
 
 #signin:hover{
+	cursor: pointer; cursor: hand;
 	background: #0a0;
 	-o-transition: .5s;
   	-ms-transition: .5s;

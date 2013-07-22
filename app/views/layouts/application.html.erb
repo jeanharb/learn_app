@@ -9,7 +9,12 @@
 </head>
 <body>
 	<%= render 'layouts/header' %>
-	<span id="body-container"><%= yield %></span>
+	<span id="body-container">
+		<% flash.each do |key, value| %>
+			<div id="welcome"><%= value %></div>
+		<% end %>
+		<%= yield %>
+	</span>
 	<!--<img src="/images/vancouver.jpg" class="background">-->
 	<%= render 'layouts/footer' %>
 </body>
