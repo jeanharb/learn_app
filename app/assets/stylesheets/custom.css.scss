@@ -14,6 +14,75 @@ img.background{
 	top: 0;
 }
 
+.selected{
+	display: block;
+	color: rgba(0,0,0,1);
+}
+
+.nav-right{
+	font-size: 0.9em;
+	float: right;
+	margin-right: 130px;
+	margin-top: 5px;
+	border: black solid 1px;
+	li {
+		list-style-type: none;
+	}
+}
+
+.nav-right > li{
+	padding: 10px;
+	display: inline;
+	a{
+		text-decoration: none;
+	}
+}
+
+.nav-right > li:hover{
+	background: #0a0;
+	-o-transition: .5s;
+  	-ms-transition: .5s;
+  	-moz-transition: .5s;
+  	-webkit-transition: .5s;
+  	transition: .5s;
+}
+
+.nav-right > li > a{
+	color: #eee;
+}
+
+.dropdown-menu{
+	color: #444;
+	font-size: 0.8em;
+	border: black 1px solid;
+	width: 70px;
+	padding-left: 10px;
+	padding-top: 7px;
+	margin-top: 10px;
+	margin-left: 60px;
+	li{
+		margin-bottom: 7px;
+	}
+}
+
+#signin-btn{
+	.btn-primary{
+		background: white;
+		border: 1px solid #ccc;
+	}
+	:hover{
+		background: #ccc;
+		cursor: pointer;
+		cursor: hand;
+	}
+	float: right;
+	margin-top: 4px;
+}
+
+#email-box{
+	margin-left: 22px;
+}
+
 .navbar {
 	font-family: "open sans";
 	width: 1280px;
@@ -109,9 +178,10 @@ img.background{
 	position: relative;
 	float: right;
 	right: -60px;
-	top: 35px;
+	top: 34px;
 	padding: 10px 20px 10px 20px;
 	border: solid black 1px;
+	border-top: none;
 	font-size: 0.7em;
 	color: black;
 }

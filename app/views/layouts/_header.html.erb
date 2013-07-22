@@ -3,12 +3,55 @@
 		<%= link_to "Learnocracy", root_path %>
 	</span>
 	<span>
-		<span id="signin">
-			Sign In
-		</span>
-		<span id="signin-menu">
-			<div class="span6 offset3">
-			</div>
-		</span>
+		<% if signed_in? %>
+			<ul class="nav-right">
+				<li>
+					<%= link_to "Users", '#' %>
+				</li>
+				<li id="fat-menu" class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						Account <b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li>	
+							<%= link_to "Profile", current_user %>
+						</li>
+						<li>
+							<%= link_to "Settings", '#' %>
+						</li>
+						<li class="divider"></li>
+						<li>
+							<%= link_to "Sign out", signout_path, method: "delete" %>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<% else %>
+			<span id="signin">
+				Sign In
+			</span>
+			<span id="signin-menu">
+				<div class="signin">
+					<%= form_for(:session, url: sessions_path) do |f| %>
+					<div id="email-cont">
+						<span>
+							<%= f.label :email %>
+						</span>
+						<span id="email-box">
+							<%= f.text_field :email %>
+						</span>
+					</div>
+					<div>
+						<%= f.label :password %>
+						<%= f.password_field :password %>
+					</div>
+					<div id="signin-btn">
+						<%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
+					</div>
+					<% end %>
+					<p>New user? <%= link_to "Sign up now!", signup_path %></p>
+				</div>
+			</span>
+		<% end %> 
 	</span>
 </div>
