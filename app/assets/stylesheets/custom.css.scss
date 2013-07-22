@@ -1,0 +1,94 @@
+#body-container{
+	padding-top: 40px;
+	font-family: "open sans";
+	margin-left: 130px;
+	left: 0;
+	position: absolute;
+}
+
+img.background{
+	z-index: -40;
+	width: 100%;
+	left:0;
+	position: fixed;
+	top: 0;
+}
+
+.navbar {
+	font-family: "open sans";
+	width: 1280px;
+	position: relative;
+	height: 35px;
+	left: -8px;
+	top: -8px;
+	color: #eee;
+	padding-top: 10px;
+	background: #0c0;
+}
+
+#footer{
+	font-family: "open sans";
+	width: 1280px;
+	left: 0;
+	bottom: 0;
+	position: absolute;
+	border-top: solid #bbb 1px;
+	padding: 10px 0 70px 0;
+	background: #bbb;
+	color: white;
+	opacity: 0.8;
+}
+
+#contact{
+	margin-left: 130px;
+}
+
+#navbar-logo {
+	font-size: 1em;
+	margin-left: 130px;
+	position: relative;
+	top: 4px;
+	padding: 9px 10px 9px 10px;
+	a {
+			color: #eee;
+			text-decoration: none;
+		}
+}
+
+#navbar-logo:hover{
+	background: #0a0;
+	-o-transition: .5s;
+  	-ms-transition: .5s;
+  	-moz-transition: .5s;
+  	-webkit-transition: .5s;
+  	transition: .5s;
+}
+
+#signin{
+	font-size: 0.8em;
+	position: relative;
+	float: right;
+	margin-right: 130px;
+	padding: 10px 10px 9px 10px;
+	top: -2px;
+}
+
+#signin-menu{
+	position: relative;
+	float: right;
+	right: -60px;
+	top: 35px;
+	padding: 10px 20px 10px 20px;
+	border: solid black 1px;
+	font-size: 0.7em;
+	color: black;
+}
+
+#signin:hover{
+	background: #0a0;
+	-o-transition: .5s;
+  	-ms-transition: .5s;
+  	-moz-transition: .5s;
+  	-webkit-transition: .5s;
+  	transition: .5s;
+}
