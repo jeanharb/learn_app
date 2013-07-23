@@ -1,5 +1,6 @@
+<span id="barcolor"></span>
 <div class="navbar">
-	<span id="navbar-logo" class="navhov">
+	<span id="navbar-logo">
 		<%= link_to "Learnocracy", root_path %>
 	</span>
 	<span>
@@ -8,13 +9,13 @@
 				<li>
 					<%= link_to "Users", '#' %>
 				</li>
-				<li id="fat-menu" class="dropdown">
+				<li id="fat-menu" class="dropdown click">
 					<a href="#">
 						Account
 					</a>
 				</li>
 			</ul>
-			<ul class="dropdown-menu">
+			<ul class="dropdown-menu click">
 				<li>	
 					<%= link_to "Profile", current_user %>
 				</li>
