@@ -4,6 +4,7 @@ LearnApp::Application.routes.draw do
   resources :admin
 
   root to: "static_pages#home"
+  match '/search', to:"search#index"
   match '/database', to:"admin#database"
   match '/signup', to: "users#new"
   match '/signin', to: "sessions#new"

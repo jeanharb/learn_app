@@ -10,6 +10,39 @@
 	margin-left: 150px;
 }
 
+#res{
+	border-top: 1px solid #ccc;
+	padding-top: 7px;
+	font-size: 0.8em;
+}
+
+#result{
+	margin-top: 40px;
+	margin-left: 150px;
+	border: 1px #ccc solid;
+	width: 700px;
+	height: 60px;
+	display: inline-block;
+	div span{
+		width: 340px;
+		display: inline-block;
+		text-align: center
+
+	}
+}
+
+.debug_dump {
+clear: both;
+float: left;
+width: 100%; 
+margin-top: 45px;
+}
+
+#search-page{
+	position: absolute;
+	margin-top: 70px;
+}
+
 .user-list{
 	width: 610px;
 	border: 1px #ccc solid;

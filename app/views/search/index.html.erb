@@ -1,0 +1,26 @@
+<% provide(:title, "Search") %>
+
+<span id="search-page">
+	<form>
+		Full Name: <input type="text" name="fname">
+		<input type="submit" value="Search" class="search-btn">
+	</form>
+	<% if(params.has_key?(:fname)) %>
+		<% if(@usersearch) %>
+			<div id="result">
+				<div>
+					<span>Name</span>
+					<span>Email</span>
+				</div>
+				<div id="res">
+					<span class="name-search"><%= @usersearch.name %></span>
+					<span class="email-search"><%= @usersearch.email %></span>
+				</div>
+			</div>
+		<% else %>
+			<div>
+				No results found.
+			</div>
+		<% end %>
+	<% end %>
+</span>
