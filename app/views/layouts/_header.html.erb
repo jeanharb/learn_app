@@ -11,8 +11,8 @@
 					<%= link_to "Database", database_path %>
 				</li>
 				<% end %>
-				<li>
-					<%= link_to "Search", search_path %>
+				<li class="search-btn">
+					<%= link_to 'Search', "#" %>
 				</li>
 				<li id="fat-menu" class="dropdown click">
 					<a href="#">
@@ -31,6 +31,12 @@
 					<%= link_to "Sign out", signout_path, method: "delete" %>
 				</li>
 			</ul>
+			<span class="search-menu">
+				<form method="get" action="/search">
+					Full Name: <input type="text" name="fname">
+					<input type="submit" value="Search" class="search-btn">
+				</form>
+			</span>
 			<% else %>
 			<span id="signin" class="navhov">
 				Sign In
