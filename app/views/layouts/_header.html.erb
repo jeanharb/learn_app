@@ -6,6 +6,11 @@
 	<span>
 		<% if signed_in? %>
 			<ul class="nav-right navhov-list">
+				<% if is_admin? %>
+				<li>
+					<%= link_to "Database", database_path %>
+				</li>
+				<% end %>
 				<li>
 					<%= link_to "Users", '#' %>
 				</li>
