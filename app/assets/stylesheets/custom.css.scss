@@ -1,3 +1,28 @@
+#userdb{
+	position: absolute;
+	margin-top: 40px;
+	li{
+		list-style-type: none;
+		border-bottom: #ccc 1px solid;
+		margin-left: -40px;
+		padding-left: 100px;
+	}
+	margin-left: 150px;
+}
+
+.user-list{
+	width: 610px;
+	border: 1px #ccc solid;
+	border-bottom: none;
+	font-size: 0.8em;
+}
+
+.users{
+	height: 40px;
+	width: 150px;
+	display: inline-block;
+}
+
 #body-container{
 	position: absolute;
 	margin-top: 0px;

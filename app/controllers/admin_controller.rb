@@ -2,6 +2,7 @@ class AdminController < ApplicationController
 	before_filter :admin_user, only: :database
 
 	def database
+		@users = User.all
 	end
 
 	private
