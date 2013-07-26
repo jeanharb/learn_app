@@ -6,12 +6,20 @@
 		<span class="users">NAME</span>
 		<span class="users">EMAIL</span>
 		<span class="users">ADMIN</span>
+		<span class="users">DELETE?</span>
 	</li>
 	<% @users.each do |user| %>
 	<li>
 		<span class="users"><%= user.name %></span>
 		<span class="users"><%= user.email %></span>
 		<span class="users"><%= user.admin %></span>
+		<span class="users">
+			<% if current_user.admin? && !current_user?(user) %>
+				<%= link_to "delete", user, method: :delete, data: { confirm: "You sure?" } %>
+			<% else %>
+			 &nbsp
+			<% end %>
+		</span>
 	</li>
 	<% end %>
 </ul>

@@ -1,1 +1,8 @@
 <div>Home Learnocracy</div>
+<span id="mainpic">
+	<%= image_tag("rails.png", :alt => "rss feed") %>
+	<!--<%= encoded_string = Base64.encode64(open("app/assets/images/letter.pdf").to_a.join) %>-->
+	<% open("app/assets/images/letter2.pdf", "wb") do |file| file.write(Base64.decode64(encoded_string)) %>
+	<% end %>
+	<%= image_tag("letter2.pdf") %>
+</span>

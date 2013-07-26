@@ -5,4 +5,5 @@
 		<%= link_to "Help", help_path %>
 		<%= link_to "Sign Up", signup_path %>
 	</span>
+	<div id="debug"><%= debug(params) if Rails.env.development? %></div>
 </div>

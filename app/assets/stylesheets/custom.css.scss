@@ -1,3 +1,47 @@
+#debug{
+	color: black;
+	margin-left: 130px;
+}
+
+.subcon{
+	position: absolute;
+	background: white;
+	border: 1px black solid;
+	cursor: pointer;
+	cursor: hand;
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
+.notes{
+	position: absolute;
+	margin-top: 40px;
+	margin-left: -15px;
+
+}
+
+.subcon:hover{
+	background: #ccc;
+	-o-transition: .2s;
+  	-ms-transition: .2s;
+  	-moz-transition: .2s;
+  	-webkit-transition: .2s;
+  	transition: .2s;
+}
+
+.subcon:active{
+	-o-transition: 0s;
+  	-ms-transition: 0s;
+  	-moz-transition: 0s;
+  	-webkit-transition: 0s;
+  	transition: 0s;
+	background: #aaa;
+}
+
+.timestamp{
+	font-size: 0.6em;
+}
+
 #userdb{
 	position: absolute;
 	margin-top: 40px;
@@ -5,9 +49,13 @@
 		list-style-type: none;
 		border-bottom: #ccc 1px solid;
 		margin-left: -40px;
-		padding-left: 100px;
 	}
-	margin-left: 150px;
+	margin-left: 200px;
+}
+
+#mainpic img{
+	width: 400px;
+	height: 300px;
 }
 
 .search-menu{
@@ -57,13 +105,13 @@ margin-top: 45px;
 }
 
 .user-list{
-	width: 610px;
 	border: 1px #ccc solid;
 	border-bottom: none;
 	font-size: 0.8em;
 }
 
 .users{
+	text-align: center;
 	height: 40px;
 	width: 150px;
 	display: inline-block;
@@ -71,7 +119,7 @@ margin-top: 45px;
 
 #body-container{
 	position: absolute;
-	margin-top: 0px;
+	margin-top: 50px;
 	font-family: "open sans";
 	left: 0;
 	width: 1020px;
@@ -136,6 +184,7 @@ img.background{
 }
 
 .dropdown-menu{
+	background: white;
 	color: #444;
 	z-index: 40;
 	font-size: 0.8em;
@@ -347,6 +396,5 @@ img.background{
 	padding: 10px 0 70px 0;
 	background: #bbb;
 	color: white;
-	opacity: 0.8;
 	z-index: 30;
 }

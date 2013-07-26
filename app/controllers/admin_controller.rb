@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-	before_filter :admin_user, only: :database
+	before_filter :admin_user, only: [:database, :destroy]
 
 	def database
 		@users = User.all

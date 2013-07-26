@@ -2,8 +2,10 @@ LearnApp::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :admin
+  resources :notes
 
   root to: "static_pages#home"
+  match '/files', to:"notes#new"
   match '/search', to:"search#index"
   match '/database', to:"admin#database"
   match '/signup', to: "users#new"

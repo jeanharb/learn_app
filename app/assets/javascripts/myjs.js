@@ -37,6 +37,15 @@ $(function(){
 });
 
 $(function(){
+	$("#myform").submit(function(){
+        var file_value = $.trim($('#myfile').val());
+        if ( file_value.length === '' ){
+            window.location = 'index.php';
+        }
+    });
+});
+
+$(function(){
 	$("#body-container").click(function() {
 		if ($('#signin-menu').is('.selected')){
 			$('#signin-menu').slideUp('fast');
