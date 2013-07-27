@@ -5,6 +5,7 @@
 	<li>
 		<span class="users">NAME</span>
 		<span class="users">EMAIL</span>
+		<span class="users"># COURSES</span>
 		<span class="users"># FILES</span>
 		<span class="users">ADMIN</span>
 		<span class="users">DELETE?</span>
@@ -13,6 +14,7 @@
 	<li>
 		<span class="users"><%= user.name %></span>
 		<span class="users"><%= user.email %></span>
+		<span class="users"><%= user.courses.count %></span>
 		<span class="users"><%= user.notes.count %></span>
 		<span class="users"><%= user.admin %></span>
 		<span class="users">
