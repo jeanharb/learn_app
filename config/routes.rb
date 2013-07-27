@@ -3,16 +3,18 @@ LearnApp::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :admin
   resources :notes
+  resources :courses
 
   root to: "static_pages#home"
-  match '/files', to:"notes#new"
-  match '/search', to:"search#index"
-  match '/database', to:"admin#database"
-  match '/signup', to: "users#new"
-  match '/signin', to: "sessions#new"
-  match '/signout', to: "sessions#destroy", via: :delete
-  match '/about', to: "static_pages#about"
-  match '/help',  to: "static_pages#help"
+  match '/newcourse', to: "courses#new"
+  match '/files',     to: "notes#new"
+  match '/search',    to: "search#index"
+  match '/database',  to: "admin#database"
+  match '/signup',    to: "users#new"
+  match '/signin',    to: "sessions#new"
+  match '/signout',   to: "sessions#destroy", via: :delete
+  match '/about',     to: "static_pages#about"
+  match '/help',      to: "static_pages#help"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

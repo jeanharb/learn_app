@@ -1,0 +1,17 @@
+<%= form_for @course do |f| %>
+<%= render 'shared/error_messages', object: f.object, :html => { :id => "myform" } %>
+	<div>
+		<%= f.label "Course Title" %>
+	</div>
+	<div>
+		<%= f.text_field :title %>
+	</div>
+
+	<div>
+		<%= f.label "Course Description" %>
+	</div>
+	<div>
+		<%= f.text_field :description %>
+	</div>
+	<div><%= f.submit "Create Class!", class: "subcon" %></div>
+<% end %>

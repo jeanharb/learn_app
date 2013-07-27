@@ -13,6 +13,27 @@
 	margin-left: 5px;
 }
 
+.user-btn a{
+	position: absolute;
+	margin-left: 700px;
+	margin-top: -20px;
+	padding: 10px;
+	background: #D83018;
+	text-decoration: none;
+	color: white;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.user-btn a:hover{
+	-o-transition: .2s;
+  	-ms-transition: .2s;
+  	-moz-transition: .2s;
+  	-webkit-transition: .2s;
+  	transition: .2s;
+	background: #b82000;
+}
+
 .notes{
 	position: absolute;
 	margin-top: 40px;
@@ -45,12 +66,12 @@
 #userdb{
 	position: absolute;
 	margin-top: 40px;
+	margin-left: 100px;
 	li{
 		list-style-type: none;
 		border-bottom: #ccc 1px solid;
 		margin-left: -40px;
 	}
-	margin-left: 200px;
 }
 
 #mainpic img{
