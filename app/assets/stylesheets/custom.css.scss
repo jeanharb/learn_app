@@ -13,19 +13,37 @@
 	margin-left: 5px;
 }
 
-.myclasses a{
-	position: absolute;
-	right: 17px;
-	margin-top: 30px;
-	padding: 10px;
-	background: #D83018;
-	text-decoration: none;
-	color: white;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
+.course_form div{
+	vertical-align: text-top;
+	display: inline;
+	.subcon{
+		display: block;
+	}
 }
 
-.myclasses a:hover{
+.course-show{
+}
+
+#course-title{
+	margin-left: 55px;
+}
+
+.edit-btn{
+	margin-left: 890px;
+	margin-top: -69px;
+}
+
+.myclasses{
+	margin-left: 881px;
+	margin-top: 26px;
+}
+
+.user-btn{
+	margin-left: 887px;
+	margin-top: -9px;
+}
+
+.profile-btn a:hover{
 	-o-transition: .2s;
   	-ms-transition: .2s;
   	-moz-transition: .2s;
@@ -34,10 +52,7 @@
 	background: #b82000;
 }
 
-.user-btn a{
-	position: absolute;
-	right: 17px;
-	margin-top: -20px;
+.profile-btn a{
 	padding: 10px;
 	background: #D83018;
 	text-decoration: none;
@@ -48,20 +63,24 @@
 
 .course-list{
 	list-style-type: none;
+	margin-bottom: 5px;
+	font-size: 1.2em;
+	a{
+		color: black;
+		text-decoration: none;
+	}
+}
+
+.course-list a:hover{
+	color: #555;
+	cursor: pointer;
+	cursor: hand;
 }
 
 #course_description{
 	width: 500px;
 	height: 200px;
-}
-
-.user-btn a:hover{
-	-o-transition: .2s;
-  	-ms-transition: .2s;
-  	-moz-transition: .2s;
-  	-webkit-transition: .2s;
-  	transition: .2s;
-	background: #b82000;
+	vertical-align: top;
 }
 
 .notes{
@@ -94,9 +113,10 @@
 }
 
 #userdb{
-	position: absolute;
-	margin-top: 40px;
-	margin-left: 100px;
+	position: relative;
+	margin: auto;
+	margin-top: 70px;
+	width: 950px;
 	li{
 		list-style-type: none;
 		border-bottom: #ccc 1px solid;
@@ -156,6 +176,9 @@ margin-top: 45px;
 }
 
 .user-list{
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
 	border: 1px #ccc solid;
 	border-bottom: none;
 	font-size: 0.8em;
@@ -166,16 +189,17 @@ margin-top: 45px;
 	height: 40px;
 	width: 150px;
 	display: inline-block;
+	vertical-align: text-top;
 }
 
 #body-container{
-	position: absolute;
+	height: 400px;
 	margin-top: 50px;
 	font-family: "open sans";
 	left: 0;
-	width: 1020px;
-	margin-left: 130px;
-	margin-right: 130px;
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #body-signin{

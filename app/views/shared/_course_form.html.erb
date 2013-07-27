@@ -1,17 +1,20 @@
 <%= form_for @course do |f| %>
 <%= render 'shared/error_messages', object: f.object, :html => { :id => "myform" } %>
+<div class="course_form">
 	<div>
-		<%= f.label "Course Title" %>
+		<%= f.label "Course Title :" %>
 	</div>
-	<div>
+	<div id='course-title'>
 		<%= f.text_field :title %>
 	</div>
-
+</div>
+<div class="course_form">
 	<div>
-		<%= f.label "Course Description" %>
+		<%= f.label "Course Description :" %>
 	</div>
 	<div id="course-des">
 		<%= f.text_area :description %>
 	</div>
 	<div><%= f.submit "Create Class!", class: "subcon" %></div>
+</div>
 <% end %>

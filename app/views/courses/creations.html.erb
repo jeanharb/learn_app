@@ -2,11 +2,11 @@
 
 <ul class="course-list">
 	<li>
-		<span>My Created Courses</span>
+		<h1>My Created Courses</h1>
 	</li>
 	<% @courses.each do |course| %>
 	<li>
-		<span><%= course.title %></span>
+		<span><%= link_to course.title, course_path(course) %></span>
 		<span><%= link_to "Edit", edit_course_path(course) %></span>
 	</li>
 	<% end %>
