@@ -19,7 +19,7 @@ class NotesController < ApplicationController
           flash[:success] = "File Uploaded!"
           redirect_to files_path
         else
-          render files_path
+          render root_path
         end
       end
   end

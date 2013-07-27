@@ -6,6 +6,7 @@ LearnApp::Application.routes.draw do
   resources :courses
 
   root to: "static_pages#home"
+  match '/creations', to: "courses#creations"
   match '/newcourse', to: "courses#new"
   match '/files',     to: "notes#new"
   match '/search',    to: "search#index"

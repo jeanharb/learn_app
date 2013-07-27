@@ -13,9 +13,30 @@
 	margin-left: 5px;
 }
 
+.myclasses a{
+	position: absolute;
+	right: 17px;
+	margin-top: 30px;
+	padding: 10px;
+	background: #D83018;
+	text-decoration: none;
+	color: white;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.myclasses a:hover{
+	-o-transition: .2s;
+  	-ms-transition: .2s;
+  	-moz-transition: .2s;
+  	-webkit-transition: .2s;
+  	transition: .2s;
+	background: #b82000;
+}
+
 .user-btn a{
 	position: absolute;
-	margin-left: 700px;
+	right: 17px;
 	margin-top: -20px;
 	padding: 10px;
 	background: #D83018;
@@ -23,6 +44,15 @@
 	color: white;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+}
+
+.course-list{
+	list-style-type: none;
+}
+
+#course_description{
+	width: 500px;
+	height: 200px;
 }
 
 .user-btn a:hover{

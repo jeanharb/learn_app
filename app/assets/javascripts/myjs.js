@@ -2,6 +2,16 @@ $(document).ready(function(){
 	$('#signin-menu').hide();
 	$('.dropdown-menu').hide();
 	$('.search-menu').hide();
+	$('.note-submit').hide();
+	$('.note-submit').attr('disabled',true);
+    $('input:file').change(
+        function(){
+            if ($(this).val()) { 
+            	$('.note-submit').show();
+                $('.note-submit').attr('disabled',false);
+        	} 
+    	}
+    );
 });
 
 function dropmenu(word1, word2, word3) {
@@ -34,15 +44,6 @@ $(function(){
 	$(".search-btn").click(function(){
 		dropmenu(".search-btn", '.search-menu', 'selected-btn-list')
 	});
-});
-
-$(function(){
-	$("#myform").submit(function(){
-        var file_value = $.trim($('#myfile').val());
-        if ( file_value.length === '' ){
-            window.location = 'index.php';
-        }
-    });
 });
 
 $(function(){

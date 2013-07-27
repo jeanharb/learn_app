@@ -1,3 +1,4 @@
+<% provide(:title, "Edit Course") %>
 <%= form_for @course do |f| %>
 <%= render 'shared/error_messages', object: f.object, :html => { :id => "myform" } %>
 	<div>
@@ -6,12 +7,11 @@
 	<div>
 		<%= f.text_field :title %>
 	</div>
-
 	<div>
 		<%= f.label "Course Description" %>
 	</div>
 	<div id="course-des">
 		<%= f.text_area :description %>
 	</div>
-	<div><%= f.submit "Create Class!", class: "subcon" %></div>
+	<div><%= f.submit "Edit Course", class: "subcon" %></div>
 <% end %>

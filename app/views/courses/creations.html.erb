@@ -1,0 +1,13 @@
+<% provide(:title, "My Classes") %>
+
+<ul class="course-list">
+	<li>
+		<span>My Created Courses</span>
+	</li>
+	<% @courses.each do |course| %>
+	<li>
+		<span><%= course.title %></span>
+		<span><%= link_to "Edit", edit_course_path(course) %></span>
+	</li>
+	<% end %>
+</ul>
