@@ -10,8 +10,7 @@ class CoursesController < ApplicationController
 	def create
         @course = current_user.courses.build(params[:course])
         if @course.save
-          flash[:success] = "Course Created!"
-          redirect_to user_path(current_user)
+          redirect_to course_path(@course)
         else
           render 'new'
         end
@@ -27,13 +26,14 @@ class CoursesController < ApplicationController
 
 	def show
 		@course = Course.find(params[:id])
+    	@notes = @course.notes
+    	@note = @course.notes.build if signed_in?
 	end
 
 	def update
 		@course = Course.find(params[:id])
 		if @course.update_attributes(params[:course])
-			flash[:success] = "Course Updated"
-			redirect_to creations_path
+			redirect_to course_path(@course)
 		else
 			render 'edit'
 		end

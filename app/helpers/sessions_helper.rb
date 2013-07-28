@@ -31,6 +31,21 @@ module SessionsHelper
 		@current_user = user
 	end
 
+	def coursefile(note)
+		File.open(note.filename, 'wb') do |f|
+        f.write(Base64.decode64(note.content))
+    end
+	end
+
+	def num_notes(user)
+		@courses = user.courses
+		@num_notes = 0
+		@courses.each do |course|
+			@num_notes += course.notes.count
+		end
+		@num_notes
+	end
+
 	def current_user
 		@current_user ||= User.find_by_remember_token(cookies[:remember_token])
 	end

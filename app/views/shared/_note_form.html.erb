@@ -1,12 +1,6 @@
 <%= form_for @note do |f| %>
 <%= render 'shared/error_messages', object: f.object, :html => { :id => "myform" } %>
+	<%= f.hidden_field :id, :value => params[:id] %>
 	<%= f.file_field :content, :html => { :id => "myfile" } %>
 	<div><%= f.submit "Upload File", class: "subcon note-submit" %></div>
-<% end %>
-<% if !@notes.nil? %>
-	<% if @notes.any? %>
-		<ol class="notes">
-			<%= render @notes %>
-		</ol>
-	<% end %>
 <% end %>

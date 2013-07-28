@@ -15,7 +15,7 @@
 		<span class="users"><%= user.name %></span>
 		<span class="users"><%= user.email %></span>
 		<span class="users"><%= user.courses.count %></span>
-		<span class="users"><%= user.notes.count %></span>
+		<span class="users"><%= num_notes(user) %></span>
 		<span class="users"><%= user.admin %></span>
 		<span class="users">
 			<% if current_user.admin? && !current_user?(user) %>
