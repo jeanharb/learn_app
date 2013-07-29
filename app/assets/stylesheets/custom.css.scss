@@ -1,6 +1,7 @@
 #debug{
 	color: black;
 	margin-left: 130px;
+	margin-top: -60px;
 }
 
 #creation-btn{
@@ -39,7 +40,8 @@
 
 .edit-btn{
 	margin-left: 890px;
-	margin-top: -52px;
+	margin-top: -30px;
+	z-index: 10;
 }
 
 .myclasses{
@@ -61,6 +63,58 @@
 	background: #b82000;
 }
 
+#class-des{
+	margin-top: 30px;
+	width: 850px;
+}
+
+#files{
+	margin-top: 30px;
+	font-size: 1.2em;
+}
+
+#delete-btn{
+	font-size: 0.7em;
+	a{
+		text-decoration: none;
+	}
+}
+
+.new_note{
+	height: 20px;
+}
+
+.content{
+	a{
+		text-decoration: none;
+		color: black;
+	}
+}
+
+.content a:hover{
+	text-decoration: underline;
+}
+
+#files-bar{
+	position: relative;
+	border-bottom: 1px solid #ccc;
+	width: 1000px;
+	margin: auto;
+	margin-bottom: 10px;
+}
+
+#file-upload{
+	position: relative;
+	top: -29px;
+	left: 50px;
+}
+
+.note-submit{
+	position: relative;
+	top: -25px;
+	left: 165px;
+}
+
 .profile-btn a{
 	padding: 10px;
 	background: #D83018;
@@ -68,15 +122,20 @@
 	color: white;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+	z-index: 10;
 }
 
 .course-list{
 	list-style-type: none;
+	margin-left: -43px;
 	margin-bottom: 5px;
 	font-size: 1.2em;
 	a{
 		color: black;
 		text-decoration: none;
+	}
+	h1{
+		margin-bottom: 90px;
 	}
 }
 
@@ -94,9 +153,12 @@
 
 .notes{
 	position: absolute;
-	margin-top: 40px;
-	margin-left: -15px;
-
+	margin-top: 10px;
+	margin-left: -40px;
+	list-style-type: none;
+	li{
+		margin-bottom: 5px;
+	}
 }
 
 .subcon:hover{
@@ -121,10 +183,25 @@
 	font-size: 0.6em;
 }
 
+#data-space{
+	margin-bottom: 40px;
+}
+
+#courses{
+	margin-left: 41px;
+	h1{
+		margin-left: -43px;
+		margin-bottom: 40px;
+	}
+}
+
+#data-space2{
+	margin-bottom: 0px;
+}
+
 #userdb{
 	position: relative;
 	margin: auto;
-	margin-top: 70px;
 	width: 950px;
 	li{
 		list-style-type: none;
@@ -138,14 +215,25 @@
 	height: 300px;
 }
 
+#search-menu{
+	position: relative;
+	z-index: 40;
+	left: 534px;
+	top: 35px;
+	width: 266px;
+}
+
+.menu-span{
+	position: absolute;
+}
+
+.menu-div{
+	position: relative;
+}
+
 .search-menu{
 	background: white;
 	border: 1px #ccc solid;
-	position: absolute;
-	top: 45px;
-	left: 779px;
-	margin-top: 0px;
-	margin-left: 0px;
 	border-top: none;
 	padding: 10px;
 	font-size: 0.8em;
@@ -201,14 +289,28 @@ margin-top: 45px;
 	vertical-align: text-top;
 }
 
+#body-info{
+	padding-top: 50px;
+}
+
 #body-container{
-	height: 400px;
-	margin-top: 50px;
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
 	font-family: "open sans";
 	left: 0;
 	width: 1000px;
 	margin-left: auto;
 	margin-right: auto;
+	margin-top: -45px;
+	margin-bottom: -100px;
+	a{
+		z-index: 10;
+	}
+}
+
+*{
+	margin: 0;
 }
 
 #body-signin{
@@ -236,7 +338,7 @@ img.background{
 .nav-right{
 	font-size: 0.9em;
 	float: right;
-	margin-right: 130px;
+	margin-right: -10px;
 	z-index: 100;
 	margin-top: 7px;
 	li {
@@ -267,15 +369,21 @@ img.background{
 	border-top: 1px #ccc solid;
 }
 
+#dropdown-menu{
+	z-index: 40;
+	position: relative;
+	left: 752px;
+	top: 35px;
+}
+
 .dropdown-menu{
 	background: white;
 	color: #444;
-	z-index: 40;
+	z-index: 80;
 	font-size: 0.8em;
 	border: #ccc 1px solid;
 	border-top: none;
-	width: 63px;
-	position: absolute;
+	width: 64px;
 	top: 45px;
 	right: 140px;
 	padding-left: 10px;
@@ -310,18 +418,25 @@ img.background{
 	margin-left: 22px;
 }
 
+#barcolor{
+	background: #304860;
+	z-index: -1;
+	width: 100%;
+	height: 45px;
+	position: absolute;
+}
+
 .navbar {
 	font-family: "open sans";
 	height: 35px;
 	color: #eee;
-	width: 100%;
-	position: absolute;
-	height: 35px;
+	width: 1000px;
+	margin: auto;
 	top: 0;
 	left: 0;
 	padding-top: 10px;
 	background: #304860;
-	z-index: 1;
+	z-index: 3;
 }
 
 #contact{
@@ -330,7 +445,6 @@ img.background{
 
 #navbar-logo {
 	font-size: 1em;
-	margin-left: 130px;
 	position: relative;
 	top: 4px;
 	a {
@@ -471,14 +585,14 @@ img.background{
 	}
 }
 
+html, body{
+	height: 100%;
+}
+
 #footer{
 	font-family: "open sans";
 	width: 100%;
-	left: 0;
-	bottom: 0;
-	position: absolute;
-	border-top: solid #bbb 1px;
-	padding: 10px 0 70px 0;
+	height: 100px;
 	background: #bbb;
 	color: white;
 	z-index: 30;

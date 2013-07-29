@@ -30,19 +30,25 @@ function dropmenu(word1, word2, word3) {
 
 $(function(){
 	$("#signin").click(function(){
-		dropmenu("#signin", '#signin-menu', 'selected-btn')
+		dropmenu("#signin", '#signin-menu', 'selected-btn');
 	});
 });
 
 $(function(){
 	$(".dropdown").click(function(){
-		dropmenu(".dropdown", '.dropdown-menu', 'selected-btn-list')
+		dropmenu(".dropdown", '.dropdown-menu', 'selected-btn-list');
+		$('.search-menu').slideUp('fast');
+		$('.search-btn').removeClass('selected-btn-list');
+		$('.search-menu').removeClass('selected');
 	});
 });
 
 $(function(){
 	$(".search-btn").click(function(){
-		dropmenu(".search-btn", '.search-menu', 'selected-btn-list')
+		dropmenu(".search-btn", '.search-menu', 'selected-btn-list');
+		$('.dropdown-menu').slideUp('fast');
+		$('.dropdown').removeClass('selected-btn-list');
+		$('.dropdown-menu').removeClass('selected');
 	});
 });
 

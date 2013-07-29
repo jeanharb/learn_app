@@ -1,5 +1,7 @@
 <% provide(:title, "All Courses") %>
+<div id="courses">
 <h1>Here's a list of all courses!</h1>
 <% @courses.each do |course| %>
 	<div class="course-list"><%= link_to course.title, course_path(course) %></div>
 <% end %>
+</div>

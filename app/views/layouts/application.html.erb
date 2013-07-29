@@ -10,11 +10,13 @@
 <body>
 	<%= render 'layouts/header' %>
 	<div id="body-container">
+	<div id="body-info">
 		<% flash.each do |key, value| %>
 			<div id="welcome"><%= value %></div>
 		<% end %>
 		<%= yield %>
 		<span id="body-signin"></span>
+	</div>
 	</div>
 	<!--<img src="/images/vancouver.jpg" class="background">-->
 	<%= render 'layouts/footer' %>

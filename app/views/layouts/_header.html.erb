@@ -23,6 +23,17 @@
 					</a>
 				</li>
 			</ul>
+			<span class="menu-span"><div class="menu-div">
+			<div id="search-menu">
+			<div class="search-menu">
+				<form method="get" action="/search">
+					Full Name: <input type="text" name="fname">
+					<input type="submit" value="Search" class="search-btn">
+				</form>
+			</div>
+			</div>
+		</div></span><span class="menu-span"><div class="menu-div">
+			<div id="dropdown-menu">
 			<ul class="dropdown-menu click">
 				<li>	
 					<%= link_to "Profile", current_user %>
@@ -37,12 +48,8 @@
 					<%= link_to "Sign out", signout_path, method: "delete" %>
 				</li>
 			</ul>
-			<span class="search-menu">
-				<form method="get" action="/search">
-					Full Name: <input type="text" name="fname">
-					<input type="submit" value="Search" class="search-btn">
-				</form>
-			</span>
+			</div>
+		</div></span>
 			<% else %>
 			<span id="signin" class="navhov">
 				Sign In
