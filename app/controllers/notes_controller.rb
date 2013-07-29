@@ -1,6 +1,7 @@
 class NotesController < ApplicationController
   before_filter :signed_in_user
-  before_filter :course_creator, only: [:create, :destroy]
+  before_filter :course_creator, only: :create
+  before_filter :note_creator, only: :destroy
 
   def create
     @course = Course.find(params[:note][:id])
@@ -24,9 +25,16 @@ class NotesController < ApplicationController
   end
 
   def destroy
+    note = Note.find(params[:id])
+    note.destroy
+    redirect_to course_path(note.course_id)
   end
 
   private
+    def note_creator
+      redirect_to root_path unless des_note?
+    end
+
     def course_creator
       redirect_to root_path unless note_creator?
     end

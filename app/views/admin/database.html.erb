@@ -1,6 +1,17 @@
 <% provide(:title, "Database") %>
-
-<div id="userdb">
+<div>
+	STATISTICS
+</div>
+<div>
+	Users: <%= User.all.count %>
+</div>
+<div>
+	Courses: <%= Course.all.count %>
+</div>
+<div>
+	Files: <%= Note.all.count %>
+</div>
+<span id="userdb">
 <ul class="user-list">
 	<li>
 		<span class="users">NAME</span>
@@ -27,4 +38,4 @@
 	</li>
 	<% end %>
 </ul>
-</div>
+</span>

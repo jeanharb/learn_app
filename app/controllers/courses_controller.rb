@@ -1,6 +1,7 @@
 class CoursesController < ApplicationController
 	before_filter :signed_in_user, only: [:edit, :update]
 	before_filter :correct_user, only: [:edit, :update]
+	before_filter :course_des, only: :destroy
 	
 	def new
 		@user = User.find_by_remember_token(cookies[:remember_token])
@@ -40,6 +41,9 @@ class CoursesController < ApplicationController
 	end
 
 	def destroy
+		@course = Course.find(params[:id])
+		@course.destroy
+		redirect_to creations_path
 	end
 
 	def creations
@@ -47,6 +51,14 @@ class CoursesController < ApplicationController
 	end
 
 	private
+		def course_des
+			redirect_to root_path unless creator?
+		end
+
+		def is_admin
+			redirect_to root_path unless is_admin?
+		end
+
 		def signed_in_user
 			redirect_to signin_url, notice: "Please sign in." unless signed_in?
 		end

@@ -1,16 +1,4 @@
 <% provide(:title, "My Classes") %>
-
-<ul class="course-list">
-	<li>
-		<h1>My Created Courses</h1>
-	</li>
-	<% @courses.each do |course| %>
-	<li>
-		<span><%= link_to course.title, course_path(course) %></span>
-		<span><%= link_to "Edit", edit_course_path(course) %></span>
-	</li>
-	<% end %>
-</ul>
 <div id="creation-btn">
 <div class="user-btn profile-btn">
 	<%= link_to "Create Class", newcourse_path %>
@@ -19,3 +7,17 @@
 	<%= link_to "My Creations", creations_path %>
 </div>
 </div>
+<ul class="course-list">
+	<li>
+		<h1>My Created Courses</h1>
+	</li>
+	<% @courses.each do |course| %>
+	<li>
+		<span><%= link_to course.title, course_path(course) %></span>
+		<span class="smaller"><%= link_to "Edit", edit_course_path(course) %></span>
+		<span class="smaller"><%= link_to "Delete", course, method: :delete, 
+									data: { confirm: "You sure?" },
+									title: course.title %>
+	</li>
+	<% end %>
+</ul>
