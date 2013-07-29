@@ -8,13 +8,13 @@
 	<li>
 		<h1>My Created Courses</h1>
 	</li>
-	<% @courses.each do |course| %>
 	<li>
+	<% @courses.each do |course| %>
 		<span><%= link_to course.title, course_path(course) %></span>
 		<span class="smaller"><%= link_to "Edit", edit_course_path(course) %></span>
 		<span class="smaller"><%= link_to "Delete", course, method: :delete, 
 									data: { confirm: "You sure?" },
 									title: course.title %>
-	</li>
 	<% end %>
+	</li>
 </ul>
