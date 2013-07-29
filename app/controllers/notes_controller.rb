@@ -18,14 +18,9 @@ class NotesController < ApplicationController
 
   def download
     note = Note.find(params[:id])
-    if note.contenttype.nil?
-      contenttype = "application/pdf"
-    else
-      contenttype = note.contenttype
-    end
     send_data note.as_file,
       :filename => note.filename,
-      :type => contenttype
+      :type => note.contenttype
   end
 
   def destroy
