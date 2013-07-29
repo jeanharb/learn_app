@@ -2,9 +2,11 @@
 <div>
 	<%= @user.name %>, <%=@user.email %>
 </div>
+<% if current_user?(@user) %>
 <div class="user-btn profile-btn">
 	<%= link_to "Create Class", newcourse_path %>
 </div>
 <div class="myclasses profile-btn">
 	<%= link_to "My Creations", creations_path %>
 </div>
+<% end %>

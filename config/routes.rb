@@ -2,14 +2,15 @@ LearnApp::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :admin
-  resources :notes
   resources :courses
+  resources :notes do
+    member {get 'download'}
+  end
 
   root to: "static_pages#home"
   match '/courses',   to: "courses#index"
   match '/creations', to: "courses#creations"
   match '/newcourse', to: "courses#new"
-  match '/files',     to: "notes#new"
   match '/search',    to: "search#index"
   match '/database',  to: "admin#database"
   match '/signup',    to: "users#new"

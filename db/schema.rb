@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130728001019) do
+ActiveRecord::Schema.define(:version => 20130729174835) do
 
   create_table "courses", :force => true do |t|
     t.string   "title"
@@ -26,9 +26,10 @@ ActiveRecord::Schema.define(:version => 20130728001019) do
   create_table "notes", :force => true do |t|
     t.text     "content"
     t.integer  "course_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.string   "filename"
+    t.string   "contenttype"
   end
 
   add_index "notes", ["course_id", "created_at"], :name => "index_notes_on_course_id_and_created_at"

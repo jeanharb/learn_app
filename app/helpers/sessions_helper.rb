@@ -19,22 +19,12 @@ module SessionsHelper
 		current_user.admin?
 	end
 
-	def creator?
-		current_user?(User.find(Course.find(params[:id]).user_id))
-	end
-
 	def current_user?(user)
 		user == current_user
 	end
 
 	def current_user=(user)
 		@current_user = user
-	end
-
-	def coursefile(note)
-		File.open(note.filename, 'wb') do |f|
-        f.write(Base64.decode64(note.content))
-    end
 	end
 
 	def num_notes(user)
@@ -63,4 +53,13 @@ module SessionsHelper
 	def store_location
 		session[:return_to] = request.url
 	end
+
+	private
+		def creator?
+			current_user?(User.find(Course.find(params[:id]).user_id))
+		end
+
+		def note_creator?
+			current_user?(User.find(Course.find(params[:note][:id]).user_id))
+		end
 end

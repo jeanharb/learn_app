@@ -14,7 +14,9 @@
 	<div>
 		Files
 	</div>
-	<%= render 'shared/note_form' %>
+	<% if creator? %>
+		<%= render 'shared/note_form' %>
+	<% end %>
 	<div>
 		<% if @notes.any? %>
 			<% if !@notes.nil? %>
