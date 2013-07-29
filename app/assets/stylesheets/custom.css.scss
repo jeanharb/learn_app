@@ -412,11 +412,17 @@ img.background{
 		cursor: hand;
 	}
 	float: right;
-	margin-top: 4px;
+	margin-top: 6px;
+}
+
+#pwbox{
+	position: relative;
+	top: 2px;
 }
 
 #email-box{
 	margin-left: 22px;
+	margin-bottom: 5px;
 }
 
 #barcolor{
@@ -474,9 +480,14 @@ img.background{
 	font-size: 0.8em;
 	position: relative;
 	float: right;
-	margin-right: 130px;
+	margin-right: 0px;
 	padding: 10px 10px 9px 10px;
 	top: -2px;
+}
+
+#newusr{
+	position: relative;
+	top: 9px;
 }
 
 #signin-menu{

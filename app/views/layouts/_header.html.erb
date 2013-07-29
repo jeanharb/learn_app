@@ -49,7 +49,7 @@
 				</li>
 			</ul>
 			</div>
-		</div></span>
+			</div></span>
 			<% else %>
 			<span id="signin" class="navhov">
 				Sign In
@@ -65,7 +65,7 @@
 							<%= f.text_field :email %>
 						</span>
 					</div>
-					<div>
+					<div id="pwbox">
 						<%= f.label :password %>
 						<%= f.password_field :password %>
 					</div>
@@ -73,7 +73,7 @@
 						<%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
 					</div>
 					<% end %>
-					<p>New user? <%= link_to "Sign up now!", signup_path %></p>
+					<div id="newusr">New user? <%= link_to "Sign up now!", signup_path %></div>
 				</div>
 			</span>
 		<% end %> 

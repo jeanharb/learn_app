@@ -2,6 +2,17 @@
 <div id="courses">
 <h1>Here's a list of all courses!</h1>
 <% @courses.each do |course| %>
-	<div class="course-list"><%= link_to course.title, course_path(course) %></div>
+	<div class="course-list">
+		<%= link_to course.title, course_path(course) %>
+		<% if !courcreator?(course) %>
+		<% if is_admin? %>
+		<span id="delete-btn">
+		<%= link_to "delete", course, method: :delete, 
+									  data: { confirm: "You sure?" },
+									  title: course.title %>
+		<% end %>
+		<% end %>
+		</span>
+	</div>
 <% end %>
 </div>
