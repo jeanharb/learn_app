@@ -9,7 +9,8 @@
 		<span id="delete-btn">
 		<%= link_to "delete", course, method: :delete, 
 									  data: { confirm: "You sure?" },
-									  title: course.title %>
+									  title: course.title,
+									  :admin => "yes" %>
 		<% end %>
 		<% end %>
 		</span>

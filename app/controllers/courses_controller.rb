@@ -18,6 +18,9 @@ class CoursesController < ApplicationController
 	end
 
 	def index
+		if is_admin?
+			store_location
+		end
 		@courses = Course.all
 	end
 
@@ -43,7 +46,7 @@ class CoursesController < ApplicationController
 	def destroy
 		@course = Course.find(params[:id])
 		@course.destroy
-		redirect_to creations_path
+		redirect_back_or creations
 	end
 
 	def creations
