@@ -39,6 +39,13 @@ class ProgramsController < ApplicationController
 		end
 	end
 
+	def addcourses
+		if !params.has_key?(:course)
+			redirect_to "/creations"
+		end
+		@program = Program.find(params[:course])
+	end
+
 	def destroy
 		@program = Program.find(params[:id])
 		@program.destroy

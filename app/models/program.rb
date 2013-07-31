@@ -8,10 +8,6 @@ class Program < ActiveRecord::Base
   validates :description, presence: true
   validates :title, presence: true
 
-  def cours
-  	Course.where("programs = ?", id)
-  end
-
   def takingclass?(course)
     relationships.find_by(course_id: course.id)
   end
@@ -21,6 +17,6 @@ class Program < ActiveRecord::Base
   end
 
   def removeclass!(course)
-    relationships.find_by(followed_id: course.id).destroy!
+    relationships.find_by_course_id(course.id).destroy!
   end
 end

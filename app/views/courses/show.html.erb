@@ -8,6 +8,13 @@
 			<%= link_to "Edit", edit_course_path(@course) %>
 		</div>
 	<% end %>
+	<% if !courcreator %>
+		<% if !(current_user.classincart?(@course)) %>
+			<%= render 'add_to_cart' %>
+		<% else %>
+			<%= render 'remove_from_cart' %>
+		<% end %>
+	<% end %>
 	<% if @course.programs.count > 0 %>
 	<div class="progcount">
 		This course is registered in <%= pluralize(@course.programs.count, 'program') %>.

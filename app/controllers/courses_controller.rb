@@ -49,7 +49,12 @@ class CoursesController < ApplicationController
 		redirect_back_or creations
 	end
 
+	def classincart?(course)
+    	carts.find_by(course.id)
+  	end
+
 	private
+
 		def course_des
 			redirect_to root_path unless creator?
 		end

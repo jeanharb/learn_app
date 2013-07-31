@@ -1,10 +1,16 @@
 LearnApp::Application.routes.draw do
-  resources :users
+  resources :users do
+    member do
+      get :coursefollows
+    end
+  end
   resources :sessions, only: [:new, :create, :destroy]
   resources :admin
+  resources :relationships, only: [:create, :destroy]
+  resources :carts, only: [:create, :destroy]
   resources :courses do
     member do
-      get :programs
+      get :programs, :followers
     end
   end
   resources :programs do
@@ -17,8 +23,10 @@ LearnApp::Application.routes.draw do
   end
 
   root to: "static_pages#home"
+  match '/addcourses',to: "programs#addcourses"
+  match '/cart',      to: "users#cart"
   match '/programs',  to: "programs#index"
-  match '/newprogram', to: "programs#new"
+  match '/newprogram',to: "programs#new"
   match '/courses',   to: "courses#index"
   match '/creations', to: "users#creations"
   match '/newcourse', to: "courses#new"

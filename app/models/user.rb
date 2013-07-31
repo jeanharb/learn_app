@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :courses, dependent: :destroy
   has_many :programs, dependent: :destroy
+  has_many :carts, foreign_key: "follower_id", dependent: :destroy
+  has_many :coursefollows, through: :carts, source: :coursefollow
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
@@ -12,6 +14,18 @@ class User < ActiveRecord::Base
   validates(:email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false })
   validates(:password, presence: true, length: { minimum: 6 } )
   validates(:password_confirmation, presence: true)
+
+  def classincart?(course)
+    carts.find_by_coursefollow_id(course.id)
+  end
+
+  def putincart(course)
+    carts.create!(coursefollow_id: course.id)
+  end
+
+  def removefromcart!(course)
+    carts.find_by_coursefollow_id(course.id).destroy
+  end
 
   private
 

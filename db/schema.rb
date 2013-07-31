@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130730230148) do
+ActiveRecord::Schema.define(:version => 20130731021344) do
+
+  create_table "carts", :force => true do |t|
+    t.integer  "coursefollow_id"
+    t.integer  "follower_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "carts", ["coursefollow_id"], :name => "index_carts_on_coursefollow_id"
+  add_index "carts", ["follower_id", "coursefollow_id"], :name => "index_carts_on_follower_id_and_coursefollow_id", :unique => true
+  add_index "carts", ["follower_id"], :name => "index_carts_on_follower_id"
 
   create_table "courses", :force => true do |t|
     t.string   "title"

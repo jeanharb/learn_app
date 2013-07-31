@@ -1,0 +1,6 @@
+<% provide(:title, "Cart") %>
+<div class="course-show">
+	<% @cart.each do |course| %>
+		<li><%= link_to course.title, course_path(course) %></li>
+	<% end %>
+</div>

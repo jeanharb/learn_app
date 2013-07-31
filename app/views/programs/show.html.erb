@@ -11,7 +11,12 @@
 	<div id="class-des">
 		<%= @program.description %>
 	</div>
-	<div id="cou-title">COURSES</div>
+	<div id="cou-title">
+		COURSES
+		<span>
+			<%= link_to "Add", addcourses_path(:course => params[:id]) %>
+		</span>
+	</div>
 	<div class="files-bar"></div>
 	<ul class="prog-cours-list">
 	<% if @cours_items.any? %>
