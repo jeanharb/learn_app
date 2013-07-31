@@ -48,7 +48,18 @@
 	}
 }
 
-.course-show{
+.cart-show{
+	margin-top: 30px;
+	a{
+		text-decoration: none;
+		color: black;
+	}
+	list-style-type: none;
+
+}
+
+.cart-show a:hover{
+	text-decoration: underline;
 }
 
 #course-title{
@@ -76,8 +87,13 @@
 
 .edit-btn{
 	margin-left: 940px;
-	margin-top: -32px;
+	margin-top: -35px;
 	z-index: -1;
+}
+
+.files-padding{
+	margin-top: -35px;
+	padding-bottom: 175px;
 }
 
 .myclasses{
@@ -119,9 +135,50 @@
 	margin-left: 893px;
 }
 
-.rem-cart-btn{
+.cart-btn{
 	margin-top: -32px;
 	margin-left: 833px;
+	width: 130px;
+	height: 30px;
+	border: 1px solid #ccc;
+	background: white;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	color: white;
+}
+
+.add-cart-btn{
+	background: #3BB600;
+}
+
+.add-cart-btn:hover{
+	background: #1B9600;
+	cursor: hand;
+	cursor: pointer;
+}
+
+.add-cart-btn:active{
+	background: #0B7600;
+}
+
+.rem-cart-btn{
+	background: #FF2020;
+	cursor: hand;
+	cursor: pointer;
+}
+
+.rem-cart-btn:hover{
+	background: #DF0000;
+}
+
+.rem-cart-btn:active{
+	background: #BF0000;
+}
+
+#cart-btn-course{
+	position: relative;
+	margin-left: 35px;
+	margin-top: -33px;
 }
 
 #files{

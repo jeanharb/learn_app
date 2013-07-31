@@ -10,7 +10,11 @@ class CartsController < ApplicationController
 	def destroy
 		@course = Cart.find(params[:id]).coursefollow
 		current_user.removefromcart!(@course)
-		redirect_to course_path(@course)
+		if !params[:cart].nil?
+		  redirect_to '/cart'
+		else
+		  redirect_to course_path(@course)
+		end
 	end
 
 end

@@ -1,6 +1,7 @@
 class ProgramsController < ApplicationController
 	before_filter :signed_in_user, only: [:create, :edit, :update]
 	before_filter :correct_user, only: [:edit, :update]
+	before_filter :correct_user_add, only: :addcourses
 	before_filter :program_des, only: :destroy
 
 	def new
@@ -40,10 +41,14 @@ class ProgramsController < ApplicationController
 	end
 
 	def addcourses
-		if !params.has_key?(:course)
+		if !params.has_key?(:program)
+			redirect_to "/creations"
+		elsif params[:program].nil?
 			redirect_to "/creations"
 		end
-		@program = Program.find(params[:course])
+		@courses = Course.all
+		@carts = Cart.where("follower_id = ?", current_user.id)
+		@program = Program.find(params[:program])
 	end
 
 	def destroy
@@ -53,6 +58,7 @@ class ProgramsController < ApplicationController
 	end
 
 	private
+
 		def program_des
 			redirect_to root_path unless progcreator?
 		end
@@ -63,6 +69,11 @@ class ProgramsController < ApplicationController
 
 		def signed_in_user
 			redirect_to signin_url, notice: "Please sign in." unless signed_in?
+		end
+
+		def correct_user_add
+			@user = User.find(Program.find(params[:program]).user_id)
+			redirect_to(root_path) unless current_user?(@user)
 		end
 
 		def correct_user

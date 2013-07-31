@@ -1,2 +1,20 @@
 <% provide(:title, "Add Courses") %>
 <div>Add courses to <%= @program.title %>.</div>
+<div>
+<% if @carts.empty? %>
+Your cart seems to be empty.
+<% else %>
+	<%= form_tag "/relationships", :method=>'post' do %>
+		<% @carts.each do |cart| %>
+		<% if !current_user.classincart?(Course.find(cart.coursefollow_id)) %>
+    		<div>
+    			<%= check_box_tag "course[#{cart.coursefollow_id}]", cart.coursefollow_id %>
+    			<%= find_course_title(cart.coursefollow_id) %>
+    		</div>
+    	<% end %>
+		<% end %>
+		<%= hidden_field_tag "program", params[:program]%>
+		<%= submit_tag "Add courses!"%>
+	<% end %>
+<% end %>
+</div>

@@ -9,7 +9,7 @@ class Program < ActiveRecord::Base
   validates :title, presence: true
 
   def takingclass?(course)
-    relationships.find_by(course_id: course.id)
+    relationships.find_by_course_id(course.id)
   end
 
   def takeclass!(course)

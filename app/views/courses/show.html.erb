@@ -3,18 +3,13 @@
 	<h1>
 		<%= @course.title %>
 	</h1>
-	<% if courcreator %>
-		<div class="edit-btn profile-btn">
-			<%= link_to "Edit", edit_course_path(@course) %>
-		</div>
-	<% end %>
-	<% if !courcreator %>
+	<div id="cart-btn-course">
 		<% if !(current_user.classincart?(@course)) %>
 			<%= render 'add_to_cart' %>
 		<% else %>
 			<%= render 'remove_from_cart' %>
 		<% end %>
-	<% end %>
+	</div>
 	<% if @course.programs.count > 0 %>
 	<div class="progcount">
 		This course is registered in <%= pluralize(@course.programs.count, 'program') %>.
@@ -23,6 +18,12 @@
 	<div id="class-des">
 		<%= @course.description %>
 	</div>
+	<% if courcreator %>
+		<div class="edit-btn profile-btn">
+			<%= link_to "Edit", edit_course_path(@course) %>
+		</div>
+	<% end %>
+	<div class="files-padding">&nbsp</div>
 	<div id="files">
 		<span>Files</span>
 	<div id="file-upload">

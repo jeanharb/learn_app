@@ -1,6 +1,14 @@
 <% provide(:title, "Cart") %>
-<div class="course-show">
+<h1>Here's a list of courses in your cart.</h1>
+<div class="cart-show">
 	<% @cart.each do |course| %>
-		<li><%= link_to course.title, course_path(course) %></li>
+		<li><%= link_to course.title, course_path(course) %>
+			<span class="smaller">
+				<%= form_for(current_user.carts.find_by_coursefollow_id(course.id), html: { method: :delete }) do |f| %>
+				  <%= f.hidden_field :cart, :value => "yes" %>
+				  <%= f.submit "Remove from Cart", class: "cart-btn profile-btn rem-cart-btn" %>
+				<% end %>
+			</span>
+		</li>
 	<% end %>
 </div>

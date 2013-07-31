@@ -45,6 +45,10 @@ module SessionsHelper
 		cookies.delete(:remember_token)
 	end
 
+	def find_course_title(course)
+		Course.find(course).title
+	end
+
 	def redirect_back_or(default)
 		redirect_to(session[:return_to] || default)
 		session.delete(:return_to)

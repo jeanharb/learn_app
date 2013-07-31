@@ -1,5 +1,6 @@
 <% provide(:title, @program.title) %>
 <div class="course-show">
+	<div>
 	<h1>
 		<%= @program.title %>
 	</h1>
@@ -10,12 +11,15 @@
 	<% end %>
 	<div id="class-des">
 		<%= @program.description %>
-	</div>
+	</div></div>
+	<div class="files-padding">&nbsp</div>
 	<div id="cou-title">
 		COURSES
+		<% if progcreate %>
 		<span>
-			<%= link_to "Add", addcourses_path(:course => params[:id]) %>
+			<%= link_to "Add", addcourses_path(:program => params[:id]) %>
 		</span>
+		<% end %>
 	</div>
 	<div class="files-bar"></div>
 	<ul class="prog-cours-list">
