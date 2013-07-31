@@ -1,0 +1,41 @@
+<% provide(:title, "My Classes") %>
+<div id="creation-btn">
+<div class="user-btn profile-btn">
+	<%= link_to "Create Class", newcourse_path %>
+</div>
+<div class="prog-btn profile-btn">
+	<%= link_to "Create Program", newprogram_path %>
+</div>
+</div>
+<div class="creation-course colu">
+<ul class="course-list">
+	<li>
+		<h1>My Created Courses</h1>
+	</li>
+	<% @courses.each do |course| %>
+	<li>
+		<span class="course-titl"><%= link_to course.title, course_path(course) %></span>
+		<span class="smaller editedit"><%= link_to "Edit", edit_course_path(course) %></span>
+		<span class="smaller delete-btn"><%= link_to "Delete", course, method: :delete, 
+									data: { confirm: "You sure?" },
+									title: course.title %>
+	</li>
+	<% end %>
+</ul>
+</div>
+<div class="creation-program colu">
+<ul class="course-list">
+	<li>
+		<h1>My Created Programs</h1>
+	</li>
+	<% @programs.each do |program| %>
+	<li>
+		<span class="course-titl"><%= link_to program.title, program_path(program) %></span>
+		<span class="smaller editedit"><%= link_to "Edit", edit_program_path(program) %></span>
+		<span class="smaller delete-btn"><%= link_to "Delete", program, method: :delete, 
+									data: { confirm: "You sure?" },
+									title: program.title %>
+	</li>
+	<% end %>
+</ul>
+</div>

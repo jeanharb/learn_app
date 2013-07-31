@@ -9,6 +9,19 @@
 	margin-top: 20px;
 }
 
+.creation-program{
+	margin-left: 10px;
+}
+
+.creation-course{
+
+}
+
+.colu{
+	width: 400px;
+	float: left;
+}
+
 .smaller{
 	font-size: 0.7em;
 }
@@ -45,11 +58,16 @@
 .edit-btn{
 	margin-left: 890px;
 	margin-top: -30px;
-	z-index: 10;
+	z-index: -1;
 }
 
 .myclasses{
 	margin-left: 881px;
+	margin-top: 26px;
+}
+
+.prog-btn{
+	margin-left: 859px;
 	margin-top: 26px;
 }
 
@@ -77,11 +95,17 @@
 	font-size: 1.2em;
 }
 
-#delete-btn{
+.delete-btn{
 	font-size: 0.7em;
+	color: red;
 	a{
+		color: red;
 		text-decoration: none;
 	}
+}
+
+.delete-btn a:hover{
+	text-decoration: underline;
 }
 
 .new_note{
@@ -129,13 +153,28 @@
 	z-index: 10;
 }
 
+.courstitle{
+	a{
+		color:black;
+	}
+}
+
+#program_description{
+	width: 500px;
+	height: 200px;
+	vertical-align: top;
+}
+
+.editedit a{
+	color: blue;
+}
+
 .course-list{
 	list-style-type: none;
 	margin-left: -43px;
 	margin-bottom: 5px;
 	font-size: 1.2em;
 	a{
-		color: black;
 		text-decoration: none;
 	}
 	h1{
@@ -144,10 +183,16 @@
 	}
 }
 
+.course-titl{
+	a{
+		color: black;
+	}
+}
+
 .course-list a:hover{
-	color: #555;
 	cursor: pointer;
 	cursor: hand;
+	text-decoration: underline;
 }
 
 #course_description{
@@ -192,7 +237,7 @@
 	margin-bottom: 40px;
 }
 
-#courses{
+.courses{
 	margin-left: 41px;
 	h1{
 		margin-left: -43px;
@@ -290,6 +335,14 @@ margin-top: 45px;
 	text-align: center;
 	height: 40px;
 	width: 150px;
+	display: inline-block;
+	vertical-align: text-top;
+}
+
+.db-small{
+	text-align: center;
+	height: 40px;
+	width: 125px;
 	display: inline-block;
 	vertical-align: text-top;
 }

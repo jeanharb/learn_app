@@ -1,0 +1,17 @@
+<% provide(:title, "Edit Program") %>
+<%= form_for @program do |f| %>
+<%= render 'shared/error_messages', object: f.object, :html => { :id => "myform" } %>
+	<div>
+		<%= f.label "Program Title :" %>
+	</div>
+	<div>
+		<%= f.text_field :title %>
+	</div>
+	<div>
+		<%= f.label "Program Description :" %>
+	</div>
+	<div class="prog-desc">
+		<%= f.text_area :description %>
+	</div>
+	<div><%= f.submit "Update Program", class: "subcon" %></div>
+<% end %>

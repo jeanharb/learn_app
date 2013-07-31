@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-	before_filter :signed_in_user, only: [:edit, :update]
+	before_filter :signed_in_user, only: [:create, :edit, :update]
 	before_filter :correct_user, only: [:edit, :update]
 	before_filter :course_des, only: :destroy
 	
@@ -47,10 +47,6 @@ class CoursesController < ApplicationController
 		@course = Course.find(params[:id])
 		@course.destroy
 		redirect_back_or creations
-	end
-
-	def creations
-		@courses = current_user.courses.all
 	end
 
 	private

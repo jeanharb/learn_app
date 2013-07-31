@@ -1,0 +1,20 @@
+<%= form_for @program do |f| %>
+<%= render 'shared/error_messages', object: f.object, :html => { :id => "myform" } %>
+<div class="course_form">
+	<div>
+		<%= f.label "Program Title :" %>
+	</div>
+	<div id='course-title'>
+		<%= f.text_field :title %>
+	</div>
+</div>
+<div class="course_form" id="courdes">
+	<div>
+		<%= f.label "Program Description :" %>
+	</div>
+	<div id="course-des">
+		<%= f.text_area :description %>
+	</div>
+	<div><%= f.submit "Create Program!", class: "subcon" %></div>
+</div>
+<% end %>

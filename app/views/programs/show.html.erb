@@ -1,0 +1,17 @@
+<% provide(:title, @program.title) %>
+<div class="course-show">
+	<h1>
+		<%= @program.title %>
+	</h1>
+	<div id="class-des">
+		<%= @program.description %>
+	</div>
+	<h3>COURSES</h3>
+	<ul>
+	<% if @cours_items.any? %>
+		<% @cours_items.each do |cours| %>
+			<li><%= cours.title %></li>
+		<% end %>
+	<% end %>
+	</ul>
+</div>

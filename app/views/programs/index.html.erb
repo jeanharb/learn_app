@@ -1,0 +1,21 @@
+<% provide(:title, "All Programs") %>
+<div class="courses">
+<h1>Here's a list of all programs!</h1>
+<% @programs.each do |program| %>
+	<div class="course-list">
+		<span class="courstitle">
+		<%= link_to program.title, program_path(program) %>
+		</span>
+		<% if !courcreator?(program) %>
+		<% if is_admin? %>
+		<span class="delete-btn smaller">
+		<%= link_to "delete", program, method: :delete, 
+									  data: { confirm: "You sure?" },
+									  title: program.title,
+									  :admin => "yes" %>
+		</span>
+		<% end %>
+		<% end %>
+	</div>
+<% end %>
+</div>

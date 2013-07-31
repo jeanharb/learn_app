@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130729174835) do
+ActiveRecord::Schema.define(:version => 20130730230148) do
 
   create_table "courses", :force => true do |t|
     t.string   "title"
@@ -33,6 +33,27 @@ ActiveRecord::Schema.define(:version => 20130729174835) do
   end
 
   add_index "notes", ["course_id", "created_at"], :name => "index_notes_on_course_id_and_created_at"
+
+  create_table "programs", :force => true do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "programs", ["user_id", "created_at"], :name => "index_programs_on_user_id_and_created_at"
+
+  create_table "relationships", :force => true do |t|
+    t.integer  "course_id"
+    t.integer  "program_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "relationships", ["course_id"], :name => "index_relationships_on_course_id"
+  add_index "relationships", ["program_id", "course_id"], :name => "index_relationships_on_program_id_and_course_id", :unique => true
+  add_index "relationships", ["program_id"], :name => "index_relationships_on_program_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"

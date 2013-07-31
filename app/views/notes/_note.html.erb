@@ -3,7 +3,14 @@
 	<span class="content">
 		<%= link_to note.filename, download_note_path(note) %>
 	</span>
-	<span id="delete-btn">
+	<span class="smaller">
+		<% if note.content.length/1.3572/1000 > 1000 %>
+			<%= ((note.content.length/1.3572)/1000000).round(1) %>MB
+		<% else %>
+			<%= ((note.content.length/1.3572)/1000).round %>KB
+		<% end %>
+	</span>
+	<span class="delete-btn">
 	<% if creator? %>
 		<%= link_to "delete", note, method: :delete, 
 									data: { confirm: "You sure?" },

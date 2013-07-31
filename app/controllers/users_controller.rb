@@ -25,6 +25,11 @@ class UsersController < ApplicationController
     redirect_to database_path
   end
 
+  def creations
+    @courses = current_user.courses.all
+    @programs = current_user.programs.all
+  end
+
   private
 
     def admin_user

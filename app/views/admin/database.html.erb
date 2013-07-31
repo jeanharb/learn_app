@@ -7,6 +7,9 @@
 	Users: <%= User.all.count %>
 </div>
 <div>
+	Programs: <%= Program.all.count %>
+</div>
+<div>
 	Courses: <%= Course.all.count %>
 </div>
 <div>
@@ -18,19 +21,21 @@
 	<li>
 		<span class="users">NAME</span>
 		<span class="users">EMAIL</span>
-		<span class="users"># COURSES</span>
-		<span class="users"># FILES</span>
-		<span class="users">ADMIN</span>
-		<span class="users">DELETE?</span>
+		<span class="db-small"># PROGRAMS</span>
+		<span class="db-small"># COURSES</span>
+		<span class="db-small"># FILES</span>
+		<span class="db-small">ADMIN</span>
+		<span class="db-small">DELETE?</span>
 	</li>
 	<% @users.each do |user| %>
 	<li>
 		<span class="users"><%= user.name %></span>
 		<span class="users"><%= user.email %></span>
-		<span class="users"><%= user.courses.count %></span>
-		<span class="users"><%= num_notes(user) %></span>
-		<span class="users"><%= user.admin %></span>
-		<span class="users">
+		<span class="db-small"><%= user.programs.count %></span>
+		<span class="db-small"><%= user.courses.count %></span>
+		<span class="db-small"><%= num_notes(user) %></span>
+		<span class="db-small"><%= user.admin %></span>
+		<span class="db-small">
 			<% if current_user.admin? && !current_user?(user) %>
 				<%= link_to "delete", user, method: :delete, data: { confirm: "You sure?" } %>
 			<% else %>

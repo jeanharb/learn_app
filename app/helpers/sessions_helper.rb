@@ -59,6 +59,10 @@ module SessionsHelper
 			current_user?(User.find(Course.find(params[:id]).user_id)) || is_admin?
 		end
 
+		def progcreator?
+			current_user?(User.find(Program.find(params[:id]).user_id)) || is_admin?
+		end
+
 		def courcreator
 			current_user?(User.find(Course.find(params[:id]).user_id))
 		end
