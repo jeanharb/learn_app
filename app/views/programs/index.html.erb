@@ -6,6 +6,9 @@
 		<span class="courstitle">
 		<%= link_to program.title, program_path(program) %>
 		</span>
+		<span class="smaller">
+			Created by <%= User.find_by_id(program.user_id).name %>
+		</span>
 		<% if !courcreator?(program) %>
 		<% if is_admin? %>
 		<span class="delete-btn smaller">

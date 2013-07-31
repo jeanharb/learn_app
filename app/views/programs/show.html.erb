@@ -3,14 +3,20 @@
 	<h1>
 		<%= @program.title %>
 	</h1>
+	<% if progcreate %>
+		<div class="edit-btn profile-btn">
+			<%= link_to "Edit", edit_program_path(@program) %>
+		</div>
+	<% end %>
 	<div id="class-des">
 		<%= @program.description %>
 	</div>
-	<h3>COURSES</h3>
-	<ul>
+	<div id="cou-title">COURSES</div>
+	<div class="files-bar"></div>
+	<ul class="prog-cours-list">
 	<% if @cours_items.any? %>
 		<% @cours_items.each do |cours| %>
-			<li><%= cours.title %></li>
+			<li><%= link_to cours.title, course_path(cours) %></li>
 		<% end %>
 	<% end %>
 	</ul>
