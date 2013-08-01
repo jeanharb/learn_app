@@ -7,6 +7,7 @@ gem "paperclip", "~> 3.0"
 gem 'sunspot', '~> 2.0'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
+gem 'progress_bar'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
