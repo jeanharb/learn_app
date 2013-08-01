@@ -1,24 +1,35 @@
 <% provide(:title, "Search") %>
-
 <span id="search-page">
 	<form>
-		Full Name: <input type="text" name="fname">
+		Course/Program: <input type="text" name="fname">
 		<input type="submit" value="Search" class="search-btn">
 	</form>
 	<% if(params.has_key?(:fname)) %>
-		<% if(@usersearch) %>
-			<div id="result">
-				<div>
-					<span>Name</span>
-					<span>Email</span>
+		<div class="search-title">
+			Programs:
+		</div>
+		<% if (@programs && @program.total != 0) %>
+			<% @programs.each do |program| %>
+				<div class="name-search">
+					<%= link_to program.title, program_path(program) %>
 				</div>
-				<div id="res">
-					<span class="name-search"><%= @usersearch.name %></span>
-					<span class="email-search"><%= @usersearch.email %></span>
-				</div>
-			</div>
+			<% end %>
 		<% else %>
-			<div>
+			<div class="name-search">
+				No results found.
+			</div>
+		<% end %>
+		<div class="search-title">
+			Courses:
+		</div>
+		<% if @courses && @course.total != 0%>
+			<% @courses.each do |course| %>
+				<div class="name-search">
+					<%= link_to course.title, course_path(course) %>
+				</div>
+			<% end %>
+		<% else %>
+			<div class="name-search">
 				No results found.
 			</div>
 		<% end %>

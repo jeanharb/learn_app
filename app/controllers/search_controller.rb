@@ -2,7 +2,14 @@ class SearchController < ApplicationController
 	before_filter :signed_in_user, only: [:index]
 
 	def index
-		@usersearch = User.find_by_name(params[:fname])
+		@course = Course.search do
+			fulltext params[:fname]
+		end
+		@courses = @course.results
+		@program = Program.search do
+			fulltext params[:fname]
+		end
+		@programs = @program.results
 	end
 
 	private

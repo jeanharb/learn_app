@@ -10,4 +10,8 @@ class Course < ActiveRecord::Base
   validates :user_id, presence: true
   validates :description, presence: true
   validates :title, presence: true
+  
+  searchable do
+    text :title
+  end
 end

@@ -4,6 +4,27 @@
 	margin-top: -60px;
 }
 
+input[type='checkbox']{
+	-webkit-appearance: none;
+    background-color: #fff;
+    border: 1px solid #cacece;
+    padding: 5px;
+    border-radius: 2px;
+    display: inline-block;
+    position: relative;
+}
+
+input[type='checkbox']:hover{
+	cursor: hand;
+	cursor: pointer;
+}
+
+input[type='checkbox']:checked {
+    background-color: #24B34B;
+    border: 1px solid #24B34B;
+    color: #99a1a7;
+}
+
 #creation-btn{
 	position: absolute;
 	margin-top: 20px;
@@ -359,9 +380,9 @@
 #search-menu{
 	position: relative;
 	z-index: 40;
-	left: 534px;
+	left: 490px;
 	top: 35px;
-	width: 266px;
+	width: 309px;
 }
 
 .menu-span{
@@ -410,7 +431,30 @@ margin-top: 45px;
 
 #search-page{
 	position: absolute;
-	margin-top: 70px;
+	margin-top: 0px;
+}
+
+.search-title{
+	font-size: 1.3em;
+	margin-bottom: 5px;
+	margin-top: 20px;
+}
+
+.name-search{
+	margin-left: 10px;
+	font-weight: lighter;
+	margin-bottom: 5px;
+	a{
+		font-weight: lighter;
+		text-decoration: none;
+		color: black;
+	}
+}
+
+.name-search a:hover{
+	cursor: pointer;
+	cursor: hand;
+	text-decoration: underline;
 }
 
 .user-list{

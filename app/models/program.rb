@@ -8,6 +8,10 @@ class Program < ActiveRecord::Base
   validates :description, presence: true
   validates :title, presence: true
 
+  searchable do
+    text :title
+  end
+
   def takingclass?(course)
     relationships.find_by_course_id(course.id)
   end
