@@ -17,6 +17,15 @@ class NotesController < ApplicationController
         end
   end
 
+  def show
+    @note = Note.find(params[:id])
+    @notecon = @note.content
+    decoded_data=Base64.decode64(@notecon)
+    file_name = "test.pdf"
+    @temp_file = Tempfile.new("filename-#{Time.now}")
+    File.open(@temp_file, 'wb') {|f| f.write(decoded_data)}
+  end
+
   def download
     note = Note.find(params[:id])
     send_data note.as_file,

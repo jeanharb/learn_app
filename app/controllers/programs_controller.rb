@@ -54,7 +54,7 @@ class ProgramsController < ApplicationController
 	def destroy
 		@program = Program.find(params[:id])
 		@program.destroy
-		redirect_back_or creations_path
+		redirect_to '/creations'
 	end
 
 	private

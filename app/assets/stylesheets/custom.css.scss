@@ -4,6 +4,28 @@
 	margin-top: -60px;
 }
 
+.pdf-viewer{
+	width: 800px;
+	height: 500px;
+	margin: auto;
+	margin-top: 5px;
+}
+
+.tempfile{
+	position: absolute;
+	top: 300px;
+	left: 100px;
+}
+
+.note-dwn a{
+	color: black;
+	text-decoration: none;
+}
+
+.note-dwn a:hover{
+	text-decoration: underline;
+}
+
 input[type='checkbox']{
 	-webkit-appearance: none;
     background-color: #fff;

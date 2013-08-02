@@ -1,7 +1,7 @@
 <% if !note.filename.nil? %>
 <li>
 	<span class="content">
-		<%= link_to note.filename, download_note_path(note) %>
+		<%= link_to note.filename, note_path(note) %>
 	</span>
 	<span class="smaller">
 		<% if note.content.length/1.3572/1000 > 1000 %>
@@ -10,9 +10,12 @@
 			<%= ((note.content.length/1.3572)/1000).round %>KB
 		<% end %>
 	</span>
+	<span class="smaller note-dwn">
+		<%= link_to "Download", download_note_path(note) %>
+	</span>
 	<span class="delete-btn">
 	<% if creator? %>
-		<%= link_to "delete", note, method: :delete, 
+		<%= link_to "Delete", note, method: :delete, 
 									data: { confirm: "You sure?" },
 									title: note.filename %>
 	<% end %>

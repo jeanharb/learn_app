@@ -6,7 +6,7 @@ LearnApp::Application.routes.draw do
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :admin
-  resources :relationships, only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy, :index]
   resources :carts, only: [:create, :destroy]
   resources :courses do
     member do
@@ -23,6 +23,7 @@ LearnApp::Application.routes.draw do
   end
 
   root to: "static_pages#home"
+  match '/pdf',       to: "notes#viewpdf"
   match '/addcourses',to: "programs#addcourses"
   match '/cart',      to: "users#cart"
   match '/programs',  to: "programs#index"
