@@ -1,4 +1,5 @@
 class Program < ActiveRecord::Base
+
   attr_accessible :description, :title
   belongs_to :user
   has_many :relationships, foreign_key: "program_id", dependent: :destroy
@@ -7,10 +8,6 @@ class Program < ActiveRecord::Base
   validates :user_id, presence: true
   validates :description, presence: true
   validates :title, presence: true
-
-  searchable do
-    text :title
-  end
 
   def takingclass?(course)
     relationships.find_by_course_id(course.id)

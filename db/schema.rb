@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130731021344) do
+ActiveRecord::Schema.define(:version => 20130807200715) do
 
   create_table "carts", :force => true do |t|
     t.integer  "coursefollow_id"
@@ -44,6 +44,14 @@ ActiveRecord::Schema.define(:version => 20130731021344) do
   end
 
   add_index "notes", ["course_id", "created_at"], :name => "index_notes_on_course_id_and_created_at"
+
+  create_table "pg_search_documents", :force => true do |t|
+    t.text     "content"
+    t.integer  "searchable_id"
+    t.string   "searchable_type"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
   create_table "programs", :force => true do |t|
     t.string   "title"

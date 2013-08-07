@@ -1,15 +1,16 @@
 class SearchController < ApplicationController
-	before_filter :signed_in_user, only: [:index]
+	before_filter :signed_in_user
 
 	def index
-		@course = Course.search do
-			fulltext params[:fname]
+		if params.has_key?(:fname)
+			@search_length = params[:fname].split.length
+			search = params[:fname]
+			search_length = params[:fname].split.length
+			@course = Course.find(:all, :conditions => [(['title LIKE ?'] * search_length).join(' AND ')] + search.split.map { |title| "%#{title}%" })
+			@program = Program.find(:all, :conditions => [(['title LIKE ?'] * search_length).join(' AND ')] + search.split.map { |title| "%#{title}%" })
+		else
+			redirect_to search_path(:fname => "")
 		end
-		@courses = @course.results
-		@program = Program.search do
-			fulltext params[:fname]
-		end
-		@programs = @program.results
 	end
 
 	private
