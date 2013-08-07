@@ -29,9 +29,12 @@
 			<span class="menu-span"><div class="menu-div">
 			<div id="search-menu">
 			<div class="search-menu">
-				<form method="get" action="/search">
-					Course/Program :  <input type="text" name="fname">
-					<input type="submit" value="Search" class="search-btn">
+				<form method="post" action="/search">
+					Course/Program :  
+					<%= form_tag('/search') do %>
+						<%= text_field_tag 'fname' %>
+				  		<%= submit_tag 'Search', :class => 'search-btn' %>
+					<% end %>
 				</form>
 			</div>
 			</div>

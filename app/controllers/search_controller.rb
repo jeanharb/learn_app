@@ -4,6 +4,7 @@ class SearchController < ApplicationController
 	def index
 		if params.has_key?(:fname)
 			@search_length = params[:fname].split.length
+			@search = params[:fname]
 			search = params[:fname]
 			search_length = params[:fname].split.length
 			@course = Course.find(:all, :conditions => [(['lower(title) LIKE ?'] * search_length).join(' AND ')] + search.downcase.split.map { |title| "%#{title}%" })

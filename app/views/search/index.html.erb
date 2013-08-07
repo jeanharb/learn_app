@@ -1,9 +1,10 @@
 <% provide(:title, "Search") %>
 <span id="search-page">
-	<form>
-		Course/Program: <input type="text" name="fname">
-		<input type="submit" value="Search" class="search-btn">
-	</form>
+	Course/Program: 
+	<%= form_tag('/search') do %>
+		<%= text_field_tag 'fname', @search %>
+  		<%= submit_tag 'Search', :class => 'search-btn' %>
+	<% end %>
 	<% if(params.has_key?(:fname)) %>
 		<div class="search-title">
 			Programs:
