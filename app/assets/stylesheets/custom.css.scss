@@ -11,16 +11,25 @@
 
 .pdf-border{
 	position: absolute;
-	width: 800px;
-	height: 570px;
+	width: 900px;
+	height: 630px;
 	border: 1px solid #ddd;
 	border-top: none;
 	z-index: -100;
 }
 
+.pdf-title{
+	text-align: center;
+	font-weight: lighter;
+	font-size: 1.3em;
+	margin: auto;
+	margin-top: 5px;
+	margin-bottom: 10px; 
+}
+
 .pdf-placement{
 	z-index: 100;
-	width: 800px;
+	width: 900px;
 	margin: auto;
 	margin-top: 5px;
 }
@@ -28,8 +37,8 @@
 .pdf-viewer{
 	padding-left: 1px;
 	z-index: 100;
-	width: 800px;
-	height: 570px;
+	width: 900px;
+	height: 630px;
 }
 
 .tempfile{
