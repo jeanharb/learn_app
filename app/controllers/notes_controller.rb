@@ -17,13 +17,17 @@ class NotesController < ApplicationController
         end
   end
 
-  def show
+  def view
     @note = Note.find(params[:id])
-    @notecon = @note.content
-    decoded_data=Base64.decode64(@notecon)
-    file_name = "test.pdf"
-    @temp_file = Tempfile.new("filename-#{Time.now}")
-    File.open(@temp_file, 'wb') {|f| f.write(decoded_data)}
+    @url = "http://docs.google.com/gview?url=http://localhost:3000/notes/" + params[:id] + "&embedded=true"
+  end
+
+  def show
+    note = Note.find(params[:id])
+    send_data note.as_file,
+      :filename => note.filename,
+      :type => note.contenttype,
+      :disposition => "inline"
   end
 
   def download

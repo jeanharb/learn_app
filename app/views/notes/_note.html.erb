@@ -1,7 +1,7 @@
 <% if !note.filename.nil? %>
 <li>
 	<span class="content">
-		<%= link_to note.filename, note_path(note) %>
+		<%= link_to note.filename, viewpdf_path(id: note.id) %>
 	</span>
 	<span class="smaller">
 		<% if note.content.length/1.3572/1000 > 1000 %>
