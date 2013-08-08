@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_filter :signed_in_user
+  before_filter :signed_in_user, only: [:create, :download, :destroy]
   before_filter :course_creator, only: :create
   before_filter :note_creator, only: :destroy
 
