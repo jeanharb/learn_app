@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_filter :signed_in_user, only: [:create, :download, :destroy]
+  before_filter :signed_in_user, except: [:view, :show]
   before_filter :course_creator, only: :create
   before_filter :note_creator, only: :destroy
 
@@ -19,7 +19,7 @@ class NotesController < ApplicationController
 
   def view
     @note = Note.find(params[:id])
-    @url = "http://docs.google.com/gview?url=http://localhost:3000/notes/" + params[:id] + "&embedded=true"
+    @url = "http://docs.google.com/gview?url=http://learnocracy.herokuapp.com/notes/" + params[:id] + "&embedded=true"
   end
 
   def show
