@@ -4,11 +4,32 @@
 	margin-top: -60px;
 }
 
-.pdf-viewer{
+.under-pdf{
+	border: 1px solid black;
+	margin: 40px;
+}
+
+.pdf-border{
+	position: absolute;
 	width: 800px;
-	height: 500px;
+	height: 570px;
+	border: 1px solid #ddd;
+	border-top: none;
+	z-index: -100;
+}
+
+.pdf-placement{
+	z-index: 100;
+	width: 800px;
 	margin: auto;
 	margin-top: 5px;
+}
+
+.pdf-viewer{
+	padding-left: 1px;
+	z-index: 100;
+	width: 800px;
+	height: 570px;
 }
 
 .tempfile{
@@ -819,7 +840,7 @@ html, body{
 	font-family: "open sans";
 	width: 100%;
 	height: 100px;
-	background: #bbb;
+	background: #ccc;
 	color: white;
 	z-index: 30;
 }

@@ -1,8 +1,14 @@
 <% if !note.filename.nil? %>
 <li>
-	<span class="content">
-		<%= link_to note.filename, viewpdf_path(id: note.id) %>
-	</span>
+	<% if note.contenttype == "application/pdf" %>
+		<span class="content">
+			<%= link_to note.filename, viewpdf_path(id: note.id) %>
+		</span>
+		<% else %>
+		<span class="content">
+			<%= note.filename %>
+		</span>
+		<% end %>
 	<span class="smaller">
 		<% if note.content.length/1.3572/1000 > 1000 %>
 			<%= ((note.content.length/1.3572)/1000000).round(1) %>MB
