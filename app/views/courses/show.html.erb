@@ -11,9 +11,14 @@
 		<% end %>
 	</div>
 	<% if params.has_key?(:program) %>
+		<% if @prereqs.count > 0 %>
 		<div class="progcount">
-			This course has <%= @prereqs.count %> as prerequisites.
+			Prerequisites:
 		</div>
+		<% @courses.each do |prereq| %>
+			<div><%= prereq.title %></div>
+		<% end %>
+		<% end %>
 	<% else %>
 		<% if @course.programs.count > 0 %>
 		<div class="progcount">

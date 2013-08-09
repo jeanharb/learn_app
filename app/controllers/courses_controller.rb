@@ -33,8 +33,13 @@ class CoursesController < ApplicationController
     	@notes = @course.notes
     	@note = @course.notes.build if signed_in?
     	if params.has_key?(:program)
+    		@courses = []
     		@program = Program.find(params[:program])
     		@prereqs = Prerequisite.where("want_id = ?", @course.id).where("wantpro_id = ?", @program.id)
+    		@prereqs.each do |prereq|
+    			@course_need = Course.find_by_id(prereq.required_id)
+    			@courses.append(@course_need)
+    		end
     	end
 	end
 
