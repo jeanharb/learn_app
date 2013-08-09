@@ -10,10 +10,16 @@
 			<%= render 'remove_from_cart' %>
 		<% end %>
 	</div>
-	<% if @course.programs.count > 0 %>
-	<div class="progcount">
-		This course is registered in <%= pluralize(@course.programs.count, 'program') %>.
-	</div>
+	<% if params.has_key?(:program) %>
+		<div class="progcount">
+			This course has <%= @prereqs.count %> as prerequisites.
+		</div>
+	<% else %>
+		<% if @course.programs.count > 0 %>
+		<div class="progcount">
+			This course is registered in <%= pluralize(@course.programs.count, 'program') %>.
+		</div>
+		<% end %>
 	<% end %>
 	<div id="class-des">
 		<%= @course.description %>

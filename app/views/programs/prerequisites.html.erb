@@ -1,0 +1,16 @@
+<% provide(:title, "Add Prerequisites") %>
+<div>Add Prerequisites to <%= @program.title %>.</div>
+<div>
+<%= form_tag "/prerequisites", :method=>'post' do %>
+<% @course.each do |course| %>
+	<div>
+	<%= label_tag "course[#{course.id}]", course.title %>
+	</div>
+	<div>
+	<%= select_tag "course[#{course.id}]", options_from_collection_for_select(@course.reject{ |p| p == course or @program.isprerequisite?(course, p) or @program.isprerequisite?(p, course) }.collect, "id", "title"), multiple: true, :class => "prereq-box" %>
+</div>
+<% end %>
+<%= hidden_field_tag "program", params[:id]%>
+<%= submit_tag "Add prerequisites!", :class => "subcon"%>
+<% end %>
+</div>

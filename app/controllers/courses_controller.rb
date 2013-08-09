@@ -32,6 +32,10 @@ class CoursesController < ApplicationController
 		@course = Course.find(params[:id])
     	@notes = @course.notes
     	@note = @course.notes.build if signed_in?
+    	if params.has_key?(:program)
+    		@program = Program.find(params[:program])
+    		@prereqs = Prerequisite.where("want_id = ?", @course.id).where("wantpro_id = ?", @program.id)
+    	end
 	end
 
 	def update
@@ -46,7 +50,7 @@ class CoursesController < ApplicationController
 	def destroy
 		@course = Course.find(params[:id])
 		@course.destroy
-		redirect_back_or creations
+		redirect_to creations_path
 	end
 
 	def classincart?(course)

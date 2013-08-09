@@ -19,13 +19,19 @@
 		<span>
 			<%= link_to "Add", addcourses_path(:program => params[:id]) %>
 		</span>
+		<span>
+			<%= link_to "Set up prerequisites", controller: "programs", action: "prerequisites", :id => "#{@program.id}" %>
+		</span>
+		<span>
+			<%= link_to "Remove prerequisites", controller: "programs", action: "removeprerequisites", :id => "#{@program.id}" %>
+		</span>
 		<% end %>
 	</div>
 	<div class="files-bar"></div>
 	<ul class="prog-cours-list">
 	<% if @cours_items.any? %>
 		<% @cours_items.each do |cours| %>
-			<li><%= link_to cours.title, course_path(cours) %></li>
+			<li><%= link_to cours.title, course_path(cours, :program => @program.id) %></li>
 		<% end %>
 	<% end %>
 	</ul>

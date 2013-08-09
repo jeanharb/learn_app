@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130807200715) do
+ActiveRecord::Schema.define(:version => 20130809012148) do
 
   create_table "carts", :force => true do |t|
     t.integer  "coursefollow_id"
@@ -52,6 +52,19 @@ ActiveRecord::Schema.define(:version => 20130807200715) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
+
+  create_table "prerequisites", :force => true do |t|
+    t.integer  "wantpro_id"
+    t.integer  "want_id"
+    t.integer  "required_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "prerequisites", ["required_id"], :name => "index_prerequisites_on_required_id"
+  add_index "prerequisites", ["want_id", "wantpro_id", "required_id"], :name => "index_prerequisites_on_want_id_and_wantpro_id_and_required_id", :unique => true
+  add_index "prerequisites", ["want_id"], :name => "index_prerequisites_on_want_id"
+  add_index "prerequisites", ["wantpro_id"], :name => "index_prerequisites_on_wantpro_id"
 
   create_table "programs", :force => true do |t|
     t.string   "title"

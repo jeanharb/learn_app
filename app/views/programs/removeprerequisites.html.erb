@@ -1,0 +1,19 @@
+<% provide(:title, "Remove Prerequisites") %>
+<div>Remove Prerequisites to <%= @program.title %>.</div>
+<div>
+<%= form_tag "/prerequisites", :method => "post" do %>
+<% @course.each do |course| %>
+	<% if @program.wants.where("want_id = ?", course.id).exists? %>
+		<div>
+			<%= label_tag "course[#{course.id}]", course.title %>
+		</div>
+		<div>
+		<%= select_tag "course[#{course.id}]", options_from_collection_for_select(@course.reject{ |p| p == course or !@program.isprerequisite?(course, p) }.collect, "id", "title"), multiple: true, :class => "prereq-box" %>
+		</div>
+	<% end %>
+<% end %>
+<%= hidden_field_tag "program", params[:id]%>
+<%= hidden_field_tag "delete", "yes" %>
+<%= submit_tag "Remove prerequisites!", :class => "subcon"%>
+<% end %>
+</div>

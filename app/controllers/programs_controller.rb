@@ -22,6 +22,16 @@ class ProgramsController < ApplicationController
 		@programs = Program.all
 	end
 
+	def prerequisites
+		@program = Program.find(params[:id])
+		@course = @program.courses.all
+	end
+
+	def removeprerequisites
+		@program = Program.find(params[:id])
+		@course = @program.courses.all
+	end
+
 	def show
 		@program = Program.find(params[:id])
 		@cours_items = @program.courses.all
