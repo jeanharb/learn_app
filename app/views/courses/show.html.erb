@@ -16,7 +16,7 @@
 			Prerequisites:
 		</div>
 		<% @courses.each do |prereq| %>
-			<div><%= prereq.title %></div>
+			<div><%= link_to prereq.title, course_path(prereq, :program => @program.id) %></div>
 		<% end %>
 		<% end %>
 	<% else %>
