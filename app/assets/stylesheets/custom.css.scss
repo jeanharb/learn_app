@@ -5,9 +5,48 @@
 }
 
 h1{
+	margin-top: 20px;
 	font-weight: lighter;
 	margin-left: -2px;
 }
+
+#prog-list{
+	margin-top: 10px;
+	font-size: 1.2em;
+	a{
+		text-decoration: none;
+	}
+}
+
+#prog-list a:hover{
+	cursor: pointer;
+	cursor: hand;
+	text-decoration: underline;
+}
+
+.prereq-style{
+	font-size: 0.7em;
+	color: black;
+	text-decoration: none;
+}
+
+.prereq-style:hover{
+	text-decoration: underline;
+}
+
+.prereq-list-style{
+	font-size: 0.8em;
+	margin-left: 20px;
+	a{
+		color: black;
+		text-decoration: none;
+	}
+}
+
+.prereq-list-style a:hover{
+	text-decoration: underline;
+}
+
 .prereq-box{
 	width: 120px;
 	height: 50px;
@@ -96,10 +135,6 @@ input[type='checkbox']:checked {
 	margin-left: 10px;
 }
 
-.creation-course{
-
-}
-
 .colu{
 	width: 400px;
 	float: left;
@@ -165,18 +200,62 @@ input[type='checkbox']:checked {
 }
 
 .progcount{
-	margin-top: 10px;
+	margin-top: 15px;
+	margin-left: 10px;
+}
+
+.edit-cont{
+	float: right;
+	width: 130px;
 }
 
 .edit-btn{
-	margin-left: 940px;
-	margin-top: -35px;
-	z-index: -1;
+	float: right;
+	margin-top: 15px;
 }
 
-.files-padding{
-	margin-top: -35px;
-	padding-bottom: 175px;
+.reg-btn-add{
+	background: #88C425;
+}
+
+.reg-btn-rem{
+	background: #D83018;
+}
+
+.reg-btn{
+	margin-top: 15px;
+	float: right;
+	cursor: hand;
+	cursor: pointer;
+	border: none;
+	padding: 10px;
+	text-decoration: none;
+	color: white;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.reg-btn-rem:hover{
+	-o-transition: .2s;
+  	-ms-transition: .2s;
+  	-moz-transition: .2s;
+  	-webkit-transition: .2s;
+  	transition: .2s;
+	background: #b82000;
+}
+
+.reg-btn-add:hover{
+	-o-transition: .2s;
+  	-ms-transition: .2s;
+  	-moz-transition: .2s;
+  	-webkit-transition: .2s;
+  	transition: .2s;
+	background: #68a405;
+}
+
+.files-container{
+	width: 800px;
+	float: left;
 }
 
 .myclasses{
@@ -211,11 +290,6 @@ input[type='checkbox']:checked {
 #cou-title{
 	font-size: 1.2em;
 	margin-top: 30px;
-}
-
-.cart-btn{
-	margin-top: -32px;
-	margin-left: 893px;
 }
 
 .cart-btn{
@@ -259,9 +333,20 @@ input[type='checkbox']:checked {
 }
 
 #cart-btn-course{
+	float: right;
 	position: relative;
 	margin-left: 35px;
-	margin-top: -33px;
+	margin-top: 25px;
+}
+
+.course-info{
+	float: left;
+	min-height: 300px;
+}
+
+.course-btns{
+	float: right;
+	width: 145px;
 }
 
 #files{
@@ -318,13 +403,13 @@ input[type='checkbox']:checked {
 }
 
 .profile-btn a{
+	float: right;
 	padding: 10px;
 	background: #D83018;
 	text-decoration: none;
 	color: white;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-	z-index: 10;
 }
 
 .courstitle{

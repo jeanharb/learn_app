@@ -1,1 +1,5 @@
-<div>Welcome to Learnocracy</div>
+<% if signed_in? %>
+	<%= render 'user_home' %>
+<% else %>
+	<div>Welcome to Learnocracy</div>
+<% end %>

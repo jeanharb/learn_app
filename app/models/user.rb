@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_many :programs, dependent: :destroy
   has_many :carts, foreign_key: "follower_id", dependent: :destroy
   has_many :coursefollows, through: :carts, source: :coursefollow
+  has_many :registrations, foreign_key: "student_id", dependent: :destroy
+  has_many :takenprogs, through: :registrations, source: :takenprog
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
@@ -25,6 +27,18 @@ class User < ActiveRecord::Base
 
   def removefromcart!(course)
     carts.find_by_coursefollow_id(course.id).destroy
+  end
+
+  def registered?(program)
+    registrations.find_by_takenprog_id(program.id)
+  end
+
+  def register!(program)
+    registrations.create!(takenprog_id: program.id)
+  end
+
+  def unregister!(program)
+    registrations.find_by_takenprog_id(program.id).destroy
   end
 
   private

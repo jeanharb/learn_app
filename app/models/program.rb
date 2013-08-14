@@ -6,6 +6,8 @@ class Program < ActiveRecord::Base
   has_many :wants, through: :prerequisites, source: :want
   has_many :required_courses, through: :prerequisites, source: :required
   has_many :prerequisites, foreign_key: "wantpro_id", dependent: :destroy
+  has_many :students, through: :reverse_registrations, source: :student
+  has_many :reverse_registrations, foreign_key: "takenprog_id", class_name: "Registration", dependent: :destroy
 
   validates :user_id, presence: true
   validates :description, presence: true

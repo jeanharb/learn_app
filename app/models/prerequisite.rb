@@ -1,5 +1,5 @@
 class Prerequisite < ActiveRecord::Base
-  attr_accessible :want_id, :wantpro_id, :required_id
+  attr_accessible :want_id, :required_id
   belongs_to :required, class_name: "Course"
   belongs_to :want, class_name: "Course"
   belongs_to :wantpro, class_name: "Program"

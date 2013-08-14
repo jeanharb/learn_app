@@ -8,15 +8,21 @@ LearnApp::Application.routes.draw do
   resources :admin
   resources :relationships, only: [:create, :destroy, :index]
   resources :carts, only: [:create, :destroy]
-  resources :prerequisites, only: [:create, :destroy]
+  resources :prerequisites, only: :create
+  resources :registrations, only: [:create, :destroy]
   resources :courses do
     member do
       get :programs, :followers, :wants, :wantpros
     end
   end
+  resources :users do
+    member do
+      get :takenprogs, :students
+    end
+  end
   resources :programs do
     member do
-      get :courses, :wants, :required_courses
+      get :courses, :wants, :required_courses, :students
     end
     collection do
       get :prerequisites, :removeprerequisites

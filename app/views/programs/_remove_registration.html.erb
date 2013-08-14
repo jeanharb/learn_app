@@ -1,0 +1,5 @@
+<%= form_for(current_user.registrations.find_by_takenprog_id(@program.id), 
+			 html: { method: :delete }) do |f| %>
+  <div><%= f.hidden_field :takenprog_id %></div>
+  <%= f.submit "Unregister", :class => "reg-btn reg-btn-rem" %>
+<% end %>

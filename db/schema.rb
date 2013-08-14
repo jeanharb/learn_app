@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130809012148) do
+ActiveRecord::Schema.define(:version => 20130813220633) do
 
   create_table "carts", :force => true do |t|
     t.integer  "coursefollow_id"
@@ -75,6 +75,28 @@ ActiveRecord::Schema.define(:version => 20130809012148) do
   end
 
   add_index "programs", ["user_id", "created_at"], :name => "index_programs_on_user_id_and_created_at"
+
+  create_table "registerations", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "takenprog_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "registerations", ["student_id"], :name => "index_registerations_on_student_id"
+  add_index "registerations", ["takenprog_id", "student_id"], :name => "index_registerations_on_takenprog_id_and_student_id", :unique => true
+  add_index "registerations", ["takenprog_id"], :name => "index_registerations_on_takenprog_id"
+
+  create_table "registrations", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "takenprog_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "registrations", ["student_id"], :name => "index_registrations_on_student_id"
+  add_index "registrations", ["takenprog_id", "student_id"], :name => "index_registrations_on_takenprog_id_and_student_id", :unique => true
+  add_index "registrations", ["takenprog_id"], :name => "index_registrations_on_takenprog_id"
 
   create_table "relationships", :force => true do |t|
     t.integer  "course_id"

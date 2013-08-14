@@ -1,22 +1,16 @@
 <% provide(:title, @course.title) %>
 <div class="course-show">
+	<div class="course-info">
 	<h1>
 		<%= @course.title %>
 	</h1>
-	<div id="cart-btn-course">
-		<% if !(current_user.classincart?(@course)) %>
-			<%= render 'add_to_cart' %>
-		<% else %>
-			<%= render 'remove_from_cart' %>
-		<% end %>
-	</div>
 	<% if params.has_key?(:program) %>
 		<% if @prereqs.count > 0 %>
 		<div class="progcount">
 			Prerequisites:
 		</div>
 		<% @courses.each do |prereq| %>
-			<div><%= link_to prereq.title, course_path(prereq, :program => @program.id) %></div>
+			<div class="prereq-list-style"><%= link_to prereq.title, course_path(prereq, :program => @program.id) %></div>
 		<% end %>
 		<% end %>
 	<% else %>
@@ -29,29 +23,39 @@
 	<div id="class-des">
 		<%= @course.description %>
 	</div>
+	</div>
+	<div class="course-btns">
+		<div id="cart-btn-course">
+		<% if !(current_user.classincart?(@course)) %>
+			<%= render 'add_to_cart' %>
+		<% else %>
+			<%= render 'remove_from_cart' %>
+		<% end %>
+	</div>
 	<% if courcreator %>
 		<div class="edit-btn profile-btn">
 			<%= link_to "Edit", edit_course_path(@course) %>
 		</div>
 	<% end %>
-	<div class="files-padding">&nbsp</div>
-	<div id="files">
-		<span>Files</span>
-	<div id="file-upload">
-		<% if courcreator %>
-			<%= render 'shared/note_form' %>
-		<% end %>
 	</div>
-	</div>
-	<div class="files-bar"></div>
-	<div>
-		<% if @notes.any? %>
-			<% if !@notes.nil? %>
-					<ul class="notes">
-						<%= render @notes %>
-					</ul>
+	<div class="files-container">
+		<div id="files">
+			<span>Files</span>
+			<div id="file-upload">
+				<% if courcreator %>
+					<%= render 'shared/note_form' %>
+				<% end %>
+			</div>
+		</div>
+		<div class="files-bar"></div>
+		<div>
+			<% if @notes.any? %>
+				<% if !@notes.nil? %>
+						<ul class="notes">
+							<%= render @notes %>
+						</ul>
+				<% end %>
 			<% end %>
-		<% else %>
-		<% end %>
+		</div>
 	</div>
 </div>

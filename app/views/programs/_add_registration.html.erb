@@ -1,0 +1,4 @@
+<%= form_for(current_user.registrations.build(takenprog_id: @program.id)) do |f| %>
+  <div><%= f.hidden_field :takenprog_id %></div>
+  <%= f.submit "Register", :class => "reg-btn reg-btn-add" %>
+<% end %>

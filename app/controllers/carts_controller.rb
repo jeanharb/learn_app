@@ -16,5 +16,4 @@ class CartsController < ApplicationController
 		  redirect_to course_path(@course)
 		end
 	end
-
 end

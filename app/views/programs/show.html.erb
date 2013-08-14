@@ -1,38 +1,49 @@
 <% provide(:title, @program.title) %>
 <div class="course-show">
-	<div>
-	<h1>
-		<%= @program.title %>
-	</h1>
-	<% if progcreate %>
-		<div class="edit-btn profile-btn">
-			<%= link_to "Edit", edit_program_path(@program) %>
+	<div class="course-info">
+		<h1>
+			<%= @program.title %>
+		</h1>
+		<div id="class-des">
+			<%= @program.description %>
 		</div>
-	<% end %>
-	<div id="class-des">
-		<%= @program.description %>
-	</div></div>
-	<div class="files-padding">&nbsp</div>
-	<div id="cou-title">
-		COURSES
+	</div>
+	<div class="course-btns">
 		<% if progcreate %>
-		<span>
-			<%= link_to "Add", addcourses_path(:program => params[:id]) %>
-		</span>
-		<span>
-			<%= link_to "Set up prerequisites", controller: "programs", action: "prerequisites", :id => "#{@program.id}" %>
-		</span>
-		<span>
-			<%= link_to "Remove prerequisites", controller: "programs", action: "removeprerequisites", :id => "#{@program.id}" %>
-		</span>
+			<div class="edit-cont">
+			<div class="edit-btn profile-btn">
+				<%= link_to "Edit", edit_program_path(@program) %>
+			</div>
+			</div>
+		<% end %>
+		<% if current_user.registered?(@program) %>
+			<%= render 'remove_registration' %>
+		<% else %>
+			<%= render 'add_registration' %>
 		<% end %>
 	</div>
-	<div class="files-bar"></div>
-	<ul class="prog-cours-list">
-	<% if @cours_items.any? %>
-		<% @cours_items.each do |cours| %>
-			<li><%= link_to cours.title, course_path(cours, :program => @program.id) %></li>
+	<div class="files-container">
+		<div id="cou-title">
+			COURSES
+			<% if progcreate %>
+				<span>
+					<%= link_to "Add", addcourses_path(:program => params[:id]), :class => "prereq-style" %>
+				</span>
+				<span>
+					<%= link_to "Set up prerequisites", {controller: "programs", action: "prerequisites", :id => "#{@program.id}"}, {:class => "prereq-style"} %>
+				</span>
+				<span>
+					<%= link_to "Remove prerequisites", {controller: "programs", action: "removeprerequisites", :id => "#{@program.id}" },  {:class => "prereq-style"} %>
+				</span>
+			<% end %>
+		</div>
+		<div class="files-bar"></div>
+		<ul class="prog-cours-list">
+		<% if @cours_items.any? %>
+			<% @cours_items.each do |cours| %>
+				<li><%= link_to cours.title, course_path(cours, :program => @program.id) %></li>
+			<% end %>
 		<% end %>
-	<% end %>
-	</ul>
+		</ul>
+	</div>
 </div>

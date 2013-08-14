@@ -1,0 +1,7 @@
+<% provide(:title, "Home Page") %>
+<h1>MY PROGRAMS</h1>
+<div id="prog-list">
+	<% @programs.each do |program| %>
+		<div class="courstitle"><%= link_to "#{program.title}", program_path(program) %></div>
+	<% end %>
+</div>
