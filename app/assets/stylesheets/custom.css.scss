@@ -10,6 +10,21 @@ h1{
 	margin-left: -2px;
 }
 
+h2{
+	margin-top: 20px;
+	font-weight: lighter;
+}
+
+h4{
+	font-weight: lighter;
+}
+
+.edit-form{
+	div{
+		margin-top: 10px;
+	}
+}
+
 #edit-btn-1{
 	width: 130px;
 	float: right;
@@ -145,8 +160,13 @@ input[type='checkbox']:checked {
     color: #99a1a7;
 }
 
+.creation-info{
+	float: left;
+	width: 850px;
+}
+
 #creation-btn{
-	position: absolute;
+	float: right;
 	margin-top: 20px;
 }
 
@@ -278,18 +298,18 @@ input[type='checkbox']:checked {
 }
 
 .myclasses{
-	margin-left: 881px;
-	margin-top: 26px;
+	float: right;
+	margin-top: 10px;
 }
 
 .prog-btn{
-	margin-left: 859px;
-	margin-top: 26px;
+	float: right;
+	margin-top: 10px;
 }
 
 .user-btn{
-	margin-left: 887px;
-	margin-top: -9px;
+	float: right;
+	margin-top: 5px;
 }
 
 .profile-btn a:hover{
@@ -324,17 +344,17 @@ input[type='checkbox']:checked {
 }
 
 .add-cart-btn{
-	background: #3BB600;
+	background: #88C425;
 }
 
 .add-cart-btn:hover{
-	background: #1B9600;
+	background: #68a405;
 	cursor: hand;
 	cursor: pointer;
 }
 
 .add-cart-btn:active{
-	background: #0B7600;
+	background: #639900;
 }
 
 .rem-cart-btn{
@@ -351,6 +371,17 @@ input[type='checkbox']:checked {
 	background: #BF0000;
 }
 
+.signup-check{
+	cursor: hand;
+	cursor: pointer;
+}
+
+.signup-check1{
+	input{
+		width: 10px;
+	}
+}
+
 #cart-btn-course{
 	float: right;
 	position: relative;
@@ -361,6 +392,7 @@ input[type='checkbox']:checked {
 .course-info{
 	float: left;
 	min-height: 300px;
+	max-width: 850px;
 }
 
 .course-btns{
@@ -546,17 +578,9 @@ input[type='checkbox']:checked {
 #search-menu{
 	position: relative;
 	z-index: 40;
-	left: 490px;
-	top: 35px;
+	left: 604px;
+	top: 13px;
 	width: 309px;
-}
-
-.menu-span{
-	position: absolute;
-}
-
-.menu-div{
-	position: relative;
 }
 
 .search-menu{
@@ -722,40 +746,60 @@ img.background{
 }
 
 .red{
+	font-size: 0.9em;
+	margin-left: -40px;
+	width: 68px;
+	padding-left: 5px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	list-style-type: none;
+	border-left: #ccc 1px solid;
+	border-right: #ccc 1px solid;
 	position: relative;
-	margin-left: -10px;
-	padding-left: 10px;
 	border-top: 1px #ccc solid;
+	border-bottom: #ccc 1px solid;
+	a{
+		text-decoration: none;
+	}
 }
 
-#dropdown-menu{
-	z-index: 40;
+.red:hover{
+	background: #FF4847;
+	a{
+		color: white;
+	}
+}
+
+.menu-div{
 	position: relative;
-	left: 753px;
-	top: 35px;
+	z-index: 40;
+	width: 75px;
+	margin-top: 13px;
+	margin-left: 925px;
+	background: white;
 }
 
 .dropdown-menu{
-	background: white;
 	color: #444;
-	z-index: 80;
-	font-size: 0.8em;
-	border: #ccc 1px solid;
-	border-top: none;
-	width: 62px;
-	top: 45px;
-	right: 140px;
-	padding-left: 10px;
-	padding-top: 10px;
-	margin-top: 0px;
-	margin-left: 60px;
-	li{
+	z-index: 10;
+	margin-top: 7px;
+	font-size: 0.9em;
+	li:not(.red){
 		a{
 			text-decoration: none;
 			font-size: 0.9em;
 		}
+		margin-left: -40px;
+		width: 68px;
+		padding-left: 5px;
+		padding-top: 7px;
+		padding-bottom: 7px;
 		list-style-type: none;
-		margin-bottom: 7px;
+		border-left: #ccc 1px solid;
+		border-right: #ccc 1px solid;
+	}
+	li:not(.red):hover{
+		background: #ddd;
 	}
 }
 
@@ -862,6 +906,10 @@ img.background{
 	background: white;
 }
 
+.homepage-main{
+	z-index: 5;
+}
+
 #signin:hover{
 	cursor: pointer;
 	cursor: hand;
@@ -912,6 +960,22 @@ img.background{
 	width: 312px;
 	display: block;
 	margin: 50px auto 0 auto;
+}
+
+#signup-button{
+	margin-top: 20px;
+	input{
+		background: #68a405;
+		color: white;
+	}
+	input:hover{
+		background: #639900;
+		cursor: hand;
+		cursor: pointer;
+	}
+}
+
+.signup_menu_chose{
 	input{
 		width: 300px;
 		margin-bottom: 20px;

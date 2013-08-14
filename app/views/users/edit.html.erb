@@ -1,0 +1,31 @@
+<% provide(:title, "Edit user") %> <h1>Update your profile</h1>
+<div class="row">
+<div class="span6 offset3 edit-form">
+	<%= form_for(@user) do |f| %>
+		<%= render 'shared/error_messages', object: f.object %>
+		<div>
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+		</div>
+		<div>
+			<%= f.label :email %>
+			<%= f.text_field :email %>
+		</div>
+		<div>
+			<%= f.label :password %>
+			<%= f.password_field :password %>
+		</div>
+		<div>
+			<%= f.label :password_confirmation, "Confirm Password" %>
+			<%= f.password_field :password_confirmation %>
+		</div>
+		<div>
+			<%= f.check_box :creator %>
+			<%= f.label :creator, "Will you create Programs or Courses?" %>
+		</div>
+		<div>
+			<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+		</div>
+	<% end %>
+</div>
+</div>

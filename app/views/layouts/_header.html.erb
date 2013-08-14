@@ -26,44 +26,45 @@
 					</a>
 				</li>
 			</ul>
-			<span class="menu-span"><div class="menu-div">
 			<div id="search-menu">
-			<div class="search-menu">
-				<form method="post" action="/search">
-					Course/Program :  
-					<%= form_tag('/search') do %>
-						<%= text_field_tag 'fname' %>
-				  		<%= submit_tag 'Search', :class => 'search-btn' %>
+				<div class="search-menu">
+					<form method="post" action="/search">
+						Course/Program :  
+						<%= form_tag('/search') do %>
+							<%= text_field_tag 'fname' %>
+					  		<%= submit_tag 'Search', :class => 'search-btn' %>
+						<% end %>
+					</form>
+				</div>
+			</div>
+			<div class="menu-div">
+				<ul class="dropdown-menu">
+					<li>	
+						<%= link_to "Profile", current_user %>
+					</li>
+					<% if current_user.creator or (current_user.programs.any? or current_user.courses.any?) %>
+						<li>
+							<%= link_to "My Creations", creations_path %>
+						</li>
 					<% end %>
-				</form>
+					<% if current_user.creator %>
+						<li>
+							<%= link_to "My Cart", "/cart" %>
+						</li>
+					<% end %>
+					<li>
+						<%= link_to "Settings", edit_user_path(current_user) %>
+					</li>
+					<li class="red">
+						<%= link_to "Sign out", signout_path, method: "delete" %>
+					</li>
+				</ul>
 			</div>
-			</div>
-		</div></span><span class="menu-span"><div class="menu-div">
-			<div id="dropdown-menu">
-			<ul class="dropdown-menu click">
-				<li>	
-					<%= link_to "Profile", current_user %>
-				</li>
-				<li>
-					<%= link_to "My Creations", creations_path %>
-				</li>
-				<li>
-					<%= link_to "My Cart", "/cart" %>
-				</li>
-				<li>
-					<%= link_to "Settings", '#' %>
-				</li>
-				<li class="red">
-					<%= link_to "Sign out", signout_path, method: "delete" %>
-				</li>
-			</ul>
-			</div>
-			</div></span>
-			<% else %>
+		<% else %>
 			<span id="signin" class="navhov">
 				Sign In
 			</span>
-			<span id="signin-menu">
+			<div id="signin-menu">
 				<div class="signin">
 					<%= form_for(:session, url: sessions_path) do |f| %>
 					<div id="email-cont">
@@ -84,7 +85,7 @@
 					<% end %>
 					<div id="newusr">New user? <%= link_to "Sign up now!", signup_path %></div>
 				</div>
-			</span>
+			</div>
 		<% end %> 
 	</span>
 </div>

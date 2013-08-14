@@ -1,12 +1,29 @@
 class UsersController < ApplicationController
   before_filter :admin_user, only: :destroy
+  before_filter :right_user, only: [:edit, :update]
 
   def new
   	@user = User.new
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      sign_in @user
+      redirect_to current_user
+    else
+      render 'edit'
+    end
+  end
+
   def show
   	@user = User.find(params[:id])
+    @programs = @user.takenprogs
+    @courses = @user.takencourses
   end
 
   def cart
@@ -38,7 +55,12 @@ class UsersController < ApplicationController
   private
 
     def admin_user
-      redirect_to(root_path) unless is_admin?
+      redirect_to root_path unless is_admin?
+    end
+
+    def right_user
+      @right_user = User.find(params[:id])
+      redirect_to root_path unless current_user?(@right_user)
     end
     
 end

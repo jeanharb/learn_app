@@ -25,13 +25,15 @@
 	</div>
 	</div>
 	<div class="course-btns">
-		<div id="cart-btn-course">
-			<% if !(current_user.classincart?(@course)) %>
-				<%= render 'add_to_cart' %>
-			<% else %>
-				<%= render 'remove_from_cart' %>
-			<% end %>
-		</div>
+		<% if current_user.creator %>
+			<div id="cart-btn-course">
+				<% if !(current_user.classincart?(@course)) %>
+					<%= render 'add_to_cart' %>
+				<% else %>
+					<%= render 'remove_from_cart' %>
+				<% end %>
+			</div>
+		<% end %>
 		<% if courcreator %>
 			<div id="edit-btn-1">
 			<div class="edit-btn profile-btn">

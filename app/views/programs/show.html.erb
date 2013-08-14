@@ -11,9 +11,9 @@
 	<div class="course-btns">
 		<% if progcreate %>
 			<div class="edit-cont">
-			<div class="edit-btn profile-btn">
-				<%= link_to "Edit", edit_program_path(@program) %>
-			</div>
+				<div class="edit-btn profile-btn">
+					<%= link_to "Edit", edit_program_path(@program) %>
+				</div>
 			</div>
 		<% end %>
 		<% if current_user.registered?(@program) %>

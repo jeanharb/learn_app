@@ -2,7 +2,8 @@
 
 <div id="signup_menu">
 	<%= form_for(@user) do |f| %>
-	<%= render 'shared/error_messages', object: f.object %>
+		<%= render 'shared/error_messages', object: f.object %>
+		<div class="signup_menu_chose">
 		<div>
 			<%= f.label :name %>
 		</div>
@@ -29,8 +30,12 @@
 		<div>
 			<%= f.password_field :password_confirmation %>
 		</div>
-
-		<div id= "button">
+		</div>
+		<div class="signup-check1">
+			<%= f.check_box :creator %>
+			<%= f.label :creator, "Will you create Programs or Courses?", :class => "signup-check" %>
+    	</div>
+		<div id="signup-button" class="signup_menu_chose">
 			<%= f.submit "Create my account", class: "btn-confirm" %>
 		</div>
 	<% end %>
