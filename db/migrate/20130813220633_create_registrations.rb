@@ -9,7 +9,5 @@ class CreateRegistrations < ActiveRecord::Migration
     add_index :registrations, :takenprog_id
     add_index :registrations, :student_id
     add_index :registrations, [:takenprog_id, :student_id], unique: true
-
-    drop_table :registerations
   end
 end
