@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   has_many :coursefollows, through: :carts, source: :coursefollow
   has_many :registrations, foreign_key: "student_id", dependent: :destroy
   has_many :takenprogs, through: :registrations, source: :takenprog
+  has_many :courseregistrations, foreign_key: "courstudent_id", dependent: :destroy
+  has_many :takencourses, through: :courseregistrations, source: :takencourse
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
@@ -39,6 +41,18 @@ class User < ActiveRecord::Base
 
   def unregister!(program)
     registrations.find_by_takenprog_id(program.id).destroy
+  end
+
+  def courseregistered?(course)
+    courseregistrations.find_by_takencourse_id(course.id)
+  end
+
+  def courseregister!(course)
+    courseregistrations.create!(takencourse_id: course.id)
+  end
+
+  def courseunregister!(course)
+    courseregistrations.find_by_takencourse_id(course.id).destroy
   end
 
   private

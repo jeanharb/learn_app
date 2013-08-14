@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130813220633) do
+ActiveRecord::Schema.define(:version => 20130814011326) do
 
   create_table "carts", :force => true do |t|
     t.integer  "coursefollow_id"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(:version => 20130813220633) do
   add_index "carts", ["coursefollow_id"], :name => "index_carts_on_coursefollow_id"
   add_index "carts", ["follower_id", "coursefollow_id"], :name => "index_carts_on_follower_id_and_coursefollow_id", :unique => true
   add_index "carts", ["follower_id"], :name => "index_carts_on_follower_id"
+
+  create_table "courseregistrations", :force => true do |t|
+    t.integer  "courstudent_id"
+    t.integer  "takencourse_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "courseregistrations", ["courstudent_id"], :name => "index_courseregistrations_on_courstudent_id"
+  add_index "courseregistrations", ["takencourse_id", "courstudent_id"], :name => "index_courseregistrations_on_takencourse_id_and_courstudent_id", :unique => true
+  add_index "courseregistrations", ["takencourse_id"], :name => "index_courseregistrations_on_takencourse_id"
 
   create_table "courses", :force => true do |t|
     t.string   "title"
@@ -75,17 +86,6 @@ ActiveRecord::Schema.define(:version => 20130813220633) do
   end
 
   add_index "programs", ["user_id", "created_at"], :name => "index_programs_on_user_id_and_created_at"
-
-  create_table "registerations", :force => true do |t|
-    t.integer  "student_id"
-    t.integer  "takenprog_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
-  add_index "registerations", ["student_id"], :name => "index_registerations_on_student_id"
-  add_index "registerations", ["takenprog_id", "student_id"], :name => "index_registerations_on_takenprog_id_and_student_id", :unique => true
-  add_index "registerations", ["takenprog_id"], :name => "index_registerations_on_takenprog_id"
 
   create_table "registrations", :force => true do |t|
     t.integer  "student_id"

@@ -10,6 +10,7 @@ LearnApp::Application.routes.draw do
   resources :carts, only: [:create, :destroy]
   resources :prerequisites, only: :create
   resources :registrations, only: [:create, :destroy]
+  resources :courseregistrations, only: [:create, :destroy]
   resources :courses do
     member do
       get :programs, :followers, :wants, :wantpros

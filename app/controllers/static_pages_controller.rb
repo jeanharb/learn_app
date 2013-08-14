@@ -3,6 +3,7 @@ class StaticPagesController < ApplicationController
   	if signed_in?
   		@user = current_user
   		@programs = @user.takenprogs
+  		@courses = @user.takencourses
   	end
   end
 

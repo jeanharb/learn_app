@@ -1,0 +1,4 @@
+<%= form_for(current_user.courseregistrations.build(takencourse_id: @course.id)) do |f| %>
+  <div><%= f.hidden_field :takencourse_id %></div>
+  <%= f.submit "Register", :class => "reg-btn reg-btn-add" %>
+<% end %>

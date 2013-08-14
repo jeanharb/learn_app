@@ -9,6 +9,8 @@ class Course < ActiveRecord::Base
   has_many :reverse_prerequisites, foreign_key: "required_id", class_name: "Prerequisite", dependent: :destroy
   has_many :wantpros, through: :reverse_prerequisites, source: :wantpro
   has_many :wants, through: :reverse_prerequisites, source: :want
+  has_many :courstudents, through: :reverse_courseregistrations, source: :courstudent
+  has_many :reverse_courseregistrations, foreign_key: "takencourse_id", class_name: "Courseregistration", dependent: :destroy
 
   validates :user_id, presence: true
   validates :description, presence: true

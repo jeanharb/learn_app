@@ -26,17 +26,24 @@
 	</div>
 	<div class="course-btns">
 		<div id="cart-btn-course">
-		<% if !(current_user.classincart?(@course)) %>
-			<%= render 'add_to_cart' %>
-		<% else %>
-			<%= render 'remove_from_cart' %>
-		<% end %>
-	</div>
-	<% if courcreator %>
-		<div class="edit-btn profile-btn">
-			<%= link_to "Edit", edit_course_path(@course) %>
+			<% if !(current_user.classincart?(@course)) %>
+				<%= render 'add_to_cart' %>
+			<% else %>
+				<%= render 'remove_from_cart' %>
+			<% end %>
 		</div>
-	<% end %>
+		<% if courcreator %>
+			<div id="edit-btn-1">
+			<div class="edit-btn profile-btn">
+				<%= link_to "Edit", edit_course_path(@course) %>
+			</div>
+			</div>
+		<% end %>
+		<% if current_user.courseregistered?(@course) %>
+			<%= render 'remove_courseregistration' %>
+		<% else %>
+			<%= render 'add_courseregistration' %>
+		<% end %>
 	</div>
 	<div class="files-container">
 		<div id="files">

@@ -5,3 +5,9 @@
 		<div class="courstitle"><%= link_to "#{program.title}", program_path(program) %></div>
 	<% end %>
 </div>
+<h1>MY Courses</h1>
+<div id="cour-list">
+	<% @courses.each do |course| %>
+		<div class="courstitle"><%= link_to "#{course.title}", course_path(course) %></div>
+	<% end %>
+</div>

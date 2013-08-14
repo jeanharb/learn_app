@@ -10,6 +10,11 @@ h1{
 	margin-left: -2px;
 }
 
+#edit-btn-1{
+	width: 130px;
+	float: right;
+}
+
 #prog-list{
 	margin-top: 10px;
 	font-size: 1.2em;
@@ -18,7 +23,21 @@ h1{
 	}
 }
 
+#cour-list{
+	margin-top: 10px;
+	font-size: 1.2em;
+	a{
+		text-decoration: none;
+	}
+}
+
 #prog-list a:hover{
+	cursor: pointer;
+	cursor: hand;
+	text-decoration: underline;
+}
+
+#cour-list a:hover{
 	cursor: pointer;
 	cursor: hand;
 	text-decoration: underline;
