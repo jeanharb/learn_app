@@ -103,7 +103,7 @@
 							<% @exams.each do |exam| %>
 								<div>
 									<span><%= link_to exam.name, exam_path(exam) %></span>
-									<% if !current_user.examresults.where("exam_id = ?", exam.id).nil? %>
+									<% if current_user.examresults.where("exam_id = ?", exam.id).exists? %>
 										<% if current_user.examresults.find_by_exam_id(exam.id).finalgrade < exam.grade %>
 											<span> - Failed (Grade Required <%= exam.grade %>%)</span>
 										<% else %>
