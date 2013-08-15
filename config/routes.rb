@@ -11,6 +11,10 @@ LearnApp::Application.routes.draw do
   resources :prerequisites, only: :create
   resources :registrations, only: [:create, :destroy]
   resources :courseregistrations, only: [:create, :destroy]
+  resources :exams
+  resources :questions
+  resources :answers
+  resources :examresults
   resources :courses do
     member do
       get :programs, :followers, :wants, :wantpros
@@ -39,6 +43,7 @@ LearnApp::Application.routes.draw do
   match '/cart',      to: "users#cart"
   match '/programs',  to: "programs#index"
   match '/newprogram',to: "programs#new"
+  match '/newexam',   to: "exams#new"
   match '/courses',   to: "courses#index"
   match '/creations', to: "users#creations"
   match '/newcourse', to: "courses#new"

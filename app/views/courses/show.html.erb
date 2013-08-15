@@ -1,9 +1,18 @@
 <% provide(:title, @course.title) %>
 <div class="course-show">
 	<div class="course-info">
-	<h1>
-		<%= @course.title %>
-	</h1>
+	<% if params.has_key?(:program) %>
+		<h1>
+			<%= link_to "#{@program.title}", program_path(@program) %> - <%= @course.title %>
+		</h1>
+	<% else %>
+		<h1>
+			<%= @course.title %>
+		</h1>
+	<% end %>
+	<div class="progcount">
+		This course was created by <%= @course.user.name %>
+	</div>
 	<% if params.has_key?(:program) %>
 		<% if @prereqs.count > 0 %>
 		<div class="progcount">
@@ -34,17 +43,27 @@
 				<% end %>
 			</div>
 		<% end %>
-		<% if courcreator %>
+		<% if courcreator and !params.has_key?(:program) %>
 			<div id="edit-btn-1">
 			<div class="edit-btn profile-btn">
 				<%= link_to "Edit", edit_course_path(@course) %>
 			</div>
 			</div>
 		<% end %>
-		<% if current_user.courseregistered?(@course) %>
-			<%= render 'remove_courseregistration' %>
+		<% if params.has_key?(:program)%>
+			<% if !current_user.registered?(@program) %>
+				<% if current_user.courseregistered?(@course) %>
+					<%= render 'remove_courseregistration' %>
+				<% else %>
+					<%= render 'add_courseregistration' %>
+				<% end %>
+			<% end %>
 		<% else %>
-			<%= render 'add_courseregistration' %>
+			<% if current_user.courseregistered?(@course) %>
+				<%= render 'remove_courseregistration' %>
+			<% else %>
+				<%= render 'add_courseregistration' %>
+			<% end %>
 		<% end %>
 	</div>
 	<div class="files-container">
@@ -62,6 +81,38 @@
 				<% if !@notes.nil? %>
 						<ul class="notes">
 							<%= render @notes %>
+						</ul>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+	<div class="exams-container">
+		<div id="exams">
+			<span>Exams</span>
+			<span id="create-exams">
+				<% if courcreator %>
+					<%= link_to "Create", newexam_path(id: params[:id]) %>
+				<% end %>
+			</span>
+		</div>
+		<div class="files-bar"></div>
+		<div>
+			<% if @notes.any? %>
+				<% if !@notes.nil? %>
+						<ul class="notes">
+							<% @exams.each do |exam| %>
+								<div>
+									<span><%= link_to exam.name, exam_path(exam) %></span>
+									<% if !current_user.examresults.where("exam_id = ?", exam.id).nil? %>
+										<% if current_user.examresults.find_by_exam_id(exam.id).finalgrade < exam.grade %>
+											<span> - Failed (Grade Required <%= exam.grade %>%)</span>
+										<% else %>
+											<span> - Passed</span>
+										<% end %>
+										<span> - Highest Grade (<%= current_user.examresults.find_by_exam_id(exam.id).finalgrade %>%)</span>
+									<% end %>
+								</div>
+							<% end %>
 						</ul>
 				<% end %>
 			<% end %>

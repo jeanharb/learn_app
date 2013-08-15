@@ -1,0 +1,23 @@
+<% provide(:title, @exam.name) %>
+<h1>
+	<div><%= @course.title %> - <%= @exam.name %></div>
+</h1>
+<div>Grade required to pass: <%= @exam.grade %>%</div>
+<%= form_tag examresults_path do %>
+	<% @questions.each_with_index do |question, i| %>
+		<h3>Question #<%= i+1 %> <div><%= question.name %></div></h3>
+		<%= fields_for "questions[]" do |j| %>
+			<% question.answers.each do |answer| %>
+				<div>
+				<%= label_tag answer.name %>
+				<%= radio_button_tag("question[#{question.id}]", "#{answer.id}") %>
+				</div>
+			<% end %>
+		<% end %>
+	<% end %>
+	<% if params.has_key?(:program) %>
+		<%= hidden_field_tag "program", params[:program]%>
+	<% end %>
+	<%= hidden_field_tag "id", params[:id]%>
+	<%= submit_tag "Finish!", :class => "subcon"%>
+<% end %>

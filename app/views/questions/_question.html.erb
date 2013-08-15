@@ -1,0 +1,17 @@
+<%= fields_for :question do |i| %>
+  <li class="exam-question-li">
+	<div class="exam-question">
+		<% if params.has_key?(:question_num) %>
+			<%= params[:question_num].to_i.ordinalize %>
+		<% else %>
+			<%= 1.ordinalize %>
+		<% end %>
+	    <%= i.label "Question :" %>
+	    <%= i.text_field :name %>
+	</div>
+	<ul id="answer-list">
+		<%= render @answer %>
+	</ul>
+	<%= link_to "Add Answer", "#add", :class => "add-answer" %>
+  </li>
+<% end %>

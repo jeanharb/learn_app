@@ -1,0 +1,16 @@
+<%= fields_for "question[answers_attributes][]", @answer do |j| %>
+  <li class="question-answer-li">
+	<div class="question-answer">
+		<%= j.label "Answer :" %>
+		<%= j.text_field :name %>
+		<%= j.radio_button("goodanswer", "true") %>
+	</div>
+  </li>
+  <li class="question-answer-li">
+	<div class="question-answer">
+		<%= j.label "Answer :" %>
+		<%= j.text_field :name %>
+		<%= j.radio_button("goodanswer", "true") %>
+	</div>
+  </li>
+<% end %>

@@ -41,6 +41,7 @@ class CoursesController < ApplicationController
     			@courses.append(@course_need)
     		end
     	end
+    	@exams = @course.exams
 	end
 
 	def update

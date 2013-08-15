@@ -91,3 +91,13 @@ $(function(){
 		}
 	});
 });
+
+$(function(){
+	$('a.add-answer').click(function() {
+		if ($('#answer-list li').length < 8){
+			$('#answer-list li:first').clone().find('input#question_answers_attributes__name').val('').end().appendTo('#answer-list');
+		}
+		else
+			alert("There's a max of 8 answers.");
+	});
+});

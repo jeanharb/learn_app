@@ -1,0 +1,24 @@
+<%= form_tag questions_path do %>
+	<% if params.has_key?(:exam) %>
+		<h1><%= @exam.name %></h1>
+	<% else %>
+		<div class="exam-name">
+			<%= label_tag "Exam name :" %>
+			<%= text_field_tag "exam_name" %>
+		</div>
+		<div>
+			<%= label_tag "Minimum grade to pass :" %>
+			<%= text_field_tag "grade_num" %>
+		</div>
+	<% end %>
+	<ul id="question-list">
+		<%= render @questions %>
+	</ul>
+	<%= hidden_field_tag "id", params[:id]%>
+	<% if params.has_key?(:exam) %>
+		<%= hidden_field_tag "exam", params[:exam] %>
+		<%= hidden_field_tag "question_num", params[:question_num] %>
+	<% end %>
+	<%= submit_tag "Add Question", :addquestion => "yes", :class => "add_question"%>
+	<%= submit_tag "Complete Exam", :name => "complete",:class => "add_question"%>
+<% end %>

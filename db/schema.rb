@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130814022431) do
+ActiveRecord::Schema.define(:version => 20130815191959) do
+
+  create_table "answers", :force => true do |t|
+    t.integer  "question_id"
+    t.text     "name"
+    t.boolean  "goodanswer",  :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
 
   create_table "carts", :force => true do |t|
     t.integer  "coursefollow_id"
@@ -44,6 +52,22 @@ ActiveRecord::Schema.define(:version => 20130814022431) do
   end
 
   add_index "courses", ["user_id", "created_at"], :name => "index_courses_on_user_id_and_created_at"
+
+  create_table "examresults", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "exam_id"
+    t.integer  "finalgrade"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "exams", :force => true do |t|
+    t.integer  "course_id"
+    t.text     "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "grade"
+  end
 
   create_table "notes", :force => true do |t|
     t.text     "content"
@@ -86,6 +110,13 @@ ActiveRecord::Schema.define(:version => 20130814022431) do
   end
 
   add_index "programs", ["user_id", "created_at"], :name => "index_programs_on_user_id_and_created_at"
+
+  create_table "questions", :force => true do |t|
+    t.integer  "exam_id"
+    t.text     "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "registrations", :force => true do |t|
     t.integer  "student_id"

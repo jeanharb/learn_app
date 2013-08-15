@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :takenprogs, through: :registrations, source: :takenprog
   has_many :courseregistrations, foreign_key: "courstudent_id", dependent: :destroy
   has_many :takencourses, through: :courseregistrations, source: :takencourse
+  has_many :examresults, dependent: :destroy
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
