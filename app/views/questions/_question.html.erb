@@ -1,4 +1,4 @@
-<%= fields_for :question do |i| %>
+<%= fields_for :question do |ques| %>
   <li class="exam-question-li">
 	<div class="exam-question">
 		<% if params.has_key?(:question_num) %>
@@ -6,11 +6,15 @@
 		<% else %>
 			<%= 1.ordinalize %>
 		<% end %>
-	    <%= i.label "Question :" %>
-	    <%= i.text_field :name %>
+	    <%= ques.label "Question :" %>
+	    <% if params.has_key?(:question_name) %>
+			<%= ques.text_field :name, :value => "#{params[:question_name]}" %>
+		<% else %>
+			<%= ques.text_field :name %>
+		<% end %>
 	</div>
 	<ul id="answer-list">
-		<%= render @answer %>
+		<%= render 'answers/answer' %>
 	</ul>
 	<%= link_to "Add Answer", "#add", :class => "add-answer" %>
   </li>

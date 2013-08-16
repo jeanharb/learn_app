@@ -50,15 +50,7 @@
 			</div>
 			</div>
 		<% end %>
-		<% if params.has_key?(:program)%>
-			<% if !current_user.registered?(@program) %>
-				<% if current_user.courseregistered?(@course) %>
-					<%= render 'remove_courseregistration' %>
-				<% else %>
-					<%= render 'add_courseregistration' %>
-				<% end %>
-			<% end %>
-		<% else %>
+		<% if !params.has_key?(:program)%>
 			<% if current_user.courseregistered?(@course) %>
 				<%= render 'remove_courseregistration' %>
 			<% else %>
@@ -68,12 +60,13 @@
 	</div>
 	<div class="files-container">
 		<div id="files">
-			<span>Files</span>
-			<div id="file-upload">
+			<span id="file-upload">
 				<% if courcreator %>
 					<%= render 'shared/note_form' %>
+				<% else %>
+					<span>Files</span>
 				<% end %>
-			</div>
+			</span>
 		</div>
 		<div class="files-bar"></div>
 		<div>
@@ -91,7 +84,7 @@
 			<span>Exams</span>
 			<span id="create-exams">
 				<% if courcreator %>
-					<%= link_to "Create", newexam_path(id: params[:id]) %>
+					<span class = "smaller content" ><%= link_to "Create", newexam_path(id: params[:id]) %></span>
 				<% end %>
 			</span>
 		</div>
@@ -102,15 +95,30 @@
 						<ul class="notes">
 							<% @exams.each do |exam| %>
 								<div>
-									<span><%= link_to exam.name, exam_path(exam) %></span>
+									<% if @see_exam %>
+										<% if params.has_key?(:program) %>
+											<span class="content"><%= link_to exam.name, exam_path(exam, program: params[:program]) %></span>
+										<% else %>
+											<span class="content"><%= link_to exam.name, exam_path(exam) %></span>
+										<% end %>
+									<% else %>
+										<span class="exam-hover"><%= exam.name %></span>
+									<% end %>
 									<% if current_user.examresults.where("exam_id = ?", exam.id).exists? %>
 										<% if current_user.examresults.find_by_exam_id(exam.id).finalgrade < exam.grade %>
-											<span> - Failed (Grade Required <%= exam.grade %>%)</span>
+											<span> - </span><span id="exam_failed">Failed (Grade Required <%= exam.grade %>%)</span>
 										<% else %>
-											<span> - Passed</span>
+											<span> - </span><span id="exam_passed">Passed</span>
 										<% end %>
 										<span> - Highest Grade (<%= current_user.examresults.find_by_exam_id(exam.id).finalgrade %>%)</span>
 									<% end %>
+									<span class="delete-btn">
+									<% if creator? %>
+										<%= link_to "Delete", exam, method: :delete, 
+																	data: { confirm: "You sure?" },
+																	title: exam.name %>
+									<% end %>
+									</span>
 								</div>
 							<% end %>
 						</ul>

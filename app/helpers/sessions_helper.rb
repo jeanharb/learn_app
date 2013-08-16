@@ -59,8 +59,25 @@ module SessionsHelper
 	end
 
 	private
+		def registered_in?
+			first = current_user.courseregistered?(Course.find(Exam.find(params[:id]).course_id))
+			second = false
+			if params.has_key?(:program)
+				second = current_user.registered?(Program.find(params[:program]))
+			end
+			first or second
+		end
+
 		def creator?
 			current_user?(User.find(Course.find(params[:id]).user_id)) || is_admin?
+		end
+
+		def examcreator?
+			current_user?(User.find(Course.find(params[:id]).user_id))
+		end
+
+		def destroyer?
+			current_user?(User.find(Course.find(Exam.find(params[:id]).course_id).user_id))
 		end
 
 		def progcreator?

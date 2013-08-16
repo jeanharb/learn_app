@@ -1,30 +1,36 @@
 <% if !note.filename.nil? %>
 <li>
-	<% if note.contenttype == "application/pdf" %>
-		<span class="content">
-			<%= link_to note.filename, viewpdf_path(id: note.id) %>
+	<% if @see_exam %>
+		<% if note.contenttype == "application/pdf" %>
+			<span class="content">
+				<%= link_to note.filename, viewpdf_path(id: note.id) %>
+			</span>
+			<% else %>
+			<span class="content">
+				<%= note.filename %>
+			</span>
+			<% end %>
+		<span class="smaller">
+			<% if note.content.length/1.3572/1000 > 1000 %>
+				<%= ((note.content.length/1.3572)/1000000).round(1) %>MB
+			<% else %>
+				<%= ((note.content.length/1.3572)/1000).round %>KB
+			<% end %>
 		</span>
-		<% else %>
+		<span class="smaller note-dwn">
+			<%= link_to "Download", download_note_path(note) %>
+		</span>
+		<span class="delete-btn">
+		<% if creator? %>
+			<%= link_to "Delete", note, method: :delete, 
+										data: { confirm: "You sure?" },
+										title: note.filename %>
+		<% end %>
+		</span>
+	<% else %>
 		<span class="content">
 			<%= note.filename %>
 		</span>
-		<% end %>
-	<span class="smaller">
-		<% if note.content.length/1.3572/1000 > 1000 %>
-			<%= ((note.content.length/1.3572)/1000000).round(1) %>MB
-		<% else %>
-			<%= ((note.content.length/1.3572)/1000).round %>KB
-		<% end %>
-	</span>
-	<span class="smaller note-dwn">
-		<%= link_to "Download", download_note_path(note) %>
-	</span>
-	<span class="delete-btn">
-	<% if creator? %>
-		<%= link_to "Delete", note, method: :delete, 
-									data: { confirm: "You sure?" },
-									title: note.filename %>
 	<% end %>
-	</span>
 </li>
 <% end %>

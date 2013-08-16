@@ -27,7 +27,7 @@ class ExamresultsController < ApplicationController
 		end
 		if params.has_key?(:program)
 			@program = Program.find_by_id(params[:program])
-			redirect_to program_path(@program), random: @random
+			redirect_to course_path(@course, :program => params[:program])
 		else
 			redirect_to course_path(@course)
 		end

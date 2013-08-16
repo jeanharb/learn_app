@@ -481,19 +481,17 @@ input[type='checkbox']:checked {
 	border-bottom: 1px solid #ccc;
 	width: 470px;
 	margin: auto;
+	margin-top: 20px;
 	margin-bottom: 0px;
 }
 
 #file-upload{
-	position: relative;
 	top: -29px;
 	left: 50px;
 }
 
-.note-submit{
-	position: relative;
-	top: -25px;
-	left: 165px;
+.files-btn-sub{
+	margin-bottom: 26px;
 }
 
 .profile-btn a{
@@ -624,6 +622,14 @@ input[type='checkbox']:checked {
 	left: 604px;
 	top: 13px;
 	width: 309px;
+}
+
+#exam_passed{
+	color: green;
+}
+
+#exam_failed{
+	color: red;
 }
 
 .search-menu{

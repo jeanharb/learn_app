@@ -1,18 +1,38 @@
-<%= form_tag questions_path do %>
+<%= form_tag exams_path do %>
+	<% if params.has_key?(:errors) %> 
+		<div id="error_explanation">
+			<div class="alert alert-error">
+				The form contains <%= pluralize(params[:errors].count, "error") %>.
+			</div>
+			<ul>
+				<% params[:errors].each do |msg| %>
+					<li>* <%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
 	<% if params.has_key?(:exam) %>
 		<h1><%= @exam.name %></h1>
 	<% else %>
 		<div class="exam-name">
 			<%= label_tag "Exam name :" %>
-			<%= text_field_tag "exam_name" %>
+			<% if params.has_key?(:exam_name) %>
+				<%= text_field_tag "exam_name", "#{params[:exam_name]}" %>
+			<% else %>
+				<%= text_field_tag "exam_name" %>
+			<% end %>
 		</div>
 		<div>
 			<%= label_tag "Minimum grade to pass :" %>
-			<%= text_field_tag "grade_num" %>
+			<% if params.has_key?(:grade_num) %>
+				<%= text_field_tag "grade_num", "#{params[:grade_num]}" %>
+			<% else %>
+				<%= text_field_tag "grade_num" %>
+			<% end %>
 		</div>
 	<% end %>
 	<ul id="question-list">
-		<%= render @questions %>
+		<%= render 'questions/question' %>
 	</ul>
 	<%= hidden_field_tag "id", params[:id]%>
 	<% if params.has_key?(:exam) %>
