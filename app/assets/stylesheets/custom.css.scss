@@ -557,11 +557,13 @@ input[type='checkbox']:checked {
 }
 
 .course-list{
+	float: left;
+	width: 1000px;
 	list-style-type: none;
 	margin-left: -43px;
 	margin-bottom: 5px;
 	font-size: 1.2em;
-	a{
+	a{	
 		text-decoration: none;
 	}
 	h1{
@@ -625,8 +627,13 @@ input[type='checkbox']:checked {
 }
 
 .courses{
+	float: left;
 	margin-left: 41px;
+	width: 1000px;
+	border: none;
 	h1{
+		float: left;
+		width: 400px;
 		margin-left: -43px;
 		margin-bottom: 40px;
 	}
