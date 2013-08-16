@@ -27,7 +27,7 @@ class ExamsController < ApplicationController
 			@course = Course.find_by_id(params[:id])
 			@question = 1
 			@exam_name = params[:exam_name]
-			@exam_grade = params[:grade_num]
+			@exam_grade = params[:grade_num].to_f.to_i.to_s
 			@question_name = params[:question][:name]
 			@answer_names = []
 			@answers_question = params[:question]
@@ -70,7 +70,7 @@ class ExamsController < ApplicationController
 					@error_count += 1
 				end
 			end
-			if @exam_grade.to_i > 100 or @exam_grade.to_i < 0
+			if @exam_grade.to_i > 100 or @exam_grade.to_i <= 0
 				@errors << "Grade must be between 0 and 100."
 				@error_count += 1
 			end
@@ -93,7 +93,7 @@ class ExamsController < ApplicationController
 			if @error_count > 0
 				return redirect_to newexam_path(:answer1 => @answer_names[0][0], :answer2 => @answer_names[1][0], :question_name => params[:question][:name], :question_num => params[:question_num], :id => params[:id], :errors => @errors, :exam_name => params[:exam_name], :grade_num => params[:grade_num])
 			end
-			@exam = @course.exams.create(name: params[:exam_name], grade: params[:grade_num])
+			@exam = @course.exams.create(name: params[:exam_name], grade: @exam_grade.to_i)
 		else
 			@course = Course.find_by_id(params[:id])
 			@exam = Exam.find_by_id(params[:exam])

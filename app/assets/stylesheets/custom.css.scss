@@ -368,12 +368,50 @@ input[type='checkbox']:checked {
 	margin-top: 30px;
 }
 
+.question-titles{
+	font-weight: lighter;
+	margin-top: 30px;
+	margin-bottom: 5px;
+}
+
+.exam-answers{
+	margin-left: 118px;
+	margin-bottom: 5px;
+}
+
+.answer-btn-tag{
+	margin-right: 4px;
+}
+
+.exam-finish-btn{
+	margin-top: 20px;
+	margin-left: 114px;
+	width: 180px;
+	height: 50px;
+	border: 1px solid #ddd;
+	color: #333;
+	background: white;
+	font-size: 1.2em;
+	font-weight: lighter;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.exam-finish-btn:hover{
+	-o-transition: 0.2s;
+  	-ms-transition: 0.2s;
+  	-moz-transition: 0.2s;
+  	-webkit-transition: 0.2s;
+  	transition: 0.2s;
+	background: lightgreen;
+	cursor: hand;
+	cursor: pointer;
+}
+
 .cart-btn{
-	margin-top: -32px;
-	margin-left: 833px;
 	width: 130px;
 	height: 30px;
-	border: 1px solid #ccc;
+	border: none;
 	background: white;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
@@ -395,13 +433,13 @@ input[type='checkbox']:checked {
 }
 
 .rem-cart-btn{
-	background: #FF2020;
+	background: #D83018;
 	cursor: hand;
 	cursor: pointer;
 }
 
 .rem-cart-btn:hover{
-	background: #DF0000;
+	background: #b82000;
 }
 
 .rem-cart-btn:active{
@@ -421,9 +459,7 @@ input[type='checkbox']:checked {
 
 #cart-btn-course{
 	float: right;
-	position: relative;
-	margin-left: 35px;
-	margin-top: 25px;
+	margin-top: 15px;
 }
 
 .course-info{

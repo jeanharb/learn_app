@@ -11,7 +11,7 @@
 		</h1>
 	<% end %>
 	<div class="progcount">
-		This course was created by <%= @course.user.name %>
+		This course was created by <%= @course.user.name %>.
 	</div>
 	<% if params.has_key?(:program) %>
 		<% if @prereqs.count > 0 %>
@@ -43,19 +43,23 @@
 				<% end %>
 			</div>
 		<% end %>
-		<% if courcreator and !params.has_key?(:program) %>
-			<div id="edit-btn-1">
-			<div class="edit-btn profile-btn">
-				<%= link_to "Edit", edit_course_path(@course) %>
-			</div>
-			</div>
-		<% end %>
 		<% if !params.has_key?(:program)%>
 			<% if current_user.courseregistered?(@course) %>
 				<%= render 'remove_courseregistration' %>
 			<% else %>
 				<%= render 'add_courseregistration' %>
 			<% end %>
+		<% else %>
+			<% if !current_user.registered?(@program) %>
+				<%= render 'programs/add_registration' %>
+			<% end %>
+		<% end %>
+		<% if courcreator and !params.has_key?(:program) %>
+			<div id="edit-btn-1">
+			<div class="edit-btn profile-btn">
+				<%= link_to "Edit", edit_course_path(@course) %>
+			</div>
+			</div>
 		<% end %>
 	</div>
 	<div class="files-container">

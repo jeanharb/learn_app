@@ -9,17 +9,17 @@
 		</div>
 	</div>
 	<div class="course-btns">
+		<% if current_user.registered?(@program) %>
+			<%= render 'remove_registration' %>
+		<% else %>
+			<%= render 'add_registration' %>
+		<% end %>
 		<% if progcreate %>
 			<div class="edit-cont">
 				<div class="edit-btn profile-btn">
 					<%= link_to "Edit", edit_program_path(@program) %>
 				</div>
 			</div>
-		<% end %>
-		<% if current_user.registered?(@program) %>
-			<%= render 'remove_registration' %>
-		<% else %>
-			<%= render 'add_registration' %>
 		<% end %>
 	</div>
 	<div class="files-container">
