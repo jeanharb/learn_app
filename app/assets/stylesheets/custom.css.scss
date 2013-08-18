@@ -494,6 +494,53 @@ input[type='checkbox']:checked {
 	font-size: 1.2em;
 }
 
+.star{
+	overflow: hidden;
+	color: #F9D423;
+	float: left;
+}
+
+@-moz-document url-prefix() {
+    .star {
+        font-size: 1.65em;
+    }
+    .anti-star {
+    	font-size: 1.65em;
+    }
+    .star-cont{
+		position: relative;
+		margin-top: -10px;
+}
+
+}
+
+.anti-star{
+	background: white;
+	color: #F9D423;
+	overflow: hidden;
+	float: left;
+}
+
+.star-title{
+	float: left;
+}
+
+.star-cont{
+	float: left;
+	overflow: hidden;
+	padding: 1px;
+	width: 80px;
+	display: block;
+}
+
+.star-right{
+	float: right;
+}
+
+.starwidth{
+	display:block;
+}
+
 #exams{
 	margin-top: 30px;
 	margin-bottom: 20px;

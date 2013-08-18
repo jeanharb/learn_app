@@ -47,6 +47,8 @@ class ProgramsController < ApplicationController
 				@total_rate += r.rating
 			end
 			@averagerating = ((((@total_rate.to_f/@num_rates.to_f)*10).to_f.ceil).to_f/10)
+			@good_starwidth = (@averagerating.to_f/0.05).to_f.to_s + "%"
+			@anti_starwidth = (((1-(@averagerating.to_f/5))*100).to_f).to_f.to_s + "%"
 		end
 	end
 

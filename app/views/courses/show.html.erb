@@ -136,7 +136,14 @@
 		</div>
 		<div class="files-bar"></div>
 		<div class="course-rating-cont">
-			<div class="course-rating-title">Average Rating: <%= @averagerating %> (<%= pluralize(@num_rates, "rating")%>) | </div>
+			<div class="course-rating-title">
+				<span class="star-title">Average Rating: </span>
+					<span class="star-cont">
+						<span class="star" style="width:<%= @good_starwidth %>">★★★★★</span>
+						<span class="anti-star" style="width:<%= @anti_starwidth %>"><span class="star-right">☆☆☆☆☆</span></span>
+					</span>
+					<span class="star-title">(<%= pluralize(@num_rates, "rating")%>)</span> | </div>
+			</div>
 			<div class="course-rating"><%= form_for @rating do |f| %>
 				<%= f.radio_button :rating, "1" %> <%= f.label :rating, "1" %>
 				<%= f.radio_button :rating, "2" %> <%= f.label :rating, "2" %>

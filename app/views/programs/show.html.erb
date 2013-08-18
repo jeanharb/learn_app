@@ -6,6 +6,7 @@
 		</h1>
 		<div id="class-des">
 			<%= @program.description %>
+			<div class="starwidth" style="width:<%= @starwidth %>">fds</div>
 		</div>
 	</div>
 	<div class="course-btns">
@@ -57,7 +58,13 @@
 			<% if @averagerating == "0" %>
 				<div class="course-rating-title">No Ratings Yet | </div>
 			<% else %>
-				<div class="course-rating-title">Average Rating: <%= @averagerating %> (<%= pluralize(@num_rates, "rating")%>) | </div>
+				<div class="course-rating-title">
+					<span class="star-title">Average Rating: </span>
+					<span class="star-cont">
+						<span class="star" style="width:<%= @good_starwidth %>">★★★★★</span>
+						<span class="anti-star" style="width:<%= @anti_starwidth %>"><span class="star-right">☆☆☆☆☆</span></span>
+					</span>
+					<span class="star-title">(<%= pluralize(@num_rates, "rating")%>)</span> | </div>
 			<% end %>
 			<div class="course-rating">
 				<%= form_for @rating do |f| %>
