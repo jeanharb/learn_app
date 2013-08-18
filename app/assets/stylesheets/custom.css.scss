@@ -510,8 +510,53 @@ input[type='checkbox']:checked {
     .star-cont{
 		position: relative;
 		margin-top: -10px;
+	}
 }
 
+#reviewer-content{
+	font-size: 0.9em;
+	width: 500px;
+	display: block;
+	padding-left: 83px;
+}
+
+.review-text{
+	float: left;
+	width: 1000px;
+}
+
+#review-box-cont div{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	vertical-align: text-top;
+	display: inline-block;
+}
+
+#review-box{
+	width: 350px;
+	height: 100px;
+	vertical-align: top;
+}
+
+#review-title{
+	font-size: 1.2em;
+}
+
+.review-list{
+	list-style-type: none;
+	padding: 0;
+	h4{
+		font-size: 1em;
+	}
+	li{
+		width: 600px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+}
+
+#reviewer-name{
+	font-size: 0.6em;
 }
 
 .anti-star{

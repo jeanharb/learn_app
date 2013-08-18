@@ -35,9 +35,12 @@ class ProgramsController < ApplicationController
 	def show
 		@program = Program.find(params[:id])
 		@cours_items = @program.courses.all
+		@hasreview = Programrating.where("program_id = ?", @program.id).where("user_id = ?", current_user.id).where("review_title IS NOT NULL")
 		@rating = Programrating.new
+		@review = Programrating.new
 		@programratings = []
-		@programratings = Programrating.where("program_id = ?", @program.id)
+		@programratings = Programrating.where("program_id = ?", @program.id).where("rating != ?", 0)
+		@programreviews = Programrating.where("program_id = ?", @program.id).where("review_title != ? ", "+!")
 		@averagerating = "0"
 		if @programratings.any?
 			@num_rates = 0

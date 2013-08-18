@@ -7,18 +7,18 @@ class ProgramratingsController < ApplicationController
 			if @findrate
 				@findrate.update_attribute(:rating, @rating)
 			else
-				current_user.programratings.create!(program_id: @program.id, rating: @rating)
+				current_user.programratings.create!(program_id: @program.id, rating: @rating, review_title: "+!", review_content: "+!")
 			end
 			redirect_to program_path(@program)
 		end
-		if params[:programrating][:review]
+		if params[:programrating][:review_title]
 			@review_content = params[:programrating][:review_content]
 			@review_title = params[:programrating][:review_title]
 			@findrate = Programrating.find_by_user_id_and_program_id(current_user.id, @program.id)
 			if @findrate
 				@findrate.update_attributes(:review_content => @review_content, :review_title => @review_title)
 			else
-				current_user.programratings.create!(program_id: @program.id, review_title: @review_title, review_content: @review_content)
+				current_user.programratings.create!(program_id: @program.id, review_title: @review_title, review_content: @review_content, rating: 0)
 			end
 			redirect_to program_path(@program)
 		end

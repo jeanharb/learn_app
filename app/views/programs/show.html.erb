@@ -78,5 +78,43 @@
 				<% end %>
 			</div>
 		</div>
+		<div class="review-text">
+			<ul class="review-list">
+				<% @programreviews.each do |review| %>
+					<li>
+						<h4>
+							<% if !(review.rating == 0) %>
+								<% @good_starwidth_person = (review.rating/0.05).to_f.to_s + "%" %>
+								<% @anti_starwidth_person = ((5-review.rating)/0.05).to_f.to_s + "%" %>
+								<span class="star-cont">
+									<span class="star" style="width:<%= @good_starwidth_person %>">★★★★★</span>
+									<span class="anti-star" style="width:<%= @anti_starwidth_person %>">
+										<span class="star-right">☆☆☆☆☆</span>
+									</span>
+								</span>
+							<% else %>
+								No rating
+							<% end %>
+							<%= review.review_title %> <span id="reviewer-name"> By <%= review.user.name %></span>
+						</h4>
+						<span id="reviewer-content"><%= review.review_content %></span>
+					</li>
+				<% end %>
+			</ul>
+			<div>
+				<%= form_for @review do |f| %>
+					<div>
+						<%= f.label :review_title, "Review Title :" %>
+						<%= f.text_field :review_title %>
+					</div>
+					<div id="review-box-cont">
+						<div><%= f.label :review_content, "Review :" %></div>
+						<div><%= f.text_area :review_content, :id => "review-box"%></div>
+					</div>
+					<%= f.hidden_field :id, :value => params[:id] %>
+					<%= f.submit "Submit Review"%>
+				<% end %>
+			</div>
+		</div>
 	</div>
 </div>

@@ -31,8 +31,11 @@ class CoursesController < ApplicationController
 	def show
 		@course = Course.find(params[:id])
 		@rating = Courserating.new
+		@review = Courserating.new
 		@courseratings = []
-		@courseratings = Courserating.where("course_id = ?", @course.id)
+		@hasreview = Courserating.where("course_id = ?", @course.id).where("user_id = ?", current_user.id).where("review_title IS NOT NULL")
+		@courseratings = Courserating.where("course_id = ?", @course.id).where("rating != ?", 0)
+		@coursereviews = Courserating.where("course_id = ?", @course.id).where("review_title != ?", "+!")
 		@averagerating = "0"
 		if @courseratings.any?
 			@num_rates = 0
