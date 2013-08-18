@@ -8,17 +8,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<%= render 'layouts/header' %>
-	<div id="body-container">
-	<div id="body-info">
-		<% flash.each do |key, value| %>
-			<div id="welcome"><%= value %></div>
-		<% end %>
-		<%= yield %>
-		<span id="body-signin"></span>
+	<div id="all-container">
+		<%= render 'layouts/header' %>
+		<div id="body-container">
+			<div id="body-info">
+				<% flash.each do |key, value| %>
+					<div id="welcome"><%= value %></div>
+				<% end %>
+				<%= yield %>
+				<span id="body-signin"></span>
+			</div>
+		</div>
+		<div id="body-signin">&nbsp</div>
+		<%= render 'layouts/footer' %>
 	</div>
-	</div>
-	<!--<img src="/images/vancouver.jpg" class="background">-->
-	<%= render 'layouts/footer' %>
 </body>
 </html>

@@ -30,6 +30,19 @@ class CoursesController < ApplicationController
 
 	def show
 		@course = Course.find(params[:id])
+		@rating = Courserating.new
+		@courseratings = []
+		@courseratings = Courserating.where("course_id = ?", @course.id)
+		@averagerating = "0"
+		if @courseratings.any?
+			@num_rates = 0
+			@total_rate = 0
+			@courseratings.each do |r|
+				@num_rates += 1
+				@total_rate += r.rating
+			end
+			@averagerating = ((((@total_rate.to_f/@num_rates.to_f)*10).to_f.ceil).to_f/10)
+		end
     	@notes = @course.notes
     	@note = @course.notes.build if signed_in?
     	@program_in = false

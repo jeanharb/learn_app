@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130815191959) do
+ActiveRecord::Schema.define(:version => 20130817205902) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -31,6 +31,18 @@ ActiveRecord::Schema.define(:version => 20130815191959) do
   add_index "carts", ["coursefollow_id"], :name => "index_carts_on_coursefollow_id"
   add_index "carts", ["follower_id", "coursefollow_id"], :name => "index_carts_on_follower_id_and_coursefollow_id", :unique => true
   add_index "carts", ["follower_id"], :name => "index_carts_on_follower_id"
+
+  create_table "courseratings", :force => true do |t|
+    t.integer  "rating"
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.text     "review_content"
+    t.string   "review_title"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "courseratings", ["user_id", "course_id"], :name => "index_courseratings_on_user_id_and_course_id", :unique => true
 
   create_table "courseregistrations", :force => true do |t|
     t.integer  "courstudent_id"
@@ -100,6 +112,18 @@ ActiveRecord::Schema.define(:version => 20130815191959) do
   add_index "prerequisites", ["want_id", "wantpro_id", "required_id"], :name => "index_prerequisites_on_want_id_and_wantpro_id_and_required_id", :unique => true
   add_index "prerequisites", ["want_id"], :name => "index_prerequisites_on_want_id"
   add_index "prerequisites", ["wantpro_id"], :name => "index_prerequisites_on_wantpro_id"
+
+  create_table "programratings", :force => true do |t|
+    t.integer  "rating"
+    t.integer  "user_id"
+    t.integer  "program_id"
+    t.text     "review_content"
+    t.string   "review_title"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "programratings", ["user_id", "program_id"], :name => "index_programratings_on_user_id_and_program_id", :unique => true
 
   create_table "programs", :force => true do |t|
     t.string   "title"

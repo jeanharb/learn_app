@@ -8,6 +8,10 @@ class Program < ActiveRecord::Base
   has_many :prerequisites, foreign_key: "wantpro_id", dependent: :destroy
   has_many :students, through: :reverse_registrations, source: :student
   has_many :reverse_registrations, foreign_key: "takenprog_id", class_name: "Registration", dependent: :destroy
+  has_many :programratings, dependent: :destroy
+  has_many :ratings, through: :programratings, source: :program
+  has_many :review_titles, through: :programratings, source: :program
+  has_many :review_contents, through: :programratings, source: :program
 
   validates :user_id, presence: true
   validates :description, presence: true
@@ -15,6 +19,14 @@ class Program < ActiveRecord::Base
 
   def makeprerequisite!(course1, course2)
     prerequisites.create!(required_id: course2.id, want_id: course1.id)
+  end
+
+  def hasrating?(user)
+    programratings.find_by_user_id(user.id)
+  end
+
+  def createrating!(user, rating)
+    programratings.create!(user_id: user.id, rating: rating)
   end
 
   def isprerequisite?(course1, course2)

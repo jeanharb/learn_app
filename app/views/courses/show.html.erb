@@ -130,4 +130,23 @@
 			<% end %>
 		</div>
 	</div>
+	<div class="reviews-container">
+		<div class="reviews">
+			<span>Course Reviews</span>
+		</div>
+		<div class="files-bar"></div>
+		<div class="course-rating-cont">
+			<div class="course-rating-title">Average Rating: <%= @averagerating %> (<%= pluralize(@num_rates, "rating")%>) | </div>
+			<div class="course-rating"><%= form_for @rating do |f| %>
+				<%= f.radio_button :rating, "1" %> <%= f.label :rating, "1" %>
+				<%= f.radio_button :rating, "2" %> <%= f.label :rating, "2" %>
+				<%= f.radio_button :rating, "3" %> <%= f.label :rating, "3" %>
+				<%= f.radio_button :rating, "4" %> <%= f.label :rating, "4" %>
+				<%= f.radio_button :rating, "5" %> <%= f.label :rating, "5" %>
+				<%= f.hidden_field :id, :value => params[:id] %>
+				<%= f.submit "Rate Course!"%>
+			</div>
+			<% end %>
+		</div>
+	</div>
 </div>

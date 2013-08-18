@@ -35,6 +35,19 @@ class ProgramsController < ApplicationController
 	def show
 		@program = Program.find(params[:id])
 		@cours_items = @program.courses.all
+		@rating = Programrating.new
+		@programratings = []
+		@programratings = Programrating.where("program_id = ?", @program.id)
+		@averagerating = "0"
+		if @programratings.any?
+			@num_rates = 0
+			@total_rate = 0
+			@programratings.each do |r|
+				@num_rates += 1
+				@total_rate += r.rating
+			end
+			@averagerating = ((((@total_rate.to_f/@num_rates.to_f)*10).to_f.ceil).to_f/10)
+		end
 	end
 
 	def edit

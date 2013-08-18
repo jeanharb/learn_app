@@ -15,6 +15,8 @@ LearnApp::Application.routes.draw do
   resources :questions
   resources :answers
   resources :examresults
+  resources :courseratings
+  resources :programratings
   resources :courses do
     member do
       get :programs, :followers, :wants, :wantpros

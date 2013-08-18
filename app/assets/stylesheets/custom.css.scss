@@ -314,6 +314,11 @@ input[type='checkbox']:checked {
 	background: #68a405;
 }
 
+.note-list-place{
+	min-height: 20px;
+	border: 1px solid green;
+}
+
 .files-container{
 	width: 47%;
 	float: left;
@@ -478,6 +483,17 @@ input[type='checkbox']:checked {
 	font-size: 1.2em;
 }
 
+.reviews-container{
+	width: 100%;
+	clear: both;
+	float: left;
+}
+
+.reviews{
+	margin-top: 70px;
+	font-size: 1.2em;
+}
+
 #exams{
 	margin-top: 30px;
 	margin-bottom: 20px;
@@ -516,9 +532,22 @@ input[type='checkbox']:checked {
 	position: relative;
 	border-bottom: 1px solid #ccc;
 	width: 470px;
-	margin: auto;
+	left: 0;
 	margin-top: 20px;
 	margin-bottom: 0px;
+}
+
+.course-rating-cont{
+	margin-top: 20px;
+}
+
+.course-rating{
+	float: left;
+	margin-left: 4px;
+}
+
+.course-rating-title{
+	float: left;
 }
 
 #file-upload{
@@ -591,7 +620,6 @@ input[type='checkbox']:checked {
 }
 
 .notes{
-	position: absolute;
 	margin-top: 20px;
 	margin-left: -40px;
 	list-style-type: none;
@@ -762,39 +790,6 @@ margin-top: 45px;
 	width: 125px;
 	display: inline-block;
 	vertical-align: text-top;
-}
-
-#body-info{
-	padding-top: 50px;
-}
-
-#body-container{
-	min-height: 100%;
-	height: auto !important;
-	height: 100%;
-	font-family: "open sans";
-	left: 0;
-	width: 1000px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: -45px;
-	margin-bottom: -100px;
-	a{
-		z-index: 10;
-	}
-}
-
-*{
-	margin: 0;
-}
-
-#body-signin{
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	z-index: -19;
 }
 
 img.background{
@@ -1112,15 +1107,64 @@ img.background{
 	}
 }
 
-html, body{
-	height: 100%;
+body{
+	height: 700px;
+	margin: 0;
+	padding: 0;
+}
+
+
+#body-info{
+	padding-top: 50px;
+	min-height: 100%;
+}
+
+#body-container{
+	font-family: "open sans";
+	left: 0;
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: -45px;
+	padding-bottom: -100px;
+	a{
+		z-index: 10;
+	}
+}
+
+*{
+	margin: 0;
+}
+
+#body-signin{
+	position: relative;
+	width: 100%;
+	height: 435px;
+	top: 0;
+	left: 0;
+	z-index: -100;
+}
+
+html{
+	margin: 0;
+	padding: 0;
+}
+
+#footer-top{
+	position: relative;
+	clear: both;
+	padding-top: 120px;
+	height: 100px;
 }
 
 #footer{
+	clear: both;
+	position: relative;
 	font-family: "open sans";
 	width: 100%;
 	height: 100px;
 	background: #ccc;
 	color: white;
 	z-index: 30;
+	bottom: 0;
 }

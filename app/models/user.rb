@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :courseregistrations, foreign_key: "courstudent_id", dependent: :destroy
   has_many :takencourses, through: :courseregistrations, source: :takencourse
   has_many :examresults, dependent: :destroy
+  has_many :courseratings, dependent: :destroy
+  has_many :programratings, dependent: :destroy
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
@@ -19,6 +21,10 @@ class User < ActiveRecord::Base
   validates(:email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false })
   validates(:password, presence: true, length: { minimum: 6 } )
   validates(:password_confirmation, presence: true)
+
+  def createprogramrating!(program, rating)
+    courseratings.create!(course_id: program.id, rating: rating)
+  end
 
   def classincart?(course)
     carts.find_by_coursefollow_id(course.id)

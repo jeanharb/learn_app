@@ -10,7 +10,6 @@ class NotesController < ApplicationController
     params[:note][:contenttype] = params[:note][:content].content_type
     @note = @course.notes.build(:content => params[:note][:content].tempfile, :filename => params[:note][:filename], :contenttype => params[:note][:contenttype])
         if @note.save
-          flash[:success] = "File Uploaded!"
           redirect_to course_path(@course)
         else
           render root_path
