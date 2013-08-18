@@ -83,7 +83,7 @@
 				<% @programreviews.each do |review| %>
 					<li>
 						<h4>
-							<% if !(review.rating == 0) %>
+							<% if !(review.rating.nil?) %>
 								<% @good_starwidth_person = (review.rating/0.05).to_f.to_s + "%" %>
 								<% @anti_starwidth_person = ((5-review.rating)/0.05).to_f.to_s + "%" %>
 								<span class="star-cont">

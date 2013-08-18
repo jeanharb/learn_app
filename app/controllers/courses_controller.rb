@@ -32,21 +32,17 @@ class CoursesController < ApplicationController
 		@course = Course.find(params[:id])
 		@rating = Courserating.new
 		@review = Courserating.new
-		@courseratings = []
 		@hasreview = Courserating.where("course_id = ?", @course.id).where("user_id = ?", current_user.id).where("review_title IS NOT NULL")
-		@courseratings = Courserating.where("course_id = ?", @course.id).where("rating != ?", 0)
-		@coursereviews = Courserating.where("course_id = ?", @course.id).where("review_title != ?", "+!")
+		@courseratings = Courserating.where("course_id = ?", @course.id).where("rating IS NOT NULL")
+		@coursereviews = Courserating.where("course_id = ?", @course.id).where("review_title IS NOT NULL")
 		@averagerating = "0"
 		if @courseratings.any?
-			@num_rates = 0
-			@total_rate = 0
-			@courseratings.each do |r|
-				@num_rates += 1
-				@total_rate += r.rating
+			if @course.average_rating != 0
+				@num_rates = @course.num_rating
+				@averagerating = @course.average_rating
+				@good_starwidth = (@averagerating.to_f/0.05).to_f.to_s + "%"
+				@anti_starwidth = (((1-(@averagerating.to_f/5))*100).to_f).to_f.to_s + "%"
 			end
-			@averagerating = ((((@total_rate.to_f/@num_rates.to_f)*10).to_f.ceil).to_f/10)
-			@good_starwidth = (@averagerating.to_f/0.05).to_f.to_s + "%"
-			@anti_starwidth = (((1-(@averagerating.to_f/5))*100).to_f).to_f.to_s + "%"
 		end
     	@notes = @course.notes
     	@note = @course.notes.build if signed_in?

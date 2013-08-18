@@ -137,12 +137,16 @@
 		<div class="files-bar"></div>
 		<div class="course-rating-cont">
 			<div class="course-rating-title">
+				<% if @averagerating == "0" %>
+					<span class="no-star">No ratings yet | </span>
+				<% else %>
 				<span class="star-title">Average Rating: </span>
 					<span class="star-cont">
 						<span class="star" style="width:<%= @good_starwidth %>">★★★★★</span>
 						<span class="anti-star" style="width:<%= @anti_starwidth %>"><span class="star-right">☆☆☆☆☆</span></span>
 					</span>
 					<span class="star-title">(<%= pluralize(@num_rates, "rating")%>)</span> | </div>
+					<% end %>
 			</div>
 			<div class="course-rating"><%= form_for @rating do |f| %>
 				<%= f.radio_button :rating, "1" %> <%= f.label :rating, "1" %>
@@ -160,7 +164,7 @@
 				<% @coursereviews.each do |review| %>
 					<li>
 						<h4>
-							<% if !(review.rating == 0) %>
+							<% if !(review.rating.nil?) %>
 								<% @good_starwidth_person = (review.rating/0.05).to_f.to_s + "%" %>
 								<% @anti_starwidth_person = ((5-review.rating)/0.05).to_f.to_s + "%" %>
 								<span class="star-cont">

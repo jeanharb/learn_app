@@ -34,24 +34,20 @@ class ProgramsController < ApplicationController
 
 	def show
 		@program = Program.find(params[:id])
-		@cours_items = @program.courses.all
-		@hasreview = Programrating.where("program_id = ?", @program.id).where("user_id = ?", current_user.id).where("review_title IS NOT NULL")
 		@rating = Programrating.new
 		@review = Programrating.new
-		@programratings = []
-		@programratings = Programrating.where("program_id = ?", @program.id).where("rating != ?", 0)
-		@programreviews = Programrating.where("program_id = ?", @program.id).where("review_title != ? ", "+!")
+		@cours_items = @program.courses.all
+		@hasreview = Programrating.where("program_id = ?", @program.id).where("user_id = ?", current_user.id).where("review_title IS NOT NULL")
+		@programratings = Programrating.where("program_id = ?", @program.id).where("rating IS NOT NULL")
+		@programreviews = Programrating.where("program_id = ?", @program.id).where("review_title IS NOT NULL")
 		@averagerating = "0"
 		if @programratings.any?
-			@num_rates = 0
-			@total_rate = 0
-			@programratings.each do |r|
-				@num_rates += 1
-				@total_rate += r.rating
+			if @program.average_rating != 0
+				@num_rates = @program.num_rating
+				@averagerating = @program.average_rating
+				@good_starwidth = (@averagerating.to_f/0.05).to_f.to_s + "%"
+				@anti_starwidth = (((1-(@averagerating.to_f/5))*100).to_f).to_f.to_s + "%"
 			end
-			@averagerating = ((((@total_rate.to_f/@num_rates.to_f)*10).to_f.ceil).to_f/10)
-			@good_starwidth = (@averagerating.to_f/0.05).to_f.to_s + "%"
-			@anti_starwidth = (((1-(@averagerating.to_f/5))*100).to_f).to_f.to_s + "%"
 		end
 	end
 

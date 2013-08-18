@@ -1,5 +1,5 @@
 class Program < ActiveRecord::Base
-  attr_accessible :description, :title
+  attr_accessible :description, :title, :average_rating, :num_rating
   belongs_to :user
   has_many :relationships, foreign_key: "program_id", dependent: :destroy
   has_many :courses, through: :relationships, source: :course
@@ -16,6 +16,7 @@ class Program < ActiveRecord::Base
   validates :user_id, presence: true
   validates :description, presence: true
   validates :title, presence: true
+  validates :average_rating, :numericality => {:greater_than_or_equal_to => 0, :less_than_or_equal_to => 5}
 
   def makeprerequisite!(course1, course2)
     prerequisites.create!(required_id: course2.id, want_id: course1.id)

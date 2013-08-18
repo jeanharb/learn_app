@@ -3,6 +3,13 @@
 <h1>Here's a list of all programs!</h1>
 <% @programs.each do |program| %>
 	<div class="course-list">
+		<span class="list-star">
+			<% if program.average_rating == 0 %>
+				Not rated
+			<% else %>
+				<%= program.average_rating %> stars (<%= program.num_rating%>)
+			<% end %>
+		</span>
 		<span class="courstitle">
 			<%= link_to program.title, program_path(program) %>
 		</span>

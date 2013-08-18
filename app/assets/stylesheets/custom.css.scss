@@ -199,10 +199,20 @@ input[type='checkbox']:checked {
 .colu{
 	width: 400px;
 	float: left;
+	border: 1px solid black;
+	.course-list{
+		width: 400px;
+	}
 }
 
 .smaller{
 	font-size: 0.7em;
+}
+
+.list-star{
+	font-size: 0.7em;
+	width: 70px;
+	display: inline-block;
 }
 
 .subcon{
@@ -494,6 +504,11 @@ input[type='checkbox']:checked {
 	font-size: 1.2em;
 }
 
+.no-star{
+	margin-bottom: 20px;
+	display: block;
+}
+
 .star{
 	overflow: hidden;
 	color: #F9D423;
@@ -693,16 +708,16 @@ input[type='checkbox']:checked {
 	}
 }
 
-.course-titl{
-	a{
-		color: black;
-	}
-}
-
 .course-list a:hover{
 	cursor: pointer;
 	cursor: hand;
 	text-decoration: underline;
+}
+
+.course-titl{
+	a{
+		color: black;
+	}
 }
 
 #course_description{
