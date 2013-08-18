@@ -22,6 +22,5 @@ class CourseratingsController < ApplicationController
 			end
 			redirect_to course_path(@course)
 		end
-		redirect_to course_path(@course)
 	end
 end
