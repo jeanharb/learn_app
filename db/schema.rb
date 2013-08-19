@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130818204728) do
+ActiveRecord::Schema.define(:version => 20130818225930) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -63,8 +63,10 @@ ActiveRecord::Schema.define(:version => 20130818204728) do
     t.datetime "updated_at",                                                    :null => false
     t.decimal  "average_rating", :precision => 2, :scale => 1, :default => 0.0
     t.integer  "num_rating",                                   :default => 0
+    t.integer  "rating_algo",                                  :default => 0
   end
 
+  add_index "courses", ["rating_algo", "created_at"], :name => "index_courses_on_rating_algo_and_created_at"
   add_index "courses", ["user_id", "created_at"], :name => "index_courses_on_user_id_and_created_at"
 
   create_table "examresults", :force => true do |t|
@@ -135,8 +137,10 @@ ActiveRecord::Schema.define(:version => 20130818204728) do
     t.datetime "updated_at",                                                    :null => false
     t.decimal  "average_rating", :precision => 2, :scale => 1, :default => 0.0
     t.integer  "num_rating",                                   :default => 0
+    t.integer  "rating_algo",                                  :default => 0
   end
 
+  add_index "programs", ["rating_algo", "created_at"], :name => "index_programs_on_rating_algo_and_created_at"
   add_index "programs", ["user_id", "created_at"], :name => "index_programs_on_user_id_and_created_at"
 
   create_table "questions", :force => true do |t|

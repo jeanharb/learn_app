@@ -7,8 +7,8 @@ class SearchController < ApplicationController
 			@search = params[:fname]
 			search = params[:fname]
 			search_length = params[:fname].split.length
-			@course = Course.find(:all, :conditions => [(['lower(title) LIKE ?'] * search_length).join(' AND ')] + search.downcase.split.map { |title| "%#{title}%" })
-			@program = Program.find(:all, :conditions => [(['lower(title) LIKE ?'] * search_length).join(' AND ')] + search.downcase.split.map { |title| "%#{title}%" })
+			@course = Course.order("rating_algo DESC").find(:all, :conditions => [(['lower(title) LIKE ?'] * search_length).join(' AND ')] + search.downcase.split.map { |title| "%#{title}%" })
+			@program = Program.order("rating_algo DESC").find(:all, :conditions => [(['lower(title) LIKE ?'] * search_length).join(' AND ')] + search.downcase.split.map { |title| "%#{title}%" })
 		else
 			redirect_to search_path(:fname => "")
 		end

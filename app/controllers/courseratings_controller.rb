@@ -38,7 +38,8 @@ class CourseratingsController < ApplicationController
 		end
 		if @total_rate != 0
 			@averagerating = ((((@total_rate.to_f/@num_rates.to_f)*10).to_f.ceil).to_f/10)
-			course.update_attributes(:average_rating => @averagerating, :num_rating => @num_rates)
+			@rating_algo = ((@averagerating**2)*(@num_rates**0.5)).to_i
+			course.update_attributes(:average_rating => @averagerating, :num_rating => @num_rates, :rating_algo => @rating_algo)
 		end
 	end
 end

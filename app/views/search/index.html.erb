@@ -12,6 +12,13 @@
 		<% if @program.length != 0 %>
 			<% @program.each do |program| %>
 				<div class="name-search">
+					<span class="list-star">
+						<% if program.average_rating == 0 %>
+							Not rated
+						<% else %>
+							<%= program.average_rating %> stars (<%= program.num_rating%>)
+						<% end %>
+					</span>
 					<%= link_to program.title, program_path(program) %>
 				</div>
 			<% end %>
@@ -26,6 +33,13 @@
 		<% if @course.length != 0 %>
 			<% @course.each do |course| %>
 				<div class="name-search">
+					<span class="list-star">
+						<% if course.average_rating == 0 %>
+							Not rated
+						<% else %>
+							<%= course.average_rating %> stars (<%= course.num_rating%>)
+						<% end %>
+					</span>
 					<%= link_to course.title, course_path(course) %>
 				</div>
 			<% end %>

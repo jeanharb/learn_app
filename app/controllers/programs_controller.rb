@@ -19,7 +19,7 @@ class ProgramsController < ApplicationController
 	end
 
 	def index
-		@programs = Program.all
+		@programs = Program.order("rating_algo DESC").all
 	end
 
 	def prerequisites

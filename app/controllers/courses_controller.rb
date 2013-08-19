@@ -18,10 +18,7 @@ class CoursesController < ApplicationController
 	end
 
 	def index
-		if is_admin?
-			store_location
-		end
-		@courses = Course.all
+		@courses = Course.order("rating_algo DESC").all
 	end
 
 	def edit

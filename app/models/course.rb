@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  attr_accessible :description, :title, :average_rating, :num_rating
+  attr_accessible :description, :title, :average_rating, :num_rating, :rating_algo
   belongs_to :user
   has_many :notes, dependent: :destroy
   has_many :reverse_carts, foreign_key: "coursefollow_id", class_name: "Cart", dependent: :destroy
@@ -22,7 +22,7 @@ class Course < ActiveRecord::Base
   validates :description, presence: true
   validates :title, presence: true
   validates :average_rating, :numericality => {:greater_than_or_equal_to => 0, :less_than_or_equal_to => 5}
-
+  validates :rating_algo, :numericality => {:integer => true}
 
   def hasrating?(user)
     courseratings.find_by_user_id(user.id)
