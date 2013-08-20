@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
 	before_filter :signed_in_user, only: [:create, :edit, :update]
-	before_filter :correct_user, only: [:edit, :update]
+	before_filter :correct_user, only: [:notes, :edit, :update]
 	before_filter :course_des, only: :destroy
 	
 	def new

@@ -15,7 +15,7 @@ class NotesController < ApplicationController
       @note = @course.notes.build(:content => params[:note][:content].tempfile, :file_title => params[:note][:file_title], :filename => params[:note][:filename], :contenttype => params[:note][:contenttype])
     end
     if @note.save
-      redirect_to course_path(@course)
+      redirect_to notes_course_path(@course)
     else
       render root_path
     end
