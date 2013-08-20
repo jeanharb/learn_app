@@ -9,11 +9,11 @@
 					<%= link_to note.file_title, viewfile_path(id: note.id) %>
 				<% end %>
 			</span>
-			<% else %>
+		<% else %>
 			<span class="content">
 				<%= note.file_title %>
 			</span>
-			<% end %>
+		<% end %>
 		<% if note.contenttype != "youtube" %>
 		<span class="smaller">
 			<% if note.content.length/1.3572/1000 > 1000 %>
@@ -30,17 +30,15 @@
 				 VIDEO
 			</span>
 		<% end %>
-		<span class="delete-btn">
-		<% if creator? %>
-			<%= link_to "Delete", note, method: :delete, 
-										data: { confirm: "You sure?" },
-										title: note.filename %>
-		<% end %>
-		</span>
 	<% else %>
 		<span class="content">
 			<%= note.filename %>
 		</span>
+		<% if note.contenttype == "youtube" %>
+			<span class="smaller">
+					 VIDEO
+			</span>
+		<% end %>
 	<% end %>
 </li>
 <% end %>

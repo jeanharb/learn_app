@@ -66,9 +66,6 @@
 		<div id="files">
 			<span id="file-upload">
 				<span>Files and Videos</span>
-				<% if courcreator %>
-					<span class = "smaller content" ><%= link_to "Edit", notes_course_path(@course) %></span>
-				<% end %>
 			</span>
 		</div>
 		<div class="files-bar"></div>
@@ -85,16 +82,11 @@
 	<div class="exams-container">
 		<div id="exams">
 			<span>Exams</span>
-			<span id="create-exams">
-				<% if courcreator %>
-					<span class = "smaller content" ><%= link_to "Create", newexam_path(id: params[:id]) %></span>
-				<% end %>
-			</span>
 		</div>
 		<div class="files-bar"></div>
 		<div>
-			<% if @notes.any? %>
-				<% if !@notes.nil? %>
+			<% if @exams.any? %>
+				<% if !@exams.nil? %>
 						<ul class="notes">
 							<% @exams.each do |exam| %>
 								<div>
@@ -115,13 +107,6 @@
 										<% end %>
 										<span> - Highest Grade (<%= current_user.examresults.find_by_exam_id(exam.id).finalgrade %>%)</span>
 									<% end %>
-									<span class="delete-btn">
-									<% if creator? %>
-										<%= link_to "Delete", exam, method: :delete, 
-																	data: { confirm: "You sure?" },
-																	title: exam.name %>
-									<% end %>
-									</span>
 								</div>
 							<% end %>
 						</ul>

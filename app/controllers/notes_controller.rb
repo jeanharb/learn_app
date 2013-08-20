@@ -1,7 +1,7 @@
 class NotesController < ApplicationController
   before_filter :signed_in_user, except: [:view, :show]
   before_filter :course_creator, only: :create
-  before_filter :note_creator, only: :destroy
+  before_filter :note_creator, only: [:destroy, :listorder_up, :listorder_down]
 
   def create
     @course = Course.find(params[:note][:id])
@@ -35,13 +35,13 @@ class NotesController < ApplicationController
     end
     if @errors.any?
       if @error == 1
-        redirect_to notes_course_path(@course, :errors => @errors, :youtuber => "yes")
+        redirect_to edit_course_path(@course, :errors => @errors, :youtuber => "yes")
       else
-        redirect_to notes_course_path(@course, :errors => @errors)
+        redirect_to edit_course_path(@course, :errors => @errors)
       end
     else
       if @note.save
-        redirect_to notes_course_path(@course)
+        redirect_to edit_course_path(@course)
       else
         render root_path
       end
@@ -64,14 +64,14 @@ class NotesController < ApplicationController
     @course = Course.find(params[:course])
     @note = Note.find(params[:id])
     @note.move_higher
-    redirect_to notes_course_path(@course)
+    redirect_to edit_course_path(@course)
   end
 
   def listorder_down
     @course = Course.find(params[:course])
     @note = Note.find(params[:id])
     @note.move_lower
-    redirect_to notes_course_path(@course)
+    redirect_to edit_course_path(@course)
   end
 
   def show
@@ -94,11 +94,7 @@ class NotesController < ApplicationController
     note = Note.find(params[:id])
     note.remove_from_list
     note.destroy
-    if params.has_key?(:note_edit)
-      redirect_to notes_course_path(note.course_id)
-    else
-      redirect_to course_path(note.course_id)
-    end
+    redirect_to edit_course_path(note.course_id)
   end
 
   private

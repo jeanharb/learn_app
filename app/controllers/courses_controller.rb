@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
 	before_filter :signed_in_user, only: [:create, :edit, :update]
-	before_filter :correct_user, only: [:notes, :edit, :update]
+	before_filter :correct_user, only: [:edit, :update]
 	before_filter :course_des, only: :destroy
 	
 	def new
@@ -23,6 +23,24 @@ class CoursesController < ApplicationController
 
 	def edit
 		@course = Course.find(params[:id])
+		@exams = @course.exams
+		@notes = @course.notes
+    	@note = @course.notes.build
+    	@note_vid = @course.notes.build
+	end
+
+	def newexam
+		@course = Course.find(params[:id])
+		if params.has_key?(:exam)
+			@exam = Exam.find_by_id(params[:exam])
+			@exam_num = params[:exam]
+			@question_num = params[:question_num].to_i + 1
+		else
+			@question_num = 1
+			@exam = Exam.new
+		end
+		@questions = Question.new
+		@answer = Answer.new
 	end
 
 	def show
@@ -64,17 +82,10 @@ class CoursesController < ApplicationController
 	def update
 		@course = Course.find(params[:id])
 		if @course.update_attributes(params[:course])
-			redirect_to course_path(@course)
+			redirect_to edit_course_path(@course)
 		else
 			render 'edit'
 		end
-	end
-
-	def notes
-		@course = Course.find(params[:id])
-		@notes = @course.notes
-    	@note = @course.notes.build
-    	@note_vid = @course.notes.build
 	end
 
 	def destroy

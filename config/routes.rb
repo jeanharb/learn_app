@@ -19,7 +19,7 @@ LearnApp::Application.routes.draw do
   resources :programratings
   resources :courses do
     member do
-      get :programs, :followers, :wants, :wantpros, :notes
+      get :programs, :followers, :wants, :wantpros, :notes, :newexam
     end
   end
   resources :users do
@@ -40,24 +40,26 @@ LearnApp::Application.routes.draw do
   end
 
   root to: "static_pages#home"
-  match '/addcourses',to: "programs#addcourses"
-  match '/viewfile',  to: "notes#view"
-  match '/moveup',    to: "notes#listorder_up"
-  match '/movedown',  to: "notes#listorder_down"
-  match '/cart',      to: "users#cart"
-  match '/programs',  to: "programs#index"
-  match '/newprogram',to: "programs#new"
-  match '/newexam',   to: "exams#new"
-  match '/courses',   to: "courses#index"
-  match '/creations', to: "users#creations"
-  match '/newcourse', to: "courses#new"
-  match '/search',    to: "search#index"
-  match '/database',  to: "admin#database"
-  match '/signup',    to: "users#new"
-  match '/signin',    to: "sessions#new"
-  match '/signout',   to: "sessions#destroy", via: :delete
-  match '/about',     to: "static_pages#about"
-  match '/help',      to: "static_pages#help"
+  match '/addcourses',  to: "programs#addcourses"
+  match '/viewfile',    to: "notes#view"
+  match '/moveupexam',  to: "exams#listorder_up"
+  match '/movedownexam',to: "exams#listorder_down"
+  match '/moveupfile',  to: "notes#listorder_up"
+  match '/movedownfile',to: "notes#listorder_down"
+  match '/cart',        to: "users#cart"
+  match '/programs',    to: "programs#index"
+  match '/newprogram',  to: "programs#new"
+  match '/newexam',     to: "exams#new"
+  match '/courses',     to: "courses#index"
+  match '/creations',   to: "users#creations"
+  match '/newcourse',   to: "courses#new"
+  match '/search',      to: "search#index"
+  match '/database',    to: "admin#database"
+  match '/signup',      to: "users#new"
+  match '/signin',      to: "sessions#new"
+  match '/signout',     to: "sessions#destroy", via: :delete
+  match '/about',       to: "static_pages#about"
+  match '/help',        to: "static_pages#help"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

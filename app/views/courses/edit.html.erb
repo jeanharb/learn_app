@@ -1,4 +1,23 @@
 <% provide(:title, "Edit Course") %>
+<h1>
+	<%= @course.title %> | <span class="smaller"><%= link_to "Return to course", course_path(@course) %></span>
+</h1>
+<% if params.has_key?(:errors) %> 
+	<div class="error_explanation">
+		<div class="alert alert-error">
+			<% if params.has_key?(:youtuber) %>
+				The video form contains <%= pluralize(params[:errors].count, "error") %>.
+			<% else %>
+				The file form contains <%= pluralize(params[:errors].count, "error") %>.
+			<% end %>
+		</div>
+		<ul>
+			<% params[:errors].each do |msg| %>
+				<li>* <%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
 <%= form_for @course do |f| %>
 <%= render 'shared/error_messages', object: f.object, :html => { :id => "myform" } %>
 	<div>
@@ -15,3 +34,63 @@
 	</div>
 	<div><%= f.submit "Update Course", class: "subcon" %></div>
 <% end %>
+<div class="edit-note-list">
+<div class="note_formform">
+	<%= render "shared/note_form" %>
+</div>
+<div class="note_formform">
+	<%= render "shared/youtube_form" %>
+</div>
+<div>
+	Rearrange order:
+</div>
+<ul class="notes">
+<% @notes.each do |note| %>
+	<% if !note.filename.nil? %>
+	<li>
+		<% if note.contenttype == "application/pdf" or note.contenttype == "youtube" %>
+			<span class="content">
+				<%= link_to (image_tag "arrow-up.png"), moveupfile_path(:id => note.id, :course => @course.id), {:class => "list_arrow"}%>
+				<%= link_to (image_tag "arrow-down.png"), movedownfile_path(:id => note.id, :course => @course.id), {:class => "list_arrow"}%>
+				<%= link_to note.file_title, viewfile_path(id: note.id) %>
+			</span>
+		<% else %>
+			<span class="content">
+				<%= note.file_title %>
+			</span>
+		<% end %>
+		<% if note.contenttype == "youtube" %>
+			<span class="smaller">
+				 VIDEO
+			</span>
+		<% end %>
+		<span class="delete-btn">
+		<% if creator? %>
+			<%= link_to "Delete", note_path(:id => note.id), method: :delete,
+										title: note.filename %>
+		<% end %>
+		</span>
+	</li>
+	<% end %>
+<% end %>
+</ul>
+</div>
+<div class="edit-exam-list">
+<span> Exams <%= link_to "Create", newexam_course_path(@course) %></span>
+<ul class="notes">
+	<% @exams.each do |exam| %>
+		<div>
+			<span class="content">
+				<%= link_to (image_tag "arrow-up.png"), moveupexam_path(:id => exam.id, :course => @course.id), {:class => "list_arrow"}%>
+				<%= link_to (image_tag "arrow-down.png"), movedownexam_path(:id => exam.id, :course => @course.id), {:class => "list_arrow"}%>
+				<%= link_to exam.name, exam_path(exam) %>
+			</span>
+			<span class="delete-btn">
+			<%= link_to "Delete", exam_path(:id => exam.id), method: :delete, 
+											title: exam.name %>
+			</span>
+		</div>
+	<% end %>
+</ul>
+</div>
+

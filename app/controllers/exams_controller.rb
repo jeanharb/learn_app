@@ -1,20 +1,7 @@
 class ExamsController < ApplicationController
 	before_filter :course_crea, only: [:create, :new]
-	before_filter :destroyer, only: :destroy
+	before_filter :destroyer, only: [:destroy, :listorder_up, :listorder_down]
 	before_filter :registered, only: :show
-	def new
-		@course = Course.find(params[:id])
-		if params.has_key?(:exam)
-			@exam = Exam.find_by_id(params[:exam])
-			@exam_num = params[:exam]
-			@question_num = params[:question_num].to_i + 1
-		else
-			@question_num = 1
-			@exam = Exam.new
-		end
-		@questions = Question.new
-		@answer = Answer.new
-	end
 
 	def show
 		@exam = Exam.find_by_id(params[:id])
@@ -91,7 +78,7 @@ class ExamsController < ApplicationController
 				end
 			end
 			if @error_count > 0
-				return redirect_to newexam_path(:answer1 => @answer_names[0][0], :answer2 => @answer_names[1][0], :question_name => params[:question][:name], :question_num => params[:question_num], :id => params[:id], :errors => @errors, :exam_name => params[:exam_name], :grade_num => params[:grade_num])
+				return redirect_to newexam_course_path(@course, :answer1 => @answer_names[0][0], :answer2 => @answer_names[1][0], :question_name => params[:question][:name], :question_num => params[:question_num], :errors => @errors, :exam_name => params[:exam_name], :grade_num => params[:grade_num])
 			end
 			@exam = @course.exams.create(name: params[:exam_name], grade: @exam_grade.to_i)
 		else
@@ -140,7 +127,7 @@ class ExamsController < ApplicationController
 				end
 			end
 			if @error_count > 0
-				return redirect_to newexam_path(:answer1 => @answer_names[0][0], :answer2 => @answer_names[1][0], :question_name => params[:question][:name], :question_num => params[:question_num], :id => params[:id], :errors => @errors, :exam => params[:exam])
+				return redirect_to newexam_course_path(@course, :answer1 => @answer_names[0][0], :answer2 => @answer_names[1][0], :question_name => params[:question][:name], :question_num => params[:question_num], :errors => @errors, :exam => params[:exam])
 			end
 		end
 		@exam_question = @exam.questions.create(name: params[:question][:name])
@@ -171,15 +158,29 @@ class ExamsController < ApplicationController
 		if params.has_key?(:complete)
 			redirect_to course_path(@course)
 		else
-			redirect_to newexam_path(id: @course.id, exam: @exam.id, question_num: @question)
+			redirect_to newexam_course_path(@course, exam: @exam.id, question_num: @question)
 		end
+	end
+
+	def listorder_up
+	  @course = Course.find(params[:course])
+	  @exam = Exam.find(params[:id])
+	  @exam.move_higher
+	  redirect_to edit_course_path(@course)
+	end
+
+	def listorder_down
+	  @course = Course.find(params[:course])
+	  @exam = Exam.find(params[:id])
+	  @exam.move_lower
+	  redirect_to edit_course_path(@course)
 	end
 
 	def destroy
 		@exam = Exam.find(params[:id])
 		@course = @exam.course_id
 		@exam.destroy
-		redirect_to course_path(@course)
+		redirect_to edit_course_path(@course)
 	end
 
 	private
