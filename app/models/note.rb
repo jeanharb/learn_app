@@ -1,6 +1,7 @@
 class Note < ActiveRecord::Base
   attr_accessible :content, :filename, :contenttype, :file_title
   belongs_to :course
+  acts_as_list scope: :course
 
   validates :course_id, presence: true
   validates :content, presence: true

@@ -4,6 +4,11 @@
 	margin-top: -60px;
 }
 
+.list_arrow img{
+	width: 15px;
+	height: 15px;
+}
+
 .note_formform{
 	border: none;
 }
@@ -1204,6 +1209,16 @@ img.background{
 		list-style: none;
 		float: left;
 		margin: 0 0 18px 0;
+	}
+}
+
+.error_explanation {
+	color: #f00;
+	ul {
+		list-style: none;
+		li{
+			height: 30px;
+		}
 	}
 }
 

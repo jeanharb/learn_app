@@ -2,11 +2,30 @@
 <h1>
 	<%= link_to "#{@course.title}", course_path(@course) %>
 </h1>
+<% if params.has_key?(:errors) %> 
+	<div class="error_explanation">
+		<div class="alert alert-error">
+			<% if params.has_key?(:youtuber) %>
+				The video form contains <%= pluralize(params[:errors].count, "error") %>.
+			<% else %>
+				The file form contains <%= pluralize(params[:errors].count, "error") %>.
+			<% end %>
+		</div>
+		<ul>
+			<% params[:errors].each do |msg| %>
+				<li>* <%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
 <div class="note_formform">
 	<%= render "shared/note_form" %>
 </div>
 <div class="note_formform">
 	<%= render "shared/youtube_form" %>
+</div>
+<div>
+	Rearrange order:
 </div>
 <ul class="notes">
 <% @notes.each do |note| %>
@@ -14,6 +33,8 @@
 	<li>
 		<% if note.contenttype == "application/pdf" or note.contenttype == "youtube" %>
 			<span class="content">
+				<%= link_to (image_tag "arrow-up.png"), moveup_path(:id => note.id, :course => @course.id), {:class => "list_arrow"}%>
+				<%= link_to (image_tag "arrow-down.png"), movedown_path(:id => note.id, :course => @course.id), {:class => "list_arrow"}%>
 				<%= link_to note.file_title, viewfile_path(id: note.id) %>
 			</span>
 		<% else %>
@@ -28,8 +49,7 @@
 		<% end %>
 		<span class="delete-btn">
 		<% if creator? %>
-			<%= link_to "Delete", note, method: :delete, 
-										data: { confirm: "You sure?" },
+			<%= link_to "Delete", note_path(:id => note.id, :note_edit => "yes"), method: :delete,
 										title: note.filename %>
 		<% end %>
 		</span>
