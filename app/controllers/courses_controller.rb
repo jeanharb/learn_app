@@ -42,7 +42,6 @@ class CoursesController < ApplicationController
 			end
 		end
     	@notes = @course.notes
-    	@note = @course.notes.build if signed_in?
     	@program_in = false
     	if params.has_key?(:program)
     		@courses = []
@@ -69,6 +68,13 @@ class CoursesController < ApplicationController
 		else
 			render 'edit'
 		end
+	end
+
+	def notes
+		@course = Course.find(params[:id])
+		@notes = @course.notes
+    	@note = @course.notes.build
+    	@note_vid = @course.notes.build
 	end
 
 	def destroy

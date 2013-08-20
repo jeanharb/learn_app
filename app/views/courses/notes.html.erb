@@ -1,0 +1,39 @@
+<% provide(:title, @course.title) %>
+<h1>
+	<%= link_to "#{@course.title}", course_path(@course) %>
+</h1>
+<div class="note_formform">
+	<%= render "shared/note_form" %>
+</div>
+<div class="note_formform">
+	<%= render "shared/youtube_form" %>
+</div>
+<ul class="notes">
+<% @notes.each do |note| %>
+	<% if !note.filename.nil? %>
+	<li>
+		<% if note.contenttype == "application/pdf" or note.contenttype == "youtube" %>
+			<span class="content">
+				<%= link_to note.file_title, viewfile_path(id: note.id) %>
+			</span>
+		<% else %>
+			<span class="content">
+				<%= note.file_title %>
+			</span>
+		<% end %>
+		<% if note.contenttype == "youtube" %>
+			<span class="smaller">
+				 VIDEO
+			</span>
+		<% end %>
+		<span class="delete-btn">
+		<% if creator? %>
+			<%= link_to "Delete", note, method: :delete, 
+										data: { confirm: "You sure?" },
+										title: note.filename %>
+		<% end %>
+		</span>
+	</li>
+	<% end %>
+<% end %>
+</ul>

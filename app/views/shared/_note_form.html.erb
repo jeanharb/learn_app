@@ -2,8 +2,14 @@
 	<%= form_for @note do |f| %>
 	<%= render 'shared/error_messages', object: f.object, :html => { :id => "myform" } %>
 		<%= f.hidden_field :id, :value => params[:id] %>
-		<%= f.label "Files" %>
+		<%= f.label "Create File" %>
+		<div>
+		<%= f.label "File title : " %>
+		<%= f.text_field :file_title %>
+		</div>
+		<div>
 		<%= f.file_field :content, :html => { :id => "myfile" } %>
+		</div>
 		<%= f.submit "Upload File", class: "subcon note-submit" %>
 	<% end %>
 </div>

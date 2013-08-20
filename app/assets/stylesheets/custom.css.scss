@@ -4,6 +4,10 @@
 	margin-top: -60px;
 }
 
+.note_formform{
+	border: none;
+}
+
 .question-answer-li{
 	list-style-type: none;
 }
@@ -144,6 +148,13 @@ h4{
 	z-index: 100;
 	width: 900px;
 	height: 630px;
+}
+
+.video-viewer{
+	padding-left: 1px;
+	z-index: 100;
+	width: 900px;
+	height: 530px;
 }
 
 .tempfile{
@@ -662,7 +673,14 @@ input[type='checkbox']:checked {
 }
 
 .files-btn-sub{
-	margin-bottom: 26px;
+	margin-top: 10px;
+	height: 90px;
+}
+
+
+.files-btn-file{
+	margin-top: 10px;
+	height: 100px;
 }
 
 .profile-btn a{

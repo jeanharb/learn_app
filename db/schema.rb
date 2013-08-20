@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130818225930) do
+ActiveRecord::Schema.define(:version => 20130819230559) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(:version => 20130818225930) do
     t.datetime "updated_at",  :null => false
     t.string   "filename"
     t.string   "contenttype"
+    t.string   "file_title"
   end
 
   add_index "notes", ["course_id", "created_at"], :name => "index_notes_on_course_id_and_created_at"

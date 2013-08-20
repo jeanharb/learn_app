@@ -1,6 +1,17 @@
 <% provide(:title, @note.filename) %>
-<div class="pdf-title"><%= @note.filename %></div>
+<div>
+	<% if params.has_key?(:program) %>
+		<%= link_to "Return to course", course_path(@course, :program => params[:program]) %>
+	<% else %>
+		<%= link_to "Return to course", course_path(@course) %>
+	<% end %>
+</div>
+<div class="pdf-title"><%= @note.file_title %></div>
 <div class="pdf-placement">
+	<% if @video == "yes" %>
+	<iframe src="<%= @url %>" class="video-viewer" frameborder="0"></iframe>
+	<% else %>
 	<div class="pdf-border"></div>
-<iframe src="<%= @url %>" class="pdf-viewer" frameborder="0"></iframe>
-</div><div class="under-pdf">&nbsp</div>
+	<iframe src="<%= @url %>" class="pdf-viewer" frameborder="0"></iframe>
+	<% end %>
+</div>

@@ -1,15 +1,20 @@
 <% if !note.filename.nil? %>
 <li>
 	<% if @see_exam %>
-		<% if note.contenttype == "application/pdf" %>
+		<% if note.contenttype == "application/pdf" or note.contenttype == "youtube" %>
 			<span class="content">
-				<%= link_to note.filename, viewpdf_path(id: note.id) %>
+				<% if params.has_key?(:program) %>
+					<%= link_to note.file_title, viewfile_path(id: note.id, program: @program.id) %>
+				<% else %>
+					<%= link_to note.file_title, viewfile_path(id: note.id) %>
+				<% end %>
 			</span>
 			<% else %>
 			<span class="content">
-				<%= note.filename %>
+				<%= note.file_title %>
 			</span>
 			<% end %>
+		<% if note.contenttype != "youtube" %>
 		<span class="smaller">
 			<% if note.content.length/1.3572/1000 > 1000 %>
 				<%= ((note.content.length/1.3572)/1000000).round(1) %>MB
@@ -20,6 +25,11 @@
 		<span class="smaller note-dwn">
 			<%= link_to "Download", download_note_path(note) %>
 		</span>
+		<% else %>
+			<span class="smaller">
+				 VIDEO
+			</span>
+		<% end %>
 		<span class="delete-btn">
 		<% if creator? %>
 			<%= link_to "Delete", note, method: :delete, 

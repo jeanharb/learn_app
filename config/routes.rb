@@ -19,7 +19,7 @@ LearnApp::Application.routes.draw do
   resources :programratings
   resources :courses do
     member do
-      get :programs, :followers, :wants, :wantpros
+      get :programs, :followers, :wants, :wantpros, :notes
     end
   end
   resources :users do
@@ -41,7 +41,7 @@ LearnApp::Application.routes.draw do
 
   root to: "static_pages#home"
   match '/addcourses',to: "programs#addcourses"
-  match '/viewpdf',   to: "notes#view"
+  match '/viewfile',  to: "notes#view"
   match '/cart',      to: "users#cart"
   match '/programs',  to: "programs#index"
   match '/newprogram',to: "programs#new"
