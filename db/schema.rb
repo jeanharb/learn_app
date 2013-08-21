@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130820205842) do
+ActiveRecord::Schema.define(:version => 20130821000746) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -169,6 +169,7 @@ ActiveRecord::Schema.define(:version => 20130820205842) do
     t.integer  "program_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "position"
   end
 
   add_index "relationships", ["course_id"], :name => "index_relationships_on_course_id"

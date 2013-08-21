@@ -3,16 +3,13 @@
 	<div class="course-info">
 	<% if params.has_key?(:program) %>
 		<h1>
-			<%= link_to "#{@program.title}", program_path(@program) %> - <%= @course.title %>
+			<%= link_to "#{@program.title}", program_path(@program) %> - <%= @course.title %><span class="smaller">by <%= @course.user.name %></span>
 		</h1>
 	<% else %>
 		<h1>
-			<%= @course.title %>
+			<%= @course.title %><span class="smaller">by <%= @course.user.name %></span>
 		</h1>
 	<% end %>
-	<div class="progcount">
-		This course was created by <%= @course.user.name %>.
-	</div>
 	<% if params.has_key?(:program) %>
 		<% if @prereqs.count > 0 %>
 		<div class="progcount">

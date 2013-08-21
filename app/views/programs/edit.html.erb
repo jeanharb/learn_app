@@ -1,4 +1,23 @@
 <% provide(:title, "Edit Program") %>
+<h1>
+	<%= @program.title %> | <span class="smaller"><%= link_to "Return to program", program_path(@program) %></span>
+</h1>
+<% if params.has_key?(:errors) %> 
+	<div class="error_explanation">
+		<div class="alert alert-error">
+			<% if params.has_key?(:youtuber) %>
+				The video form contains <%= pluralize(params[:errors].count, "error") %>.
+			<% else %>
+				The file form contains <%= pluralize(params[:errors].count, "error") %>.
+			<% end %>
+		</div>
+		<ul>
+			<% params[:errors].each do |msg| %>
+				<li>* <%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
 <%= form_for @program do |f| %>
 <%= render 'shared/error_messages', object: f.object, :html => { :id => "myform" } %>
 	<div>
@@ -15,3 +34,17 @@
 	</div>
 	<div><%= f.submit "Update Program", class: "subcon" %></div>
 <% end %>
+<div>
+<span> Courses <%= link_to "Add", addcourses_path(:program => params[:id]), :class => "prereq-style" %></span>
+<ul class="notes">
+	<% @courses.each do |course| %>
+		<div>
+			<span class="content">
+				<%= link_to (image_tag "arrow-up.png"), moveupcourse_path(:program => @program.id, :course => course.id), {:class => "list_arrow"}%>
+				<%= link_to (image_tag "arrow-down.png"), movedowncourse_path(:program => @program.id, :course => course.id), {:class => "list_arrow"}%>
+				<%= link_to course.title, course_path(course) %>
+			</span>
+		</div>
+	<% end %>
+</ul>
+</div>

@@ -2,7 +2,7 @@ class Program < ActiveRecord::Base
   attr_accessible :description, :title, :average_rating, :num_rating, :rating_algo
   belongs_to :user
   has_many :relationships, foreign_key: "program_id", dependent: :destroy
-  has_many :courses, through: :relationships, source: :course
+  has_many :courses, order: :position, through: :relationships, source: :course
   has_many :wants, through: :prerequisites, source: :want
   has_many :required_courses, through: :prerequisites, source: :required
   has_many :prerequisites, foreign_key: "wantpro_id", dependent: :destroy

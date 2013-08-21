@@ -17,6 +17,20 @@ class CoursesController < ApplicationController
         end
 	end
 
+	def listorder_up
+	  @program = Program.find(params[:program])
+	  @relationship = Relationship.find_by_program_id_and_course_id(params[:program], params[:course])
+	  @relationship.move_higher
+	  redirect_to edit_program_path(@program)
+	end
+
+	def listorder_down
+	  @program = Program.find(params[:program])
+	  @relationship = Relationship.find_by_program_id_and_course_id(params[:program], params[:course])
+	  @relationship.move_lower
+	  redirect_to edit_program_path(@program)
+	end
+
 	def index
 		@courses = Course.order("rating_algo DESC").all
 	end

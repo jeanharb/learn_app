@@ -53,6 +53,7 @@ class ProgramsController < ApplicationController
 
 	def edit
 		@program = Program.find(params[:id])
+		@courses = @program.courses
 	end
 
 	def update
