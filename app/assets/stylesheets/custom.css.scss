@@ -1094,6 +1094,7 @@ img.background{
 
 #signin-btn {
 	.btn-primary{
+		z-index: 100;
 		background: white;
 		border: 1px solid #ccc;
 	}
@@ -1179,6 +1180,8 @@ img.background{
 #newusr{
 	position: relative;
 	top: 9px;
+	border: 1px solid green;
+	width: 130px;
 }
 
 #signin-menu{
