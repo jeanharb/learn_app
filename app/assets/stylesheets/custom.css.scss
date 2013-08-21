@@ -4,25 +4,84 @@
 	margin-top: -60px;
 }
 
+.course-edit-form-cont{
+	margin-top: 30px;
+	div{
+		margin-top: 20px;
+	}
+	span{
+		display: block;
+		margin-top: 7px;
+	}
+}
+
+.edit-title-course{
+	font-size: 0.6em;
+	float: right;
+	border: 1px solid #ccc;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	padding: 10px 0;
+	a{
+		padding: 10px;
+	}
+	a:hover{
+		background: #ccc;
+		text-decoration: none;
+	}
+}
+
 .edit-exam-list{
-	border: 1px solid black;
 	float: right;
 	width: 340px;
+	margin-top: 30px;
+}
+
+.edit-exam-list span .smaller a{
+	text-decoration: none;
+	color: black;
+}
+
+.edit-exam-list span .smaller a:hover{
+	text-decoration: underline;
 }
 
 .edit-note-list{
-	border: 1px solid black;
 	float: left;
 	width: 640px;
+	margin-top: 30px;
+}
+
+.course-edit-bar{
+	border-top: 1px solid #ccc;
+	margin: 20px 0;
+}
+
+.course-edit-field{
+	position: absolute;
+	left: 248px;
+	width: 180px;
+}
+
+.formform-title{
+	float: left;
+	width: 619px;
 }
 
 .list_arrow img{
-	width: 15px;
-	height: 15px;
+	width: 12px;
+	height: 12px;
 }
 
 .note_formform{
-	border: none;
+	margin-top: -10px;
+	float: left;
+	width: 360px;
+}
+
+.vid_formform{
+	float: right;
+	width: 280px;
 }
 
 .question-answer-li{
@@ -194,6 +253,7 @@ input[type='checkbox']{
     background-color: #fff;
     border: 1px solid #cacece;
     padding: 5px;
+    -moz-border-radius: 2px;
     border-radius: 2px;
     display: inline-block;
     position: relative;
@@ -243,13 +303,13 @@ input[type='checkbox']:checked {
 }
 
 .subcon{
-	position: absolute;
 	background: white;
 	border: 1px black solid;
 	cursor: pointer;
 	cursor: hand;
 	margin-top: 5px;
 	margin-left: 5px;
+	margin-bottom: 10px;
 }
 
 #courdes{
@@ -761,7 +821,7 @@ input[type='checkbox']:checked {
 }
 
 .notes{
-	margin-top: 20px;
+	margin-top: 10px;
 	margin-left: -40px;
 	list-style-type: none;
 	li{

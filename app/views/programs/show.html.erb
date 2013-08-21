@@ -2,11 +2,10 @@
 <div class="course-show">
 	<div class="course-info">
 		<h1>
-			<%= @program.title %>
+			<%= @program.title %><span class="smaller"> By <%= @program.user.name %></span>
 		</h1>
 		<div id="class-des">
 			<%= @program.description %>
-			<div class="starwidth" style="width:<%= @starwidth %>">fds</div>
 		</div>
 	</div>
 	<div class="course-btns">
@@ -26,17 +25,6 @@
 	<div class="files-container">
 		<div id="cou-title">
 			COURSES
-			<% if progcreate %>
-				<span>
-					<%= link_to "Add", addcourses_path(:program => params[:id]), :class => "prereq-style" %>
-				</span>
-				<span>
-					<%= link_to "Set up prerequisites", {controller: "programs", action: "prerequisites", :id => "#{@program.id}"}, {:class => "prereq-style"} %>
-				</span>
-				<span>
-					<%= link_to "Remove prerequisites", {controller: "programs", action: "removeprerequisites", :id => "#{@program.id}" },  {:class => "prereq-style"} %>
-				</span>
-			<% end %>
 		</div>
 		<div class="files-bar"></div>
 		<ul class="prog-cours-list">

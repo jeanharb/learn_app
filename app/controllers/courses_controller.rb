@@ -11,6 +11,7 @@ class CoursesController < ApplicationController
 	def create
         @course = current_user.courses.build(params[:course])
         if @course.save
+          current_user.courseregister!(@course)
           redirect_to course_path(@course)
         else
           render 'new'

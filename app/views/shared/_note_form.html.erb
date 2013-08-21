@@ -5,7 +5,7 @@
 		<%= f.label "Create File" %>
 		<div>
 		<%= f.label "File title : " %>
-		<%= f.text_field :file_title %>
+		<%= f.text_field :file_title, class: "course-edit-field" %>
 		</div>
 		<div>
 		<%= f.file_field :content, :html => { :id => "myfile" } %>

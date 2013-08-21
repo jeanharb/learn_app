@@ -3,11 +3,11 @@
 	<div class="course-info">
 	<% if params.has_key?(:program) %>
 		<h1>
-			<%= link_to "#{@program.title}", program_path(@program) %> - <%= @course.title %><span class="smaller">by <%= @course.user.name %></span>
+			<%= link_to "#{@program.title}", program_path(@program) %> - <%= @course.title %><span class="smaller"> by <%= @course.user.name %></span>
 		</h1>
 	<% else %>
 		<h1>
-			<%= @course.title %><span class="smaller">by <%= @course.user.name %></span>
+			<%= @course.title %><span class="smaller"> by <%= @course.user.name %></span>
 		</h1>
 	<% end %>
 	<% if params.has_key?(:program) %>
@@ -51,7 +51,7 @@
 				<%= render 'programs/add_registration' %>
 			<% end %>
 		<% end %>
-		<% if courcreator and !params.has_key?(:program) %>
+		<% if courcreator %>
 			<div id="edit-btn-1">
 			<div class="edit-btn profile-btn">
 				<%= link_to "Edit", edit_course_path(@course) %>
@@ -102,7 +102,7 @@
 										<% else %>
 											<span> - </span><span id="exam_passed">Passed</span>
 										<% end %>
-										<span> - Highest Grade (<%= current_user.examresults.find_by_exam_id(exam.id).finalgrade %>%)</span>
+										<span> (<%= current_user.examresults.find_by_exam_id(exam.id).finalgrade %>%)</span>
 									<% end %>
 								</div>
 							<% end %>

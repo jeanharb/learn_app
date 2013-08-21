@@ -6,11 +6,11 @@
 		<%= r.label "Create Video" %>
 		<div>
 		<%= r.label "Video Title : " %>
-		<%= r.text_field :file_title %>
+		<%= r.text_field :file_title, class: "course-edit-field" %>
 		</div>
 		<div>
 		<%= r.label "Youtube link : " %>
-		<%= r.text_field :content %>
+		<%= r.text_field :content, class: "course-edit-field" %>
 		</div>
 		<%= r.submit "Upload link", class: "subcon" %>
 	<% end %>

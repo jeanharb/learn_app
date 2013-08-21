@@ -1,6 +1,6 @@
 <% provide(:title, "Edit Program") %>
 <h1>
-	<%= @program.title %> | <span class="smaller"><%= link_to "Return to program", program_path(@program) %></span>
+	<%= @program.title %><span class="edit-title-course"><%= link_to "Return to program", program_path(@program) %></span>
 </h1>
 <% if params.has_key?(:errors) %> 
 	<div class="error_explanation">
@@ -18,31 +18,43 @@
 		</ul>
 	</div>
 <% end %>
+<div class="course-edit-form-cont">
 <%= form_for @program do |f| %>
 <%= render 'shared/error_messages', object: f.object, :html => { :id => "myform" } %>
 	<div>
 		<%= f.label "Program Title :" %>
-	</div>
-	<div>
+	<span>
 		<%= f.text_field :title %>
+	</span>
 	</div>
 	<div>
 		<%= f.label "Program Description :" %>
-	</div>
-	<div class="prog-desc">
+	<span>
 		<%= f.text_area :description %>
+	</span>
 	</div>
-	<div><%= f.submit "Update Program", class: "subcon" %></div>
+	<div><%= f.submit "Update Program Info", class: "subcon" %></div>
 <% end %>
+</div>
 <div>
-<span> Courses <%= link_to "Add", addcourses_path(:program => params[:id]), :class => "prereq-style" %></span>
+<span> Courses 
+	<%= link_to "Add", addcourses_path(:program => params[:id]), :class => "prereq-style" %>
+	<span>
+		<%= link_to "Set up prerequisites", {controller: "programs", action: "prerequisites", :id => "#{@program.id}"}, {:class => "prereq-style"} %>
+	</span>
+	<span>
+		<%= link_to "Remove prerequisites", {controller: "programs", action: "removeprerequisites", :id => "#{@program.id}" },  {:class => "prereq-style"} %>
+	</span>
+</span>
+<div class="course-edit-bar"></div>
 <ul class="notes">
-	<% @courses.each do |course| %>
+	<% @courses.each_with_index do |course, i| %>
 		<div>
 			<span class="content">
 				<%= link_to (image_tag "arrow-up.png"), moveupcourse_path(:program => @program.id, :course => course.id), {:class => "list_arrow"}%>
 				<%= link_to (image_tag "arrow-down.png"), movedowncourse_path(:program => @program.id, :course => course.id), {:class => "list_arrow"}%>
-				<%= link_to course.title, course_path(course) %>
+				<%= i+1 %>.
+				<%= link_to course.title, course_path(course, :program => @program.id) %>
 			</span>
 		</div>
 	<% end %>
