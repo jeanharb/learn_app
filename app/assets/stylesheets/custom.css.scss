@@ -1118,7 +1118,7 @@ img.background{
 }
 
 #barcolor{
-	background: #304860;
+	background: #2d1717;
 	z-index: -1;
 	width: 100%;
 	height: 45px;
@@ -1134,7 +1134,7 @@ img.background{
 	top: 0;
 	left: 0;
 	padding-top: 10px;
-	background: #304860;
+	background: #2d1717;
 	z-index: 3;
 }
 
@@ -1152,8 +1152,7 @@ img.background{
 		color: #eee;
 	}
 	:hover{
-		background-color: rgba(255, 255, 255, 0.5);
-		color: #555;
+		background-color: rgba(255, 255, 255, 0.2);
 		z-index: 31;
 		-o-transition: .5s;
 	  	-ms-transition: .5s;
@@ -1161,7 +1160,6 @@ img.background{
 	  	-webkit-transition: .5s;
 	  	transition: .5s;
 	  	a {
-	  		color: #555;
 	  		text-decoration: none;
 	  	}
 	}
@@ -1209,12 +1207,10 @@ img.background{
 .navhov > a {
 	color: #eee;
 	text-decoration: none;
-
 }
 
 .navhov:hover{
-	background-color: rgba(255, 255, 255, 0.5);
-	color: #555;
+	background-color: rgba(255, 255, 255, 0.2);
 	z-index: 31;
 	-o-transition: .5s;
   	-ms-transition: .5s;
@@ -1222,8 +1218,7 @@ img.background{
   	-webkit-transition: .5s;
   	transition: .5s;
   	a {
-  		background-color: rgba(255, 255, 255, 0.5);
-  		color: #555;
+  		background-color: rgba(255, 255, 255, 0.2);
   		text-decoration: none;
   	}
 }
@@ -1233,8 +1228,7 @@ img.background{
 }
 
 .navhov-list > li > a:hover{
-	background-color: rgba(255, 255, 255, 0.5);
-	color: #555;
+	background-color: rgba(255, 255, 255, 0.2);
 	z-index: 31;
 	-o-transition: .5s;
   	-ms-transition: .5s;
@@ -1302,8 +1296,7 @@ img.background{
 }
 
 .selected-btn{
-	background-color: rgba(255, 255, 255, 0.5);
-	color: #555;
+	background-color: rgba(255, 255, 255, 0.2);
 	li {
 		color: #555;
 	}
@@ -1312,7 +1305,7 @@ img.background{
 .selected-btn-list{
 	color: #555;
 	a {
-		background-color: rgba(255, 255, 255, 0.5);
+		background-color: rgba(255, 255, 255, 0.2);
 		color: #555;
 	}
 	li{
