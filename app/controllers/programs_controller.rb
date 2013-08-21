@@ -18,6 +18,57 @@ class ProgramsController < ApplicationController
         end
 	end
 
+	def prereq_tree
+		@program = Program.find(params[:id])
+		@courses = @program.courses
+		@nothingcourse = []
+		@bottomcourse = []
+		@topcourse = []
+		@middlecourse = []
+		@courselevels = {}
+		@courses.each do |course|
+			@coursewant = Prerequisite.where("want_id = ?", course.id).where("wantpro_id = ?", @program.id)
+			@courseneeded = Prerequisite.where("required_id = ?", course.id).where("wantpro_id = ?", @program.id)
+			if @courseneeded.exists?
+				if @coursewant.exists?
+					@middlecourse << course
+				else
+					@bottomcourse << course
+				end
+			else
+				if @coursewant.exists?
+					@topcourse << [course, []]
+				else
+					@nothingcourse << course
+				end
+			end
+		end
+		@courselevels = {}
+		def findlevels(bottom, number)
+			bottom.each do |a|
+				@level = number
+				if @courselevels[a].nil?
+					@courselevels.merge!(a => @level)
+				elsif @courselevels[a] < @level
+					@courselevels.merge!(a => @level)
+				end
+				@under = Prerequisite.where("required_id = ?", a.id).where("wantpro_id = ?", @program.id)
+				@underarray = []
+				@under.each do |prereq|
+					@underarray << Course.find(prereq.want_id)
+				end
+				findlevels(@underarray, @level+1)
+			end
+		end
+		findlevels(@bottomcourse, 0)
+		@highestlevel = 0
+		@courselevels.each do |key, value|
+			if value > @highestlevel
+				@highestlevel = value
+			end
+		end
+	end
+
 	def index
 		@programs = Program.order("rating_algo DESC").all
 	end

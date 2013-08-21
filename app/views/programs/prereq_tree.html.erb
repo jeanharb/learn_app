@@ -1,0 +1,23 @@
+<% provide(:title, @program.title) %>
+<div>
+	<h1>
+		<span class="smaller"><%= link_to @program.title, program_path(@program) %></span>
+	</h1>
+</div>
+<div>
+	nothing:
+	<% @nothingcourse.each do |course| %>
+		<%= link_to course.title, course_path(course, :program => params[:id]) %>
+	<% end %>
+</div>
+<div></div>
+&nbsp
+<% (0..@highestlevel).each do |i| %>
+	<div class="prereq-level">
+		<% @courselevels.each do |key, value| %>
+			<% if value == (2-i) %>
+				<div class="prereq-course"><%= link_to key.title, course_path(key, :program => params[:id]) %></div>
+			<% end %>
+		<% end %>
+	</div>
+<% end %>
