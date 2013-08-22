@@ -12,7 +12,7 @@ class Course < ActiveRecord::Base
   has_many :courstudents, through: :reverse_courseregistrations, source: :courstudent
   has_many :reverse_courseregistrations, foreign_key: "takencourse_id", class_name: "Courseregistration", dependent: :destroy
   has_many :exams, order: :position, dependent: :destroy
-  has_many :reverse_exams, foreign_key: "testcourse_id", class_name: "Exam", dependent: :destroy
+  has_many :reverse_exams, foreign_key: "course_id", class_name: "Exam", dependent: :destroy
   has_many :courseratings, dependent: :destroy
   has_many :ratings, through: :courseratings, source: :course
   has_many :review_titles, through: :courseratings, source: :course
