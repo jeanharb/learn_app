@@ -15,7 +15,7 @@
 <% (0..@highestlevel).each do |i| %>
 	<div class="prereq-level">
 		<% @courselevels.each do |key, value| %>
-			<% if value == (2-i) %>
+			<% if value == (@highestlevel-i) %>
 				<div class="prereq-course"><%= link_to key.title, course_path(key, :program => params[:id]) %></div>
 			<% end %>
 		<% end %>
