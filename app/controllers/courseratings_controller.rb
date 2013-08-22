@@ -34,6 +34,14 @@ class CourseratingsController < ApplicationController
 		@allratings.each do |rating|
 			@total += rating.rating
 		end
+		@num_courses_rate = 0
+		@allcourses = Course.all
+		@allcourses.each do |course|
+			if course.num_rating > 0
+				@num_courses_rate += 1
+			end
+		end
+		@c = ((@numratings.to_f)/(@num_courses_rate.to_f))
 		@allratingsav = (@total.to_f)/(@numratings)
 		@c = 20
 		@num_rates = 0
@@ -46,7 +54,7 @@ class CourseratingsController < ApplicationController
 		end
 		if @total_rate != 0
 			@averagerating = ((((@total_rate.to_f/@num_rates.to_f)*10).to_f.ceil).to_f/10)
-			@rating_algo = (((@c*(@allratingsav.to_f))+(@averagerating*@num_rates))*10000/(@c + @num_rates)).to_i
+			@rating_algo = (((@c*(@allratingsav.to_f))+(@total_rate.to_f))*10000/(@c + @num_rates)).to_i
 			course.update_attributes(:average_rating => @averagerating, :num_rating => @num_rates, :rating_algo => @rating_algo)
 		end
 	end
