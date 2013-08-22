@@ -2,6 +2,7 @@ class CoursesController < ApplicationController
 	before_filter :signed_in_user, only: [:create, :edit, :update]
 	before_filter :correct_user, only: [:edit, :update]
 	before_filter :course_des, only: :destroy
+	before_filter :program_creator, only: [:listorder_up, :listorder_down]
 	
 	def new
 		@user = User.find_by_remember_token(cookies[:remember_token])
@@ -114,6 +115,11 @@ class CoursesController < ApplicationController
   	end
 
 	private
+
+		def program_creator
+			@user = User.find(Program.find(params[:program]).user_id)
+			redirect_to root_path unless current_user?(@user)
+		end
 
 		def course_des
 			redirect_to root_path unless creator?

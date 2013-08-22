@@ -13,16 +13,10 @@ class RelationshipsController < ApplicationController
 					current_user.removefromcart!(@class)
 				end
 			end
-			redirect_to program_path(@program)
+			redirect_to edit_program_path(@program)
 		else
-			redirect_to program_path(@program)
+			redirect_to edit_program_path(@program)
 		end
-	end
-
-	def destroy
-		@course = Relationship.find(params[:id]).course
-		current_user.removefromcart!(@course)
-		redirect_to course_path(@course)
 	end
 
 	private

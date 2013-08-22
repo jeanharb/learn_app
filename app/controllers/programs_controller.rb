@@ -1,6 +1,6 @@
 class ProgramsController < ApplicationController
 	before_filter :signed_in_user, only: [:create, :edit, :update]
-	before_filter :correct_user, only: [:edit, :update]
+	before_filter :correct_user, only: [:edit, :update, :destroycourse]
 	before_filter :correct_user_add, only: :addcourses
 	before_filter :program_des, only: :destroy
 
@@ -125,6 +125,13 @@ class ProgramsController < ApplicationController
 		@courses = Course.all
 		@carts = Cart.where("follower_id = ?", current_user.id)
 		@program = Program.find(params[:program])
+	end
+
+	def destroycourse
+		@program = Program.find(params[:id])
+		@course = Course.find(params[:course])
+		@program.removeclass!(@course)
+		redirect_to edit_program_path(@program)
 	end
 
 	def destroy

@@ -48,6 +48,6 @@ class Program < ActiveRecord::Base
   end
 
   def removeclass!(course)
-    relationships.find_by_course_id(course.id).destroy!
+    relationships.find_by_course_id(course.id).destroy
   end
 end

@@ -73,10 +73,9 @@
 			</span>
 		<% end %>
 		<span class="delete-btn">
-		<% if creator? %>
-			<%= link_to "Delete", note_path(:id => note.id), method: :delete,
-										title: note.filename %>
-		<% end %>
+			<%= link_to "Delete", note_path(:id => note.id), 
+											method: :delete,
+											title: note.filename %>
 		</span>
 	</li>
 	<% end %>

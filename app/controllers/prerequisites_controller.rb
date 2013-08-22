@@ -15,7 +15,7 @@ class PrerequisitesController < ApplicationController
 					end
 				end
 			end
-			redirect_to program_path(@program)
+			redirect_to edit_program_path(@program)
 		else
 			@topcourse = params[:course]
 			@program = Program.find_by_id(params[:program])
@@ -28,7 +28,7 @@ class PrerequisitesController < ApplicationController
 					end
 				end
 			end
-			redirect_to program_path(@program)
+			redirect_to edit_program_path(@program)
 		end
 	end
 

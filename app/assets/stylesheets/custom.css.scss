@@ -716,10 +716,11 @@ input[type='checkbox']:checked {
 .delete-btn{
 	font-size: 0.7em;
 	color: red;
-	a{
-		color: red;
-		text-decoration: none;
-	}
+}
+
+.delete-btn a{
+	color: red;
+	text-decoration: none;
 }
 
 .delete-btn a:hover{

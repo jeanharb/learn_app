@@ -56,6 +56,7 @@
 				<%= i+1 %>.
 				<%= link_to course.title, course_path(course, :program => @program.id) %>
 			</span>
+			<span class="delete-btn"><%= link_to "Remove", destroycourse_program_path(@program, :course => course.id) %></span>
 		</div>
 	<% end %>
 </ul>
