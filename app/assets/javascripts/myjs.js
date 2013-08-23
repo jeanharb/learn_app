@@ -26,10 +26,10 @@ function DrawAllLines(){
 }
 
 function DrawLine(thing1, thing2){
-	var x1 = $(thing1).offset().left + 10 +($(thing1).width()/2);
-	var y1 = $(thing1).offset().top + 25 + ($(thing1).height()/2);
-	var x2 = $(thing2).offset().left + 10 + ($(thing2).width()/2);
-	var y2 = $(thing2).offset().top + 25 + ($(thing2).height()/2);
+	var x1 = $(thing1).offset().left + 8 +($(thing1).width()/2);
+	var y1 = $(thing1).offset().top + 20 + ($(thing1).height()/2);
+	var x2 = $(thing2).offset().left + 8 + ($(thing2).width()/2);
+	var y2 = $(thing2).offset().top + 20 + ($(thing2).height()/2);
 
     if(y1 < y2){
         var pom = y1;
