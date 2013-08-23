@@ -1,4 +1,7 @@
 <% provide(:title, @program.title) %>
+<%= javascript_tag do %>
+  var alllines = [<%=raw @allprereqs.to_json %>];
+<% end %>
 <div>
 	<h1>
 		<span class="smaller"><%= link_to @program.title, program_path(@program) %></span>
@@ -12,12 +15,14 @@
 </div>
 <div></div>
 &nbsp
+<div id="myelement">
 <% (0..@highestlevel).each do |i| %>
 	<div class="prereq-level">
 		<% @courselevels.each do |key, value| %>
 			<% if value == (@highestlevel-i) %>
-				<div class="prereq-course"><%= link_to key.title, course_path(key, :program => params[:id]) %></div>
+				<div class="prereq-course" id="<%=key.id%>"><%= link_to key.title, course_path(key, :program => params[:id]) %></div>
 			<% end %>
 		<% end %>
 	</div>
 <% end %>
+</div>

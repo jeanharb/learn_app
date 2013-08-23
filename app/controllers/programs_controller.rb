@@ -21,11 +21,12 @@ class ProgramsController < ApplicationController
 	def prereq_tree
 		@program = Program.find(params[:id])
 		@courses = @program.courses
+		@allprereqs = []
+		@allprer = []
 		@nothingcourse = []
 		@bottomcourse = []
 		@topcourse = []
 		@middlecourse = []
-		@courselevels = {}
 		@courses.each do |course|
 			@coursewant = Prerequisite.where("want_id = ?", course.id).where("wantpro_id = ?", @program.id)
 			@courseneeded = Prerequisite.where("required_id = ?", course.id).where("wantpro_id = ?", @program.id)
@@ -42,15 +43,25 @@ class ProgramsController < ApplicationController
 					@nothingcourse << course
 				end
 			end
+			@coursewant.each do |prer|
+				@course_pre = Course.find(prer.required_id)
+				@first = "#" + course.id.to_s
+				@second = "#" + @course_pre.id.to_s
+				@allprereqs << [@first, @second]
+				@allprer << [course, @course_pre]
+			end
 		end
 		@courselevels = {}
+		@coursele = {}
 		def findlevels(bottom, number)
 			bottom.each do |a|
 				@level = number
 				if @courselevels[a].nil?
 					@courselevels.merge!(a => @level)
+					@coursele.merge!(a.id => @level)
 				elsif @courselevels[a] < @level
 					@courselevels.merge!(a => @level)
+					@coursele.merge!(a.id => @level)
 				end
 				@under = Prerequisite.where("required_id = ?", a.id).where("wantpro_id = ?", @program.id)
 				@underarray = []
@@ -65,6 +76,34 @@ class ProgramsController < ApplicationController
 		@courselevels.each do |key, value|
 			if value > @highestlevel
 				@highestlevel = value
+			end
+		end
+		@bottomcourse.each do |pre|
+			@lowest = 40
+			@allprer.each do |each|
+				@eee = each[0]
+				if each[1].id == pre.id
+					if (@coursele[@eee.id] - 1) < @lowest
+						@lowest = @coursele[@eee.id] - 1
+					end
+				end
+			end
+			if @lowest != 40
+				@courselevels[pre] = @lowest
+			end
+		end
+		@middlecourse.each do |pre|
+			@lowest = 40
+			@allprer.each do |each|
+				@eee = each[0]
+				if each[1].id == pre.id
+					if (@coursele[@eee.id] - 1) < @lowest
+						@lowest = @coursele[@eee.id] - 1
+					end
+				end
+			end
+			if @lowest != 40
+				@courselevels[pre] = @lowest
 			end
 		end
 	end

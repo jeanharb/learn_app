@@ -4,6 +4,7 @@ $(document).ready(function(){
 	$('.search-menu').hide();
 	$('.note-submit').hide();
 	$('.note-submit').attr('disabled',true);
+	DrawAllLines();
     $('input:file').change(
         function(){
             if ($(this).val()) { 
@@ -14,7 +15,19 @@ $(document).ready(function(){
     );
 });
 
-function DrawLine(x1, y1, x2, y2){
+function DrawAllLines(){
+	var lines = alllines.toString().split(",")
+	var lineslen = lines.length/2
+	for (i = 0; i <= lineslen; i++){
+		DrawLine(lines[i*2], lines[(i*2)+1]);
+	}
+}
+
+function DrawLine(thing1, thing2){
+	var x1 = $(thing1).offset().left + 10 +($(thing1).width()/2);
+	var y1 = $(thing1).offset().top + 25 + ($(thing1).height()/2);
+	var x2 = $(thing2).offset().left + 10 + ($(thing2).width()/2);
+	var y2 = $(thing2).offset().top + 25 + ($(thing2).height()/2);
 
     if(y1 < y2){
         var pom = y1;
@@ -46,9 +59,9 @@ function DrawLine(x1, y1, x2, y2){
 
     htmlns = "http://www.w3.org/1999/xhtml";
     div = document.createElementNS(htmlns, "div");
-    div.setAttribute('style','border:1px solid black;width:'+width+'px;height:0px;-moz-transform:rotate('+deg+'deg);-webkit-transform:rotate('+deg+'deg);position:absolute;top:'+y+'px;left:'+x+'px;');   
-
-    document.getElementById("myElement").appendChild(div);
+    div.setAttribute('style','width:'+width+'px;height:0px;z-index:-10;-moz-transform:rotate('+deg+'deg);-webkit-transform:rotate('+deg+'deg);position:absolute;top:'+y+'px;left:'+x+'px;');   
+    div.setAttribute('class',"lines_prereq");
+    document.getElementById("myelement").appendChild(div);
 
 }
 
@@ -87,7 +100,6 @@ $(function(){
 		$('.dropdown-menu').slideUp('fast');
 		$('.dropdown').removeClass('selected-btn-list');
 		$('.dropdown-menu').removeClass('selected');
-		DrawLine(100, 100, 400, 400);
 	});
 });
 
