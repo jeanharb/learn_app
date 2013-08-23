@@ -149,7 +149,7 @@ class ProgramsController < ApplicationController
 	def update
 		@program = Program.find(params[:id])
 		if @program.update_attributes(params[:program])
-			redirect_to program_path(@program)
+			redirect_to edit_program_path(@program)
 		else
 			render 'edit'
 		end

@@ -5,7 +5,7 @@
 }
 
 .prereq-level{
-	margin: 20px 0;
+	margin: 40px 0;
 }
 
 .lines_prereq{
@@ -16,6 +16,7 @@
 .prereq-course{
 	font-size: 0.8em;
 	padding: 7px;
+	max-width: 120px;
 	margin: 0 7px;
 	background: white;
 	z-index: 10;
