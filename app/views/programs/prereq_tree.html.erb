@@ -9,6 +9,9 @@
 </div>
 <div>
 	Independant:
+	<% if @nothingcourse.empty? %>
+	None.
+	<% end %>
 	<% @nothingcourse.each do |course| %>
 		<%= link_to course.title, course_path(course, :program => params[:id]) %>
 	<% end %>
