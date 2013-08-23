@@ -42,6 +42,7 @@ LearnApp::Application.routes.draw do
   root to: "static_pages#home"
   match '/addcourses',    to: "programs#addcourses"
   match '/viewfile',      to: "notes#view"
+  match '/passcourse',    to: "courses#passcourse"
   match '/moveupcourse',  to: "courses#listorder_up"
   match '/movedowncourse',to: "courses#listorder_down"
   match '/moveupexam',    to: "exams#listorder_up"

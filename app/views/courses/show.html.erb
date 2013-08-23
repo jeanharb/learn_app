@@ -108,6 +108,15 @@
 							<% end %>
 						</ul>
 				<% end %>
+			<% else %>
+				There are no exams. 
+				<% if @see_exam and @notpassed == "yes" %>
+					<% if params.has_key?(:program) %>
+						When you feel ready, <%= link_to "pass", passcourse_path(:id => @course.id, :program => params[:program]) %> course.
+					<% else %>
+						When you feel ready, <%= link_to "pass", passcourse_path(:id => @course.id) %> course.
+					<% end %>
+				<% end %>
 			<% end %>
 		</div>
 	</div>

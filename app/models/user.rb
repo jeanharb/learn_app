@@ -72,7 +72,6 @@ class User < ActiveRecord::Base
   end
 
   def passedcourse?(user, course)
-
     ispassed = Completecourse.where("user_id = ?", user.id).where("course_id = ?", course.id)
     if ispassed.exists?
       if completecourses.find_by_course_id(course).passed == "true"

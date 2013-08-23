@@ -61,6 +61,14 @@ class CoursesController < ApplicationController
 
 	def show
 		@course = Course.find(params[:id])
+		@notpassed = "yes"
+		@passing = Completecourse.where("user_id = ?", current_user).where("course_id = ?", @course.id)
+		if @passing.exists?
+			@passingyes = Completecourse.find_by_user_id_and_course_id(current_user.id, @course.id)
+			if @passingyes.passed == "true"
+				@notpassed = "no"
+			end
+		end
 		@rating = Courserating.new
 		@review = Courserating.new
 		@hasreview = Courserating.where("course_id = ?", @course.id).where("user_id = ?", current_user.id).where("review_title IS NOT NULL")
@@ -112,6 +120,20 @@ class CoursesController < ApplicationController
 
 	def classincart?(course)
     	carts.find_by(course.id)
+  	end
+
+  	def passcourse
+  		@course = Course.find(params[:id])
+  		if !@course.exams.any?
+  			if !Completecourse.where("user_id = ?", current_user.id).where("course_id = ?", @course.id).exists?
+  				current_user.finishcourse!(@course)
+  			end
+  		end
+  		if params.has_key?(:program)
+  			redirect_to course_path(@course, :program => params[:program])
+  		else
+  			redirect_to course_path(@course)
+  		end
   	end
 
 	private

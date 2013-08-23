@@ -6,11 +6,11 @@
 <% end %>
 <div>
 	<h1>
-		<span class="smaller"><%= link_to @program.title, program_path(@program) %></span>
+		<span><%= @program.title%></span><span class="edit-title-course"><%= link_to "Return to program", program_path(@program) %></span>
 	</h1>
 </div>
-<div>
-	Independant:
+<div id="prereq-indie">
+	Independant courses:
 	<% if @nothingcourse.empty? %>
 	None.
 	<% end %>
