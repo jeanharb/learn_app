@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130821000746) do
+ActiveRecord::Schema.define(:version => 20130823025320) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(:version => 20130821000746) do
   add_index "carts", ["coursefollow_id"], :name => "index_carts_on_coursefollow_id"
   add_index "carts", ["follower_id", "coursefollow_id"], :name => "index_carts_on_follower_id_and_coursefollow_id", :unique => true
   add_index "carts", ["follower_id"], :name => "index_carts_on_follower_id"
+
+  create_table "completecourses", :force => true do |t|
+    t.integer  "course_id"
+    t.integer  "user_id"
+    t.string   "passed"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "completecourses", ["user_id", "course_id"], :name => "index_completecourses_on_user_id_and_course_id", :unique => true
 
   create_table "courseratings", :force => true do |t|
     t.integer  "rating"
@@ -73,8 +83,9 @@ ActiveRecord::Schema.define(:version => 20130821000746) do
     t.integer  "user_id"
     t.integer  "exam_id"
     t.integer  "finalgrade"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.string   "passed",     :default => "false"
   end
 
   create_table "exams", :force => true do |t|

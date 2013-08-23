@@ -27,18 +27,44 @@ class ProgramsController < ApplicationController
 		@bottomcourse = []
 		@topcourse = []
 		@middlecourse = []
+		@passedcourses = []
+		@doneunder = []
+		@courses.each do |course|
+			if current_user.passedcourse?(current_user, course)
+				@passedcourses << course.id
+			end
+		end
 		@courses.each do |course|
 			@coursewant = Prerequisite.where("want_id = ?", course.id).where("wantpro_id = ?", @program.id)
 			@courseneeded = Prerequisite.where("required_id = ?", course.id).where("wantpro_id = ?", @program.id)
 			if @courseneeded.exists?
 				if @coursewant.exists?
 					@middlecourse << course
+					@howmany = 0
+					@coursewant.each do |prer|
+						if @passedcourses.include?(prer.required_id)
+							@howmany += 1
+						end
+					end
+					if @howmany == @coursewant.count
+						@doneunder << course.id
+					end
 				else
+					@doneunder << course.id
 					@bottomcourse << course
 				end
 			else
 				if @coursewant.exists?
 					@topcourse << [course, []]
+					@howmany = 0
+					@coursewant.each do |prer|
+						if @passedcourses.include?(prer.required_id)
+							@howmany += 1
+						end
+					end
+					if @howmany == @coursewant.count
+						@doneunder << course.id
+					end
 				else
 					@nothingcourse << course
 				end
@@ -51,6 +77,7 @@ class ProgramsController < ApplicationController
 				@allprer << [course, @course_pre]
 			end
 		end
+
 		@courselevels = {}
 		@coursele = {}
 		def findlevels(bottom, number)

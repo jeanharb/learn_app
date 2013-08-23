@@ -97,7 +97,7 @@
 										<span class="exam-hover"><%= exam.name %></span>
 									<% end %>
 									<% if current_user.examresults.where("exam_id = ?", exam.id).exists? %>
-										<% if current_user.examresults.find_by_exam_id(exam.id).finalgrade < exam.grade %>
+										<% if current_user.examresults.find_by_exam_id(exam.id).passed == "false" %>
 											<span> - </span><span id="exam_failed">Failed (Grade Required <%= exam.grade %>%)</span>
 										<% else %>
 											<span> - </span><span id="exam_passed">Passed</span>

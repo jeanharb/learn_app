@@ -17,6 +17,7 @@ class Course < ActiveRecord::Base
   has_many :ratings, through: :courseratings, source: :course
   has_many :review_titles, through: :courseratings, source: :course
   has_many :review_contents, through: :courseratings, source: :course
+  has_many :completecourses, dependent: :destroy
 
   validates :user_id, presence: true
   validates :description, presence: true

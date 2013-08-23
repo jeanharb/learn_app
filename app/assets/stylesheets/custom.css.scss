@@ -4,6 +4,46 @@
 	margin-top: -60px;
 }
 
+.prereq-green{
+	background: #D1F2A5;
+	font-size: 0.8em;
+	padding: 7px;
+	max-width: 120px;
+	margin: 0 7px;
+	z-index: 10;
+	border: 1px solid #555;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	display: inline-block;
+	a{
+		color: #666;
+		text-decoration: none;
+	}
+	a:hover{
+		text-decoration: underline;
+	}
+}
+
+.prereq-blue{
+	font-size: 0.8em;
+	padding: 7px;
+	max-width: 120px;
+	background: #759EEC;
+	margin: 0 7px;
+	z-index: 10;
+	border: 1px solid #555;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	display: inline-block;
+	a{
+		color: white;
+		text-decoration: none;
+	}
+	a:hover{
+		text-decoration: underline;
+	}
+}
+
 .prereq-level{
 	margin: 40px 0;
 	text-align: center;
@@ -14,22 +54,39 @@
 	margin-left:-150px;
 }
 
+.lines_prereq_blue{
+	border: 1px solid #759EEC;
+	background: #759EEC;
+}
+
 .lines_prereq{
-	border: 1px solid #ccc;
-	background: #ccc;
+	border: 1px solid #F24E4E;
+	background: #F24E4E;
+}
+
+.lines_prereq_green{
+	border: 1px solid #b1d285;
+	background: #b1d285;
 }
 
 .prereq-course{
 	font-size: 0.8em;
 	padding: 7px;
 	max-width: 120px;
+	background: #FA7F77;
 	margin: 0 7px;
-	background: white;
 	z-index: 10;
 	border: 1px solid #555;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	display: inline-block;
+	a{
+		color: white;
+		text-decoration: none;
+	}
+	a:hover{
+		text-decoration: underline;
+	}
 }
 
 .prereq-top{

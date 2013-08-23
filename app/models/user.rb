@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   has_many :examresults, dependent: :destroy
   has_many :courseratings, dependent: :destroy
   has_many :programratings, dependent: :destroy
+  has_many :completecourses, dependent: :destroy
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
@@ -60,6 +61,28 @@ class User < ActiveRecord::Base
 
   def courseunregister!(course)
     courseregistrations.find_by_takencourse_id(course.id).destroy
+  end
+
+  def finishcourse!(course)
+    completecourses.create!(course_id: course.id, passed: "true")
+  end
+
+  def failedcourse!(course)
+    completecourses.create!(course_id: course.id, passed: "false")
+  end
+
+  def passedcourse?(user, course)
+
+    ispassed = Completecourse.where("user_id = ?", user.id).where("course_id = ?", course.id)
+    if ispassed.exists?
+      if completecourses.find_by_course_id(course).passed == "true"
+        return true
+      else
+        return false
+      end
+    else
+      return false
+    end
   end
 
   private

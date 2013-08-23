@@ -18,18 +18,41 @@ $(document).ready(function(){
 });
 
 function DrawAllLines(){
+	var passed = allpassed.toString().split(',');
+	var underunder = underdone.toString().split(',');
 	var lines = alllines.toString().split(",");
 	var lineslen = lines.length/2;
 	for (i = 0; i < lineslen; i++){
-		DrawLine(lines[i*2], lines[(i*2)+1]);
+		var subsub = lines[(i*2)+1].substring(1);
+		if(passed.indexOf(subsub) !== -1){
+			DrawLine(lines[i*2], lines[(i*2)+1], "yes");
+		} else {
+			if(underunder.indexOf(subsub) !== -1){
+				DrawLine(lines[i*2], lines[(i*2)+1], "blue");
+			} else {
+				DrawLine(lines[i*2], lines[(i*2)+1], "no");
+			}
+		}
 	}
 }
 
-function DrawLine(thing1, thing2){
+function DrawLine(thing1, thing2, wordword){
 	var x1 = $(thing1).offset().left + 8 +($(thing1).width()/2);
 	var y1 = $(thing1).offset().top + 20 + ($(thing1).height()/2);
 	var x2 = $(thing2).offset().left + 8 + ($(thing2).width()/2);
 	var y2 = $(thing2).offset().top + 20 + ($(thing2).height()/2);
+	var what = thing2.substring(1);
+	if(wordword == "yes"){
+		var yes = "lines_prereq_green";
+	}
+	else{
+		if(wordword == "blue"){
+			var yes = "lines_prereq_blue";
+		}
+		else{
+			var yes = "lines_prereq";
+		}
+	}
 
     if(y1 < y2){
         var pom = y1;
@@ -62,7 +85,7 @@ function DrawLine(thing1, thing2){
     htmlns = "http://www.w3.org/1999/xhtml";
     div = document.createElementNS(htmlns, "div");
     div.setAttribute('style','width:'+width+'px;height:0px;z-index:-10;-moz-transform:rotate('+deg+'deg);-webkit-transform:rotate('+deg+'deg);position:absolute;top:'+y+'px;left:'+x+'px;');   
-    div.setAttribute('class',"lines_prereq");
+    div.setAttribute('class', yes);
     document.getElementById("myelement").appendChild(div);
 
 }
