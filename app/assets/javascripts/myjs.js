@@ -4,7 +4,6 @@ $(document).ready(function(){
 	$('.search-menu').hide();
 	$('.note-submit').hide();
 	$('.note-submit').attr('disabled',true);
-	DrawAllLines();
     $('input:file').change(
         function(){
             if ($(this).val()) { 
@@ -13,12 +12,15 @@ $(document).ready(function(){
         	} 
     	}
     );
+    if($('#jquery-find').length >0 ){    
+        DrawAllLines();
+    }
 });
 
 function DrawAllLines(){
-	var lines = alllines.toString().split(",")
-	var lineslen = lines.length/2
-	for (i = 0; i <= lineslen; i++){
+	var lines = alllines.toString().split(",");
+	var lineslen = lines.length/2;
+	for (i = 0; i < lineslen; i++){
 		DrawLine(lines[i*2], lines[(i*2)+1]);
 	}
 }
@@ -55,7 +57,7 @@ function DrawLine(thing1, thing2){
 
     var cosb = (b*b - a*a - c*c) / (2*a*c);
     var rad = Math.acos(cosb);
-    var deg = (rad*180)/Math.PI
+    var deg = (rad*180)/Math.PI;
 
     htmlns = "http://www.w3.org/1999/xhtml";
     div = document.createElementNS(htmlns, "div");

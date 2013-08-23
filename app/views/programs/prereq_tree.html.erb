@@ -8,13 +8,12 @@
 	</h1>
 </div>
 <div>
-	nothing:
+	Independant:
 	<% @nothingcourse.each do |course| %>
 		<%= link_to course.title, course_path(course, :program => params[:id]) %>
 	<% end %>
 </div>
-<div></div>
-&nbsp
+<div id="jquery-find">&nbsp</div>
 <div id="myelement">
 <% (0..@highestlevel).each do |i| %>
 	<div class="prereq-level">
