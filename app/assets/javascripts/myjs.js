@@ -87,8 +87,16 @@ function DrawLine(thing1, thing2, wordword){
     div.setAttribute('style','width:'+width+'px;height:0px;z-index:-10;-moz-transform:rotate('+deg+'deg);-webkit-transform:rotate('+deg+'deg);position:absolute;top:'+y+'px;left:'+x+'px;');   
     div.setAttribute('class', yes);
     document.getElementById("myelement").appendChild(div);
-
 }
+
+$(function(){
+	$(".green-test").click(function(e){
+		$(".green-test").show();
+		$(".green-test").parent().removeClass('class-select');
+		$(e.target).hide();
+		$(e.target).parent().addClass('class-select');
+	});
+});
 
 function dropmenu(word1, word2, word3) {
 	if ($(word2).is('.selected')){

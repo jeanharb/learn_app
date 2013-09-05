@@ -25,12 +25,21 @@
 		<% @courselevels.each do |key, value| %>
 			<% if value == (@highestlevel-i) %>
 				<% if @passedcourses.include?(key.id) %>
-					<div class="prereq-green" id="<%=key.id%>"><%= link_to key.title, course_path(key, :program => params[:id]) %></div>
+					<div class="prereq-green" id="<%=key.id%>">
+						<%= link_to key.title, course_path(key, :program => params[:id]) %>
+						<div class="green-test"></div>
+					</div>
 				<% else %>
 					<% if @doneunder.include?(key.id) %>
-						<div class="prereq-blue" id="<%=key.id%>"><%= link_to key.title, course_path(key, :program => params[:id]) %></div>
+						<div class="prereq-blue" id="<%=key.id%>">
+							<%= link_to key.title, course_path(key, :program => params[:id]) %>
+							<div class="green-test"></div>
+						</div>
 					<% else %>
-						<div class="prereq-course" id="<%=key.id%>"><%= link_to key.title, course_path(key, :program => params[:id]) %></div>
+						<div class="prereq-course" id="<%=key.id%>">
+							<%= link_to key.title, course_path(key, :program => params[:id]) %>
+							<div class="green-test"></div>
+						</div>
 					<% end %>
 				<% end %>
 			<% end %>
