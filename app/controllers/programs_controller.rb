@@ -170,6 +170,14 @@ class ProgramsController < ApplicationController
 		@programratings = Programrating.where("program_id = ?", @program.id).where("rating IS NOT NULL")
 		@programreviews = Programrating.where("program_id = ?", @program.id).where("review_title IS NOT NULL")
 		@averagerating = "0"
+		@total_course = 0
+		@cours_items.each do |course|
+			@status = Completecourse.where("course_id = ?", course.id).where("user_id = ?", current_user.id)
+			if @status
+				@total_course += 1
+			end
+		end
+		@progress = 100-((@total_course.to_f/@cours_items.count.to_f)*100).round
 		if @programratings.any?
 			if @program.average_rating != 0
 				@num_rates = @program.num_rating
