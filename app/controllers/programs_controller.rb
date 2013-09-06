@@ -19,6 +19,7 @@ class ProgramsController < ApplicationController
 	end
 
 	def prereq_tree
+		require 'json'
 		@program = Program.find(params[:id])
 		@courses = @program.courses
 		@allprereqs = []
@@ -29,12 +30,18 @@ class ProgramsController < ApplicationController
 		@middlecourse = []
 		@passedcourses = []
 		@doneunder = []
+		@coursestop = {}
+		@coursesbottom = {}
 		@courses.each do |course|
 			if current_user.passedcourse?(current_user, course)
 				@passedcourses << course.id
 			end
 		end
 		@courses.each do |course|
+			if @coursestop[course.id].nil?
+				@coursestop[course.id] = []
+			end
+			@coursesbottom[course.id] = []
 			@coursewant = Prerequisite.where("want_id = ?", course.id).where("wantpro_id = ?", @program.id)
 			@courseneeded = Prerequisite.where("required_id = ?", course.id).where("wantpro_id = ?", @program.id)
 			if @courseneeded.exists?
@@ -71,6 +78,11 @@ class ProgramsController < ApplicationController
 			end
 			@coursewant.each do |prer|
 				@course_pre = Course.find(prer.required_id)
+				if @coursestop[@course_pre.id].nil?
+					@coursestop[@course_pre.id] = []
+				end
+				@coursestop[@course_pre.id] << course.id
+				@coursesbottom[course.id] << @course_pre.id
 				@first = "#" + course.id.to_s
 				@second = "#" + @course_pre.id.to_s
 				@allprereqs << [@first, @second]

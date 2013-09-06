@@ -92,9 +92,22 @@ function DrawLine(thing1, thing2, wordword){
 $(function(){
 	$(".green-test").click(function(e){
 		$(".green-test").show();
+		$(".all-prereqs").removeClass('class-select-top');
+		$(".all-prereqs").removeClass('class-select-bottom');
 		$(".green-test").parent().removeClass('class-select');
 		$(e.target).hide();
 		$(e.target).parent().addClass('class-select');
+		var alltop1 = alltop;
+		var allbottom1 = allbottom;
+		var selected_id = parseInt($(this).parent().attr("id"));
+		for (i = 0; i < alltop1[selected_id].length; i++){
+			var number = '#' + alltop1[selected_id][i].toString();
+			$(number).addClass('class-select-top');
+		}
+		for (i = 0; i < allbottom1[selected_id].length; i++){
+			var number = '#' + allbottom1[selected_id][i].toString();
+			$(number).addClass('class-select-bottom');
+		}
 	});
 });
 

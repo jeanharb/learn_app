@@ -30,7 +30,15 @@
 }
 
 .class-select{
-	box-shadow: 0px 0px 15px #555;
+	box-shadow: 0px 0px 20px yellow;
+}
+
+.class-select-top{
+	box-shadow: 0px 0px 15px blue;
+}
+
+.class-select-bottom{
+	box-shadow: 0px 0px 15px green;
 }
 
 .green-test{
@@ -43,7 +51,6 @@
 	border-radius: 3px;
 	cursor: hand;
 	cursor: pointer;
-	border: 1px solid red;
 }
 
 .prereq-blue{

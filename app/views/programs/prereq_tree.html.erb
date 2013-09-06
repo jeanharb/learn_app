@@ -3,6 +3,8 @@
   var alllines = [<%=raw @allprereqs.to_json %>];
   var allpassed = [<%=raw @passedcourses.to_json %>];
   var underdone = [<%=raw @doneunder.to_json %>];
+  var alltop = <%= @coursestop.to_json.html_safe %>;
+  var allbottom = <%= @coursesbottom.to_json.html_safe %>;
 <% end %>
 <div>
 	<h1>
@@ -25,18 +27,18 @@
 		<% @courselevels.each do |key, value| %>
 			<% if value == (@highestlevel-i) %>
 				<% if @passedcourses.include?(key.id) %>
-					<div class="prereq-green" id="<%=key.id%>">
+					<div class="prereq-green all-prereqs" id="<%=key.id%>">
 						<%= link_to key.title, course_path(key, :program => params[:id]) %>
 						<div class="green-test"></div>
 					</div>
 				<% else %>
 					<% if @doneunder.include?(key.id) %>
-						<div class="prereq-blue" id="<%=key.id%>">
+						<div class="prereq-blue all-prereqs" id="<%=key.id%>">
 							<%= link_to key.title, course_path(key, :program => params[:id]) %>
 							<div class="green-test"></div>
 						</div>
 					<% else %>
-						<div class="prereq-course" id="<%=key.id%>">
+						<div class="prereq-course all-prereqs" id="<%=key.id%>">
 							<%= link_to key.title, course_path(key, :program => params[:id]) %>
 							<div class="green-test"></div>
 						</div>
