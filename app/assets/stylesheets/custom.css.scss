@@ -12,6 +12,31 @@
 	border-radius: 5px;
 }
 
+.independent-list{
+	width: 500px;
+	float: left;
+}
+
+.prereq-legend{
+	width: 400px;
+	float: right;
+}
+
+.prereq-legend > div{
+	width: 100px;
+	text-align: center;
+	vertical-align: top;
+}
+
+.notavail{
+	position: relative;
+	border: 1px solid #555;
+	background: white;
+	font-size: 0.5em;
+	padding: 5px;
+	float: right;
+}
+
 .progress-bar{
 	width: 470px;
 	height: 8px;
@@ -35,7 +60,7 @@
 }
 
 .prereq-green{
-	background: #D1F2A5;
+	background: rgb(209,242,165);
 	font-size: 0.8em;
 	padding: 7px;
 	max-width: 120px;
@@ -46,6 +71,7 @@
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	display: inline-block;
+	color: #666;
 	a{
 		color: #666;
 		text-decoration: none;
@@ -57,17 +83,17 @@
 
 .class-select{
 	box-shadow: 0px 0px 20px #444;
-	border: #444;
+	border: #444 solid 1px;
 }
 
 .class-select-top{
 	box-shadow: 0px 0px 15px blue;
-	border: blue;
+	border: blue solid 1px;
 }
 
 .class-select-bottom{
 	box-shadow: 0px 0px 15px green;
-	border: green;
+	border: green solid 1px;
 }
 
 .green-test{
@@ -87,13 +113,14 @@
 	font-size: 0.8em;
 	padding: 7px;
 	max-width: 120px;
-	background: #759EEC;
+	background: rgb(117,158,236);
 	margin: 0 7px;
 	z-index: 10;
 	border: 1px solid #555;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	display: inline-block;
+	color: white;
 	a{
 		color: white;
 		text-decoration: none;
@@ -109,6 +136,8 @@
 }
 
 #myelement{
+	padding-top: 15px;
+	clear: both;
 	width: 1300px;
 	margin-left:-150px;
 }
@@ -132,7 +161,7 @@
 	font-size: 0.8em;
 	padding: 7px;
 	max-width: 120px;
-	background: #FA7F77;
+	background: rgb(250,127,119);
 	margin: 0 7px;
 	z-index: 10;
 	border: 1px solid #555;
@@ -140,6 +169,7 @@
 	border-radius: 3px;
 	display: inline-block;
 	position: relative;
+	color: white;
 	a{
 		color: white;
 		text-decoration: none;

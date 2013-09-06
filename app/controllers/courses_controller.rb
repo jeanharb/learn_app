@@ -130,7 +130,8 @@ class CoursesController < ApplicationController
   			end
   		end
   		if params.has_key?(:program)
-  			redirect_to course_path(@course, :program => params[:program])
+  			@program = Program.find_by_id(params[:program])
+  			redirect_to prereq_tree_program_path(@program)
   		else
   			redirect_to course_path(@course)
   		end

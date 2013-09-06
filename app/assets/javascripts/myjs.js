@@ -3,6 +3,7 @@ $(document).ready(function(){
 	$('.dropdown-menu').hide();
 	$('.search-menu').hide();
 	$('.note-submit').hide();
+	$('.notavail').hide();
 	$('.note-submit').attr('disabled',true);
     $('input:file').change(
         function(){
@@ -16,6 +17,57 @@ $(document).ready(function(){
         DrawAllLines();
     }
 });
+
+jQuery.fn.darken = function() {
+  $(this).each(function() {
+		var darkenPercent = 15; // darken color by 15 percent
+		var rgb = $(this).css('background-color');
+		rgb = rgb.replace('rgb(', '').replace(')', '').split(',');
+		var red = $.trim(rgb[0]);
+		var green = $.trim(rgb[1]);
+		var blue = $.trim(rgb[2]);
+				
+		// darken
+		red = parseInt(red * (100 - darkenPercent) / 100);
+		green = parseInt(green * (100 - darkenPercent) / 100);
+		blue = parseInt(blue * (100 - darkenPercent) / 100);
+		// lighten
+		/* red = parseInt(red * (100 - darkenPercent) / 100);
+		green = parseInt(green * (100 - darkenPercent) / 100);
+		blue = parseInt(blue * (100 - darkenPercent) / 100); */
+		
+		rgb = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
+		
+		$(this).css('background-color', rgb);
+  });
+  return this;
+}
+
+jQuery.fn.lighten = function() {
+  $(this).each(function() {
+		var darkenPercent = -17.65; // darken color by 15 percent
+		var rgb = $(this).css('background-color');
+		rgb = rgb.replace('rgb(', '').replace(')', '').split(',');
+		var red = $.trim(rgb[0]);
+		var green = $.trim(rgb[1]);
+		var blue = $.trim(rgb[2]);
+				
+		// darken
+		red = parseInt(red * (100 - darkenPercent) / 100);
+		green = parseInt(green * (100 - darkenPercent) / 100);
+		blue = parseInt(blue * (100 - darkenPercent) / 100);
+		// lighten
+		/* red = parseInt(red * (100 - darkenPercent) / 100);
+		green = parseInt(green * (100 - darkenPercent) / 100);
+		blue = parseInt(blue * (100 - darkenPercent) / 100); */
+		
+		rgb = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
+		
+		$(this).css('background-color', rgb);
+  });
+  return this;
+}
+
 
 function DrawAllLines(){
 	var passed = allpassed.toString().split(',');
@@ -91,22 +143,28 @@ function DrawLine(thing1, thing2, wordword){
 
 $(function(){
 	$(".green-test").click(function(e){
+		$('.class-select-top').lighten();
+		$('.class-select-bottom').lighten();
+		$('.class-select').lighten();
 		$(".green-test").show();
 		$(".all-prereqs").removeClass('class-select-top');
 		$(".all-prereqs").removeClass('class-select-bottom');
 		$(".green-test").parent().removeClass('class-select');
 		$(e.target).hide();
 		$(e.target).parent().addClass('class-select');
+		$(e.target).parent().darken();
 		var alltop1 = alltop;
 		var allbottom1 = allbottom;
 		var selected_id = parseInt($(this).parent().attr("id"));
 		for (i = 0; i < alltop1[selected_id].length; i++){
 			var number = '#' + alltop1[selected_id][i].toString();
 			$(number).addClass('class-select-top');
+			$(number).darken();
 		}
 		for (i = 0; i < allbottom1[selected_id].length; i++){
 			var number = '#' + allbottom1[selected_id][i].toString();
 			$(number).addClass('class-select-bottom');
+			$(number).darken();
 		}
 	});
 });
@@ -129,6 +187,14 @@ $(function(){
 	$("#signin").click(function(){
 		dropmenu("#signin", '#signin-menu', 'selected-btn');
 	});
+});
+
+$(function(){
+	$(".unclickable-file").mouseenter(function(e){
+		$('.notavail').show();
+	}).mouseleave(function(e) {      
+        $('.notavail').hide();
+    });
 });
 
 $(function(){

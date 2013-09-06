@@ -12,13 +12,34 @@
 	</h1>
 </div>
 <div id="prereq-indie">
+	<div class="independent-list">
 	Independant courses:
 	<% if @nothingcourse.empty? %>
 	None.
 	<% end %>
 	<% @nothingcourse.each do |course| %>
-		<%= link_to course.title, course_path(course, :program => params[:id]) %>
+		<% if @passedcourses.include?(course.id) %>
+			<div class="prereq-green all-prereqs" id="<%=course.id%>">
+				<%= link_to course.title, course_path(course, :program => params[:id]) %>
+			</div>
+		<% else %>
+			<div class="prereq-blue all-prereqs" id="<%=course.id%>">
+				<%= link_to course.title, course_path(course, :program => params[:id]) %>
+			</div>
+		<% end %>
 	<% end %>
+	</div>
+	<div class="prereq-legend">
+		<div class="prereq-green all-prereqs green">
+			Completed
+		</div>
+		<div class="prereq-blue all-prereqs">
+			Have prereqs
+		</div>
+		<div class="prereq-course all-prereqs">
+			Don't have prereqs
+		</div>
+	</div>
 </div>
 <div id="jquery-find">&nbsp</div>
 <div id="myelement">

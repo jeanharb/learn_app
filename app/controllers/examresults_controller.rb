@@ -40,14 +40,17 @@ class ExamresultsController < ApplicationController
 				@counting += 1
 			end
 		end
+		@completedcourse = 0
 		if @allexams.count == @counting
 			@completed = Completecourse.where("user_id = ?", current_user).where("course_id = ?", @course.id)
 			if !@completed.exists?
 				current_user.finishcourse!(@course)
+				@completedcourse = 1
 			else
 				@finished = Completecourse.find_by_user_id_and_course_id(current_user.id, @course.id)
 				@finished.passed = "true"
 				@finished.save
+				@completedcourse = 1
 			end
 		else
 			@completed = Completecourse.where("user_id = ?", current_user).where("course_id = ?", @course.id)
@@ -57,7 +60,11 @@ class ExamresultsController < ApplicationController
 		end
 		if params.has_key?(:program)
 			@program = Program.find_by_id(params[:program])
-			redirect_to course_path(@course, :program => params[:program])
+			if @completedcourse == 1
+				redirect_to prereq_tree_program_path(@program)
+			else
+				redirect_to course_path(@course, :program => params[:program])
+			end
 		else
 			redirect_to course_path(@course)
 		end

@@ -62,7 +62,17 @@
 	<div class="files-container">
 		<div id="files">
 			<span id="file-upload">
-				<span>Files and Videos</span>
+				<span>
+					Files and Videos
+				<% if params.has_key?(:program) %>
+					<div class="notavail">
+						To view file(s), please register to program.
+					</div>
+				<% else %>
+					<div class="notavail">
+						To view file(s), please register to course.
+					</div>
+				<% end %></span>
 			</span>
 		</div>
 		<div class="files-bar"></div>
