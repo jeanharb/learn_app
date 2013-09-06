@@ -1,5 +1,5 @@
 class ProgramsController < ApplicationController
-	before_filter :signed_in_user, only: [:create, :edit, :update]
+	before_filter :signed_in_user
 	before_filter :correct_user, only: [:edit, :update, :destroycourse]
 	before_filter :correct_user_add, only: :addcourses
 	before_filter :program_des, only: :destroy
@@ -244,7 +244,7 @@ class ProgramsController < ApplicationController
 		end
 
 		def signed_in_user
-			redirect_to signin_url, notice: "Please sign in." unless signed_in?
+			redirect_to root_path, notice: "Please sign in." unless signed_in?
 		end
 
 		def correct_user_add

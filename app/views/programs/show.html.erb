@@ -35,7 +35,7 @@
 		<% end %>
 		</ul>
 	</div>
-	<% if !@cours_items.nil? %>
+	<% if !@cours_items.nil? and current_user.registered?(@program) %>
 	<div class="exams-container">
 		<div id="cou-title">
 			PROGRESS REPORT
@@ -43,76 +43,81 @@
 		<div class="files-bar"></div>
 		<div>&nbsp</div>
 		<div class="progress-bar"><div class="progress-bar-perc" style="width:<%=@progress_width%>%"></div></div>
+		<div>
+			Completed <%= @total_course %> of <%= @cours_items.count %> courses.
+		</div>
 	</div>
 	<% end %>
-	<div class="reviews-container">
-		<div class="reviews">
-			<span class="file-upload">
-				<span>Program Reviews</span>
-			</span>
-		</div>
-		<div class="files-bar"></div>
-		<div class="course-rating-cont">
-			<% if @averagerating == "0" %>
-				<div class="course-rating-title">No Ratings Yet | </div>
-			<% else %>
-				<div class="course-rating-title">
-					<span class="star-title">Average Rating: </span>
-					<span class="star-cont">
-						<span class="star" style="width:<%= @good_starwidth %>">★★★★★</span>
-						<span class="anti-star" style="width:<%= @anti_starwidth %>"><span class="star-right">☆☆☆☆☆</span></span>
-					</span>
-					<span class="star-title">(<%= pluralize(@num_rates, "rating")%>)</span> | </div>
-			<% end %>
-			<div class="course-rating">
-				<%= form_for @rating do |f| %>
-					<%= f.radio_button :rating, "1" %> <%= f.label :rating, "1" %>
-					<%= f.radio_button :rating, "2" %> <%= f.label :rating, "2" %>
-					<%= f.radio_button :rating, "3" %> <%= f.label :rating, "3" %>
-					<%= f.radio_button :rating, "4" %> <%= f.label :rating, "4" %>
-					<%= f.radio_button :rating, "5" %> <%= f.label :rating, "5" %>
-					<%= f.hidden_field :id, :value => params[:id] %>
-					<%= f.submit "Rate Program!"%>
-				<% end %>
+	<% if !current_user.registered?(@program) %>
+		<div class="reviews-container">
+			<div class="reviews">
+				<span class="file-upload">
+					<span>Program Reviews</span>
+				</span>
 			</div>
-		</div>
-		<div class="review-text">
-			<ul class="review-list">
-				<% @programreviews.each do |review| %>
-					<li>
-						<h4>
-							<% if !(review.rating.nil?) %>
-								<% @good_starwidth_person = (review.rating/0.05).to_f.to_s + "%" %>
-								<% @anti_starwidth_person = ((5-review.rating)/0.05).to_f.to_s + "%" %>
-								<span class="star-cont">
-									<span class="star" style="width:<%= @good_starwidth_person %>">★★★★★</span>
-									<span class="anti-star" style="width:<%= @anti_starwidth_person %>">
-										<span class="star-right">☆☆☆☆☆</span>
+			<div class="files-bar"></div>
+			<div class="course-rating-cont">
+				<% if @averagerating == "0" %>
+					<div class="course-rating-title">No Ratings Yet | </div>
+				<% else %>
+					<div class="course-rating-title">
+						<span class="star-title">Average Rating: </span>
+						<span class="star-cont">
+							<span class="star" style="width:<%= @good_starwidth %>">★★★★★</span>
+							<span class="anti-star" style="width:<%= @anti_starwidth %>"><span class="star-right">☆☆☆☆☆</span></span>
+						</span>
+						<span class="star-title">(<%= pluralize(@num_rates, "rating")%>)</span> | </div>
+				<% end %>
+				<div class="course-rating">
+					<%= form_for @rating do |f| %>
+						<%= f.radio_button :rating, "1" %> <%= f.label :rating, "1" %>
+						<%= f.radio_button :rating, "2" %> <%= f.label :rating, "2" %>
+						<%= f.radio_button :rating, "3" %> <%= f.label :rating, "3" %>
+						<%= f.radio_button :rating, "4" %> <%= f.label :rating, "4" %>
+						<%= f.radio_button :rating, "5" %> <%= f.label :rating, "5" %>
+						<%= f.hidden_field :id, :value => params[:id] %>
+						<%= f.submit "Rate Program!"%>
+					<% end %>
+				</div>
+			</div>
+			<div class="review-text">
+				<ul class="review-list">
+					<% @programreviews.each do |review| %>
+						<li>
+							<h4>
+								<% if !(review.rating.nil?) %>
+									<% @good_starwidth_person = (review.rating/0.05).to_f.to_s + "%" %>
+									<% @anti_starwidth_person = ((5-review.rating)/0.05).to_f.to_s + "%" %>
+									<span class="star-cont">
+										<span class="star" style="width:<%= @good_starwidth_person %>">★★★★★</span>
+										<span class="anti-star" style="width:<%= @anti_starwidth_person %>">
+											<span class="star-right">☆☆☆☆☆</span>
+										</span>
 									</span>
-								</span>
-							<% else %>
-								No rating
-							<% end %>
-							<%= review.review_title %> <span id="reviewer-name"> By <%= review.user.name %></span>
-						</h4>
-						<span id="reviewer-content"><%= review.review_content %></span>
-					</li>
-				<% end %>
-			</ul>
-			<div>
-				<%= form_for @review do |f| %>
-					<div>
-						<%= f.label :review_title, "Review Title :" %>
-						<%= f.text_field :review_title %>
-					</div>
-					<div id="review-box-cont">
-						<div><%= f.label :review_content, "Review :" %></div>
-						<div><%= f.text_area :review_content, :id => "review-box"%></div>
-					</div>
-					<%= f.hidden_field :id, :value => params[:id] %>
-					<%= f.submit "Submit Review"%>
-				<% end %>
+								<% else %>
+									No rating
+								<% end %>
+								<%= review.review_title %> <span id="reviewer-name"> By <%= review.user.name %></span>
+							</h4>
+							<span id="reviewer-content"><%= review.review_content %></span>
+						</li>
+					<% end %>
+				</ul>
+				<div>
+					<%= form_for @review do |f| %>
+						<div>
+							<%= f.label :review_title, "Review Title :" %>
+							<%= f.text_field :review_title %>
+						</div>
+						<div id="review-box-cont">
+							<div><%= f.label :review_content, "Review :" %></div>
+							<div><%= f.text_area :review_content, :id => "review-box"%></div>
+						</div>
+						<%= f.hidden_field :id, :value => params[:id] %>
+						<%= f.submit "Submit Review"%>
+					<% end %>
+				</div>
 			</div>
 		</div>
-	</div>
+	<% end %>
 </div>
