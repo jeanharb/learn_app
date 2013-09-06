@@ -5,19 +5,21 @@
 }
 
 .progress-bar{
-	width: 400px;
-	height: 20px;
+	width: 470px;
+	height: 8px;
 	background: green;
 	border: 1px solid #999;
-	-moz-border-radius: 20px;
-	border-radius: 20px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
 }
 .progress-bar-perc{
-	height: 20px;
+	height: 8px;
 	background: white;
 	float: right;
-	-moz-border-radius: 20px;
-	border-radius: 20px;
+	moz-border-bottom-right-radius: 8px;
+	moz-border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	border-top-right-radius: 8px;
 }
 
 #prereq-indie{

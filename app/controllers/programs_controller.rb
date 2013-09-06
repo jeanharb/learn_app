@@ -172,12 +172,19 @@ class ProgramsController < ApplicationController
 		@averagerating = "0"
 		@total_course = 0
 		@cours_items.each do |course|
-			@status = Completecourse.where("course_id = ?", course.id).where("user_id = ?", current_user.id)
-			if @status
-				@total_course += 1
+			@status = Completecourse.find_by_course_id_and_user_id(course.id, current_user.id)
+			if !@status.nil?
+				if @status.passed
+					@total_course += 1
+				end
 			end
 		end
-		@progress = 100-((@total_course.to_f/@cours_items.count.to_f)*100).round
+		if !@cours_items.nil?
+			if @cours_items.count > 0
+				@progress = ((@total_course.to_f/@cours_items.count.to_f)*100).round
+				@progress_width = 100-@progress
+			end
+		end
 		if @programratings.any?
 			if @program.average_rating != 0
 				@num_rates = @program.num_rating
