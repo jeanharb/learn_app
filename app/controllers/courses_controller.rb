@@ -12,6 +12,7 @@ class CoursesController < ApplicationController
 	def create
         @course = current_user.courses.build(params[:course])
         if @course.save
+          countcat(params[:course][:category])
           redirect_to course_path(@course)
         else
           render 'new'
@@ -105,6 +106,7 @@ class CoursesController < ApplicationController
 	def update
 		@course = Course.find(params[:id])
 		if @course.update_attributes(params[:course])
+			countcat(params[:course][:category])
 			redirect_to edit_course_path(@course)
 		else
 			render 'edit'
@@ -137,6 +139,14 @@ class CoursesController < ApplicationController
   	end
 
 	private
+
+		def countcat(cat)
+			@num = Course.where("category = ?", cat)
+			@count = @num.count
+			@cat = Category.find(cat)
+			@cat.numcour = @count
+			@cat.save
+		end
 
 		def program_creator
 			@user = User.find(Program.find(params[:program]).user_id)

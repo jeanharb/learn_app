@@ -4,6 +4,38 @@
 	margin-top: -60px;
 }
 
+.cat-lists{
+	width: 450px;
+	h1{
+		text-align: center;
+	}
+	div:hover{
+		background: #ddd;
+	}
+	a:link{
+		text-decoration: none;
+	}
+}
+
+.cat-lists a > div{
+	border: solid 1px #555;
+	border-radius: 5px;
+	moz-border-radius: 5px;
+	width: 100%;
+	height: 130px;
+	padding: 10px;
+	text-decoration: none;
+	color: black;
+}
+
+.cat-program{
+	float: left;
+}
+
+.cat-course{
+	float: right;
+}
+
 .homepage-cats{
 	vertical-align:top;
 	img{
@@ -13,7 +45,13 @@
 }
 
 .homepage-list{
+	a div{
+		color: black;
+	}
 	margin-top: 100px;
+	a:link{
+		color:black;
+	}
 }
 
 .category-image{
@@ -38,17 +76,40 @@
 }
 
 .course-list{
+	list-style-type: none;
+	float: left;
 	margin-top: 10px;
 	height: 150px;
 	width: 1000px;
 	border: 1px solid #555;
 	border-radius: 8px;
 	moz-border-radius: 8px;
+	color: black;
 	a div{
 		color: #555;
 	}
 	a span{
 		color: #555;
+	}
+	div{
+		color: black;
+	}
+	a{
+		text-decoration: none;
+	}
+	a:hover{
+		text-decoration: underline;
+	}
+}
+
+.courses{
+	float: left;
+	width: 1000px;
+	border: none;
+	h1{
+		float: left;
+		width: 400px;
+		margin-bottom: 40px;
 	}
 }
 
@@ -101,9 +162,6 @@
 	padding: 10px;
 	height: 100px;
 	width: 370px;
-	border: 1px solid #555;
-	moz-border-radius: 5px;
-	border-radius: 5px;
 	margin-bottom: 10px;
 	div{
 		font-size: 0.7em;
@@ -576,9 +634,9 @@ input[type='checkbox']:checked {
 	float: left;
 	.course-list{
 		width: 400px;
-		h1{
-			text-align: center;
-		}
+	}
+	h1{
+		text-align: center;
 	}
 }
 
@@ -1079,28 +1137,6 @@ input[type='checkbox']:checked {
 	color: blue;
 }
 
-.course-list{
-	float: left;
-	width: 1000px;
-	list-style-type: none;
-	margin-left: -43px;
-	margin-bottom: 5px;
-	font-size: 1.2em;
-	a{	
-		text-decoration: none;
-	}
-	h1{
-		margin-bottom: 30px;
-		font-size: 1.6em;
-	}
-}
-
-.course-list a:hover{
-	cursor: pointer;
-	cursor: hand;
-	text-decoration: underline;
-}
-
 .course-titl{
 	a{
 		color: black;
@@ -1146,19 +1182,6 @@ input[type='checkbox']:checked {
 
 #data-space{
 	margin-bottom: 40px;
-}
-
-.courses{
-	float: left;
-	margin-left: 41px;
-	width: 1000px;
-	border: none;
-	h1{
-		float: left;
-		width: 400px;
-		margin-left: -43px;
-		margin-bottom: 40px;
-	}
 }
 
 #data-space2{

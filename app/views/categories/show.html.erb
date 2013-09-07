@@ -1,13 +1,43 @@
 <% provide :title, @cat.title %>
-<div>
-	PROGRAMS :
+<h1>
+	<%= @cat.title %>
+	<div class="edit-title-course">
+		<%= link_to "Return to all categories", root_path %>
+	</div>
+</h1>
+<div class="cat-program cat-lists">
+	<h1>PROGRAMS</h1>
 	<% @programs.each do |prog| %>
-		<%= link_to prog.title, program_path(prog) %>
+		<%= link_to program_path(prog) do %>
+		<div>
+			<div><%= prog.title %></div>
+			<div>By <%= User.find(prog.user_id).name %></div>
+			<div class="list-star">
+				<% if prog.average_rating == 0 %>
+					Not rated
+				<% else %>
+					<%= prog.average_rating %> stars (<%= prog.num_rating%>)
+				<% end %>
+			</div>
+		</div>
+		<% end %>
 	<% end %>
 </div>
-<div>
-	COURSES :
+<div class="cat-course cat-lists">
+	<h1>COURSES</h1>
 	<% @courses.each do |course| %>
-		<%= link_to course.title, course_path(course) %>
+		<%= link_to course_path(course) do %>
+		<div>
+			<div><%= course.title %></div>
+			<div>By <%= User.find(course.user_id).name %></div>
+			<div class="list-star">
+				<% if course.average_rating == 0 %>
+					Not rated
+				<% else %>
+					<%= course.average_rating %> stars (<%= course.num_rating%>)
+				<% end %>
+			</div>
+		</div>
+		<% end %>
 	<% end %>
 </div>

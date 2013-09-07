@@ -12,6 +12,7 @@ class ProgramsController < ApplicationController
 	def create
         @program = current_user.programs.build(params[:program])
         if @program.save
+          countcat(params[:program][:category])
           redirect_to program_path(@program)
         else
           render 'new'
@@ -203,6 +204,7 @@ class ProgramsController < ApplicationController
 	def update
 		@program = Program.find(params[:id])
 		if @program.update_attributes(params[:program])
+			countcat(params[:program][:category])
 			redirect_to edit_program_path(@program)
 		else
 			render 'edit'
@@ -234,6 +236,14 @@ class ProgramsController < ApplicationController
 	end
 
 	private
+
+		def countcat(cat)
+			@num = Program.where("category = ?", cat)
+			@count = @num.count
+			@cat = Category.find(cat)
+			@cat.numprog = @count
+			@cat.save
+		end
 
 		def program_des
 			redirect_to root_path unless progcreator?

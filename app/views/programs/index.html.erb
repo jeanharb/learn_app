@@ -16,7 +16,7 @@
 		<span class="smaller">
 			Created by <%= User.find_by_id(program.user_id).name %>
 		</span>
-		<% if !courcreator?(program) %>
+		<!--<% if !courcreator?(program) %>
 		<% if is_admin? %>
 		<span class="delete-btn smaller">
 		<%= link_to "delete", program, method: :delete, 
@@ -25,7 +25,7 @@
 									  :admin => "yes" %>
 		</span>
 		<% end %>
-		<% end %>
+		<% end %>-->
 		</div>
 		<div class="list-star">
 			<% if program.average_rating == 0 %>

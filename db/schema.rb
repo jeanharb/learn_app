@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130906232438) do
+ActiveRecord::Schema.define(:version => 20130907210343) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -35,9 +35,11 @@ ActiveRecord::Schema.define(:version => 20130906232438) do
   create_table "categories", :force => true do |t|
     t.string   "title"
     t.text     "image"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.string   "imagetype"
+    t.integer  "numprog",    :default => 0
+    t.integer  "numcour",    :default => 0
   end
 
   create_table "completecourses", :force => true do |t|
