@@ -1,2 +1,9 @@
 <% provide(:title, "Home Page") %>
-WILL HAVE PAGE WITH COURSES/PROGRAMS OF DIFFERENT FIELDS.
+<div class="homepage-list">
+	<% @categories.each do |cat| %>
+		<div class="homepage-cats">
+			<img src="data:<%= cat.imagetype %>;base64,<%= cat.image.to_s %>" />
+			<%= link_to cat.title, category_path(cat) %> 
+		</div>
+	<% end %>
+</div>

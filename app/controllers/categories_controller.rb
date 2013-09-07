@@ -26,6 +26,12 @@ class CategoriesController < ApplicationController
     	redirect_to database_path
   	end
 
+  	def show
+  		@cat = Category.find(params[:id])
+  		@programs = Program.where("category = ?", @cat.id)
+  		@courses = Course.where("category = ?", @cat.id)
+  	end
+
 	private
     	def admin_user
     		redirect_to(root_path) unless current_user.admin?

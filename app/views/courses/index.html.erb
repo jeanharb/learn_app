@@ -2,6 +2,7 @@
 <div class="courses">
 <h1>Here's a list of all courses!</h1>
 <% @courses.each do |course| %>
+	<%= link_to(course_path(course)) do %>
 	<div class="course-list">
 		<div class="category-image">
 			<% if !Category.find_by_id(course.category).nil? %>
@@ -9,7 +10,7 @@
 			<% end %>
 		</div>
 		<div><span class="courstitle-list">
-		<%= link_to course.title, course_path(course) %>
+		<%= course.title %>
 		</span>
 		<span class="smaller">
 			Created by <%= User.find_by_id(course.user_id).name %>
@@ -33,5 +34,6 @@
 			<% end %>
 		</div>
 	</div>
+	<% end %>
 <% end %>
 </div>

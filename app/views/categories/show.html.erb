@@ -1,0 +1,13 @@
+<% provide :title, @cat.title %>
+<div>
+	PROGRAMS :
+	<% @programs.each do |prog| %>
+		<%= link_to prog.title, program_path(prog) %>
+	<% end %>
+</div>
+<div>
+	COURSES :
+	<% @courses.each do |course| %>
+		<%= link_to course.title, course_path(course) %>
+	<% end %>
+</div>
