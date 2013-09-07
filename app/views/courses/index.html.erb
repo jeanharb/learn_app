@@ -3,14 +3,12 @@
 <h1>Here's a list of all courses!</h1>
 <% @courses.each do |course| %>
 	<div class="course-list">
-		<span class="list-star">
-			<% if course.average_rating == 0 %>
-				Not rated
-			<% else %>
-				<%= course.average_rating %> stars (<%= course.num_rating%>)
+		<div class="category-image">
+			<% if !Category.find_by_id(course.category).nil? %>
+				<img src="data:<%= Category.find_by_id(course.category).imagetype %>;base64,<%= Category.find_by_id(course.category).image.to_s %>" />
 			<% end %>
-		</span>
-		<span class="courstitle">
+		</div>
+		<div><span class="courstitle-list">
 		<%= link_to course.title, course_path(course) %>
 		</span>
 		<span class="smaller">
@@ -26,6 +24,14 @@
 		</span>
 		<% end %>
 		<% end %>
+		</div>
+		<div class="list-star">
+			<% if course.average_rating == 0 %>
+				Not rated
+			<% else %>
+				<%= course.average_rating %> stars (<%= course.num_rating%>)
+			<% end %>
+		</div>
 	</div>
 <% end %>
 </div>

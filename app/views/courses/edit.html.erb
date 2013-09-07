@@ -33,6 +33,10 @@
 		<%= f.text_area :description %>
 	</span>
 	</div>
+	<div>
+		<%= f.label "Course Category :" %>
+		<%= f.select :category, Category.all.collect {|category| [ category.title, category.id ] } %>
+	</div>
 	<div><%= f.submit "Update Course Info", class: "subcon" %></div>
 <% end %>
 </div>

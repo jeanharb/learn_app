@@ -3,14 +3,13 @@
 <h1>Here's a list of all programs!</h1>
 <% @programs.each do |program| %>
 	<div class="course-list">
-		<span class="list-star">
-			<% if program.average_rating == 0 %>
-				Not rated
-			<% else %>
-				<%= program.average_rating %> stars (<%= program.num_rating%>)
+		<div class="category-image">
+			<% if !Category.find_by_id(program.category).nil? %>
+				<img src="data:<%= Category.find_by_id(program.category).imagetype %>;base64,<%= Category.find_by_id(program.category).image.to_s %>" />
 			<% end %>
-		</span>
-		<span class="courstitle">
+		</div>
+		<div>
+		<span class="courstitle-list">
 			<%= link_to program.title, program_path(program) %>
 		</span>
 		<span class="smaller">
@@ -26,6 +25,14 @@
 		</span>
 		<% end %>
 		<% end %>
+		</div>
+		<div class="list-star">
+			<% if program.average_rating == 0 %>
+				Not rated
+			<% else %>
+				<%= program.average_rating %> stars (<%= program.num_rating%>)
+			<% end %>
+		</div>
 	</div>
 <% end %>
 </div>

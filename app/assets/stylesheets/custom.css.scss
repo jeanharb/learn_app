@@ -4,6 +4,90 @@
 	margin-top: -60px;
 }
 
+.category-image{
+	width: 150px;
+	height: 150px;
+	float: left;
+	overflow: hidden;
+	border-bottom-left-radius: 6px;
+	border-top-left-radius: 6px;
+	img{
+		width: 150px;
+		height: 150px;
+	}
+	margin-right: 10px;
+}
+
+.cat-list{
+	float: left;
+	li{
+		list-style-type: none;
+	}
+}
+
+.courses > .course-list{
+	margin-top: 10px;
+	height: 150px;
+	width: 1000px;
+	border: 1px solid #555;
+	border-radius: 8px;
+	moz-border-radius: 8px;
+}
+
+.courstitle-list{
+	border-radius: 8px;
+	moz-border-radius: 8px;
+	height: 100px;
+	width: 400px;
+	padding: 10px;
+	font-size: 1.1em;
+	margin-top: 10px;
+	div{
+		font-size: 0.8em;
+	}
+	a{
+		color:black;
+	}
+}
+
+.courstitle{
+	border-radius: 8px;
+	moz-border-radius: 8px;
+	height: 100px;
+	width: 400px;
+	padding: 10px;
+	font-size: 0.8em;
+	div{
+		font-size: 0.8em;
+	}
+	a{
+		color:black;
+	}
+}
+
+#data-right{
+	width: 400px;
+	float: right;
+}
+
+#data-left{
+	width: 400px;
+	float: left;
+}
+
+.crea-course{
+	padding: 10px;
+	height: 100px;
+	width: 370px;
+	border: 1px solid #555;
+	moz-border-radius: 5px;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	div{
+		font-size: 0.7em;
+	}
+}
+
 #welcome{
 	width: 100%;
 	padding: 10px;
@@ -470,6 +554,9 @@ input[type='checkbox']:checked {
 	float: left;
 	.course-list{
 		width: 400px;
+		h1{
+			text-align: center;
+		}
 	}
 }
 
@@ -960,12 +1047,6 @@ input[type='checkbox']:checked {
 	border-radius: 5px;
 }
 
-.courstitle{
-	a{
-		color:black;
-	}
-}
-
 #program_description{
 	width: 500px;
 	height: 200px;
@@ -1063,8 +1144,11 @@ input[type='checkbox']:checked {
 }
 
 #userdb{
+	clear: both;
+	float: left;
 	position: relative;
-	margin: auto;
+	margin-left: 20px;
+	margin-top: 50px;
 	width: 950px;
 	li{
 		list-style-type: none;

@@ -15,6 +15,10 @@
 	<div id="course-des">
 		<%= f.text_area :description %>
 	</div>
-	<div><%= f.submit "Create Class!", class: "subcon" %></div>
 </div>
+<div>
+	<%= f.label "Course Category :" %>
+	<%= f.select :category, Category.all.collect {|category| [ category.title, category.id ] } %>
+</div>
+<div><%= f.submit "Create Class!", class: "subcon" %></div>
 <% end %>

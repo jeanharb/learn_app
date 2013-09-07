@@ -1,0 +1,14 @@
+<% provide(:title, "Edit Category") %>
+<%= form_for(@cat) do |f| %>
+		<div>
+			<%= f.label :title %> :
+			<%= f.text_field :title %>
+		</div>
+		<div>
+			<%= f.label :image %> :
+			<%= f.file_field :image %>
+		</div>
+		<div>
+			<%= f.submit "Create Category", class: "subcon" %>
+		</div>
+	<% end %>

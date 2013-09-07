@@ -15,11 +15,15 @@
 			</li>
 			<% @courses.each do |course| %>
 			<li>
-				<span class="course-titl"><%= link_to course.title, course_path(course) %></span>
-				<span class="smaller editedit"><%= link_to "Edit", edit_course_path(course) %></span>
-				<span class="smaller delete-btn"><%= link_to "Delete", course, method: :delete, 
-											data: { confirm: "You sure?" },
-											title: course.title %>
+				<div class="crea-course">
+					<span class="course-titl"><%= link_to course.title, course_path(course) %></span>
+					<span class="smaller editedit"><%= link_to "Edit", edit_course_path(course) %></span>
+					<span class="smaller delete-btn"><%= link_to "Delete", course, method: :delete, 
+												data: { confirm: "You sure?" },
+												title: course.title %></span>
+					<div>Number of registered students: <%= @numberstudents[course.id] %></div>
+					<div>Number of registered programs: <%= course.programs.count %></div>
+				</div>
 			</li>
 			<% end %>
 		</ul>
@@ -31,11 +35,14 @@
 			</li>
 			<% @programs.each do |program| %>
 			<li>
+				<div class="crea-course">
 				<span class="course-titl"><%= link_to program.title, program_path(program) %></span>
 				<span class="smaller editedit"><%= link_to "Edit", edit_program_path(program) %></span>
 				<span class="smaller delete-btn"><%= link_to "Delete", program, method: :delete, 
 											data: { confirm: "You sure?" },
-											title: program.title %>
+											title: program.title %></span>
+					<div>Number of registered students: <%= @numberstudentsprog[program.id] %></div>
+				</div>
 			</li>
 			<% end %>
 		</ul>

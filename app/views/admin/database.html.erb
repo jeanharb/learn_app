@@ -1,19 +1,36 @@
 <% provide(:title, "Database") %>
 <div id="data-space2">&nbsp</div>
-<div>
-	STATISTICS
+<div id="data-left">
+	<div>
+		STATISTICS
+	</div>
+	<div>
+		Users: <%= User.all.count %>
+	</div>
+	<div>
+		Programs: <%= Program.all.count %>
+	</div>
+	<div>
+		Courses: <%= Course.all.count %>
+	</div>
+	<div>
+		Files: <%= Note.all.count %>
+	</div>
 </div>
-<div>
-	Users: <%= User.all.count %>
-</div>
-<div>
-	Programs: <%= Program.all.count %>
-</div>
-<div>
-	Courses: <%= Course.all.count %>
-</div>
-<div>
-	Files: <%= Note.all.count %>
+<div id="data-right">
+	<%= form_for(@cat) do |f| %>
+		<div>
+			<%= f.label :title %> :
+			<%= f.text_field :title %>
+		</div>
+		<div>
+			<%= f.label :image %> :
+			<%= f.file_field :image %>
+		</div>
+		<div>
+			<%= f.submit "Create Category", class: "subcon" %>
+		</div>
+	<% end %>
 </div>
 <div id="data-space"></div>
 <span id="userdb">
@@ -46,3 +63,14 @@
 	<% end %>
 </ul>
 </span>
+<div class="cat-list">
+	<ul>
+		<% @categories.each do |cat| %>
+			<li>
+				<%= cat.title %>
+				<%= link_to "edit", edit_category_path(cat) %>
+				<%= link_to "delete", cat, method: :delete %>
+			</li>
+		<% end %>
+	</ul>
+</div>

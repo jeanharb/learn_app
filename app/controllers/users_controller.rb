@@ -50,6 +50,25 @@ class UsersController < ApplicationController
   def creations
     @courses = current_user.courses.all
     @programs = current_user.programs.all
+    @numberstudents = {}
+    @numberstudentsprog = {}
+    @courses.each do |course|
+      @numberstudents[course.id] = 0
+      @number = Courseregistration.where("takencourse_id = ?", course.id)
+      @numberstudents[course.id] += @number.length
+      @inprog = course.programs
+      if @inprog.any?
+        @inprog.each do |prog|
+          @students = Registration.where("takenprog_id = ?", prog.id)
+          @numberstudents[course.id] += @students.length
+        end
+      end
+    end
+    @programs.each do |prog|
+      @numberstudentsprog[prog.id] = 0
+      @numberprog = Registration.where("takenprog_id = ?", prog.id)
+      @numberstudentsprog[prog.id] += @numberprog.length
+    end
   end
 
   private

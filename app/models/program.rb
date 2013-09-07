@@ -1,5 +1,5 @@
 class Program < ActiveRecord::Base
-  attr_accessible :description, :title, :average_rating, :num_rating, :rating_algo
+  attr_accessible :description, :title, :average_rating, :num_rating, :rating_algo, :category
   belongs_to :user
   has_many :relationships, foreign_key: "program_id", dependent: :destroy
   has_many :courses, order: :position, through: :relationships, source: :course

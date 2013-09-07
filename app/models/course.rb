@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  attr_accessible :description, :title, :average_rating, :num_rating, :rating_algo
+  attr_accessible :description, :title, :average_rating, :num_rating, :rating_algo, :category
   belongs_to :user
   has_many :notes, order: :position, dependent: :destroy
   has_many :reverse_carts, foreign_key: "coursefollow_id", class_name: "Cart", dependent: :destroy

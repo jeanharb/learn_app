@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130823025320) do
+ActiveRecord::Schema.define(:version => 20130906232438) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(:version => 20130823025320) do
   add_index "carts", ["coursefollow_id"], :name => "index_carts_on_coursefollow_id"
   add_index "carts", ["follower_id", "coursefollow_id"], :name => "index_carts_on_follower_id_and_coursefollow_id", :unique => true
   add_index "carts", ["follower_id"], :name => "index_carts_on_follower_id"
+
+  create_table "categories", :force => true do |t|
+    t.string   "title"
+    t.text     "image"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "imagetype"
+  end
 
   create_table "completecourses", :force => true do |t|
     t.integer  "course_id"
@@ -74,6 +82,7 @@ ActiveRecord::Schema.define(:version => 20130823025320) do
     t.decimal  "average_rating", :precision => 2, :scale => 1, :default => 0.0
     t.integer  "num_rating",                                   :default => 0
     t.integer  "rating_algo",                                  :default => 0
+    t.integer  "category",                                     :default => 0
   end
 
   add_index "courses", ["rating_algo", "created_at"], :name => "index_courses_on_rating_algo_and_created_at"
@@ -152,6 +161,7 @@ ActiveRecord::Schema.define(:version => 20130823025320) do
     t.decimal  "average_rating", :precision => 2, :scale => 1, :default => 0.0
     t.integer  "num_rating",                                   :default => 0
     t.integer  "rating_algo",                                  :default => 0
+    t.integer  "category",                                     :default => 0
   end
 
   add_index "programs", ["rating_algo", "created_at"], :name => "index_programs_on_rating_algo_and_created_at"

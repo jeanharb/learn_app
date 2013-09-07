@@ -1,9 +1,4 @@
 LearnApp::Application.routes.draw do
-  resources :users do
-    member do
-      get :coursefollows
-    end
-  end
   resources :sessions, only: [:new, :create, :destroy]
   resources :admin
   resources :relationships, only: [:create, :destroy, :index]
@@ -17,6 +12,7 @@ LearnApp::Application.routes.draw do
   resources :examresults
   resources :courseratings
   resources :programratings
+  resources :categories
   resources :courses do
     member do
       get :programs, :followers, :wants, :wantpros, :notes, :newexam
@@ -24,7 +20,7 @@ LearnApp::Application.routes.draw do
   end
   resources :users do
     member do
-      get :takenprogs, :students
+      get :takenprogs, :students, :coursefollows
     end
   end
   resources :programs do
@@ -58,6 +54,7 @@ LearnApp::Application.routes.draw do
   match '/newcourse',     to: "courses#new"
   match '/search',        to: "search#index"
   match '/database',      to: "admin#database"
+  match '/addcategory',   to: "admin#addcategory"
   match '/signup',        to: "users#new"
   match '/signin',        to: "sessions#new"
   match '/signout',       to: "sessions#destroy", via: :delete
