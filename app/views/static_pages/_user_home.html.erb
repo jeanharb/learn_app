@@ -1,9 +1,13 @@
 <% provide(:title, "Home Page") %>
 <div class="homepage-list">
 	<% @categories.each do |cat| %>
-		<div class="homepage-cats">
-			<img src="data:<%= cat.imagetype %>;base64,<%= cat.image.to_s %>" />
-			<%= link_to cat.title, category_path(cat) %> 
+	<%= link_to category_path(cat) do %>
+		<div class="course-list">
+			<div class="category-image">
+				<img src="data:<%= cat.imagetype %>;base64,<%= cat.image.to_s %>" />
+			</div>
+			<%= cat.title %> 
 		</div>
+		<% end %>
 	<% end %>
 </div>
