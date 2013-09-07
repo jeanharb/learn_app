@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
   def home
   	if signed_in?
   		@user = current_user
-  		@categories = Category.all
+  		@categories = Category.order_by('title ASC').all
   	end
   end
 
