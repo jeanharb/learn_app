@@ -15,6 +15,30 @@ module SessionsHelper
 		end
 	end
 
+	def countcoursestudents(course)
+	    @num = Courseregistration.where("takencourse_id = ?", course.id)
+	    if !@num.nil?
+	    	@num = @num.count
+	    else
+	    	@num = 0
+	    end
+	    @course = Course.find(course.id)
+	    @course.numstudents = @num
+	    @course.save
+	  end
+
+	  def countprogstudents(prog)
+	    @num = Registration.where("takenprog_id = ?", prog.id)
+	    if !@num.nil?
+	    	@num = @num.count
+	    else
+	    	@num = 0
+	    end
+	    @prog = Program.find(prog.id)
+	    @prog.numstudents = @num
+	    @prog.save
+	  end
+
 	def is_admin?
 		current_user.admin?
 	end

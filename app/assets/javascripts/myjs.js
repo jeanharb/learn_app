@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function(){ 
 	$('#signin-menu').hide();
 	$('.dropdown-menu').hide();
 	$('.search-menu').hide();

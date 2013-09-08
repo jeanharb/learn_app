@@ -2,11 +2,12 @@
 	<%= render 'user_home' %>
 <% else %>
 	<div class="homepage-main">
-		<div>
-			Welcome to Learnocracy.
-		</div>
-		<div>
-			Sign up by clicking sign in, then "Sign up now".
-		</div>
+		<p>Welcome to Learnocracy.</p>
+		<p>
+			There are currently <%= @total %> users signed up!
+		</p>
+		<p>
+			<%= link_to "Sign up now!", signup_path %>
+		</p>
 	</div>
 <% end %>
