@@ -13,8 +13,10 @@ class RelationshipsController < ApplicationController
 					current_user.removefromcart!(@class)
 				end
 			end
+			@program.setup_prereqs
 			redirect_to edit_program_path(@program)
 		else
+			@program.setup_prereqs
 			redirect_to edit_program_path(@program)
 		end
 	end

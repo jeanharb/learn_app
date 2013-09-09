@@ -19,7 +19,8 @@
 					<span class="smaller delete-btn"><%= link_to "Delete", course, method: :delete, 
 												data: { confirm: "You sure?" },
 												title: course.title %></span>
-					<div>Number of registered students: <%= @numberstudents[course.id] %></div>
+					<div>Number of registered students: <%= course.numstudents %></div>
+					<div>Number of students who passed the course: <%= course.numstudentspass %></div>
 					<div>Number of registered programs: <%= course.programs.count %></div>
 				</div>
 			</li>
@@ -37,7 +38,8 @@
 				<span class="smaller delete-btn"><%= link_to "Delete", program, method: :delete, 
 											data: { confirm: "You sure?" },
 											title: program.title %></span>
-					<div>Number of registered students: <%= @numberstudentsprog[program.id] %></div>
+					<div>Number of registered students: <%= program.numstudents %></div>
+					<div>Number of students who completed the program: <%= program.numstudentspass %></div>
 				</div>
 			</li>
 			<% end %>

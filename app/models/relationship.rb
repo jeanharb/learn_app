@@ -1,13 +1,14 @@
 class Relationship < ActiveRecord::Base
-  attr_accessible :program_id, :course_id
+  attr_accessible :program_id, :course_id, :prereqlevel
   belongs_to :course, class_name: "Course"
   belongs_to :program, class_name: "Program"
   acts_as_list scope: :program
 
-  before_destroy :destroy_all_prerequisites
+  before_destroy :destroy_all_prerequisites, :rearrange_programs
 
   validates :program_id, presence: true
   validates :course_id, presence: true
+  validates :prereqlevel, presence: true
 
   private
 
@@ -21,4 +22,9 @@ class Relationship < ActiveRecord::Base
   			prereq.destroy
   		end
   	end
+    def rearrange_programs
+      @program = Program.find(self.program_id)
+      @user = User.find(@program.user_id)
+      @program.setup_prereqs
+  end
 end

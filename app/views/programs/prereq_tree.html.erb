@@ -15,7 +15,7 @@
 	<div class="independent-list">
 	Independant courses:
 	<% if @nothingcourse.empty? %>
-	None.
+		None.
 	<% end %>
 	<% @nothingcourse.each do |course| %>
 		<% if @passedcourses.include?(course.id) %>

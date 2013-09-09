@@ -15,6 +15,7 @@ class PrerequisitesController < ApplicationController
 					end
 				end
 			end
+			@program.setup_prereqs
 			redirect_to edit_program_path(@program)
 		else
 			@topcourse = params[:course]
@@ -28,6 +29,7 @@ class PrerequisitesController < ApplicationController
 					end
 				end
 			end
+			@program.setup_prereqs
 			redirect_to edit_program_path(@program)
 		end
 	end

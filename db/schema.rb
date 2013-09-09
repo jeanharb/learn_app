@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130907235226) do
+ActiveRecord::Schema.define(:version => 20130908203957) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -52,6 +52,14 @@ ActiveRecord::Schema.define(:version => 20130907235226) do
 
   add_index "completecourses", ["user_id", "course_id"], :name => "index_completecourses_on_user_id_and_course_id", :unique => true
 
+  create_table "completeprograms", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "program_id"
+    t.integer  "progress"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "courseratings", :force => true do |t|
     t.integer  "rating"
     t.integer  "user_id"
@@ -79,13 +87,14 @@ ActiveRecord::Schema.define(:version => 20130907235226) do
     t.string   "title"
     t.integer  "user_id"
     t.text     "description"
-    t.datetime "created_at",                                                    :null => false
-    t.datetime "updated_at",                                                    :null => false
-    t.decimal  "average_rating", :precision => 2, :scale => 1, :default => 0.0
-    t.integer  "num_rating",                                   :default => 0
-    t.integer  "rating_algo",                                  :default => 0
-    t.integer  "category",                                     :default => 0
-    t.integer  "numstudents",                                  :default => 0
+    t.datetime "created_at",                                                     :null => false
+    t.datetime "updated_at",                                                     :null => false
+    t.decimal  "average_rating",  :precision => 2, :scale => 1, :default => 0.0
+    t.integer  "num_rating",                                    :default => 0
+    t.integer  "rating_algo",                                   :default => 0
+    t.integer  "category",                                      :default => 0
+    t.integer  "numstudents",                                   :default => 0
+    t.integer  "numstudentspass",                               :default => 0
   end
 
   add_index "courses", ["rating_algo", "created_at"], :name => "index_courses_on_rating_algo_and_created_at"
@@ -139,7 +148,6 @@ ActiveRecord::Schema.define(:version => 20130907235226) do
   end
 
   add_index "prerequisites", ["required_id"], :name => "index_prerequisites_on_required_id"
-  add_index "prerequisites", ["want_id", "wantpro_id", "required_id"], :name => "index_prerequisites_on_want_id_and_wantpro_id_and_required_id", :unique => true
   add_index "prerequisites", ["want_id"], :name => "index_prerequisites_on_want_id"
   add_index "prerequisites", ["wantpro_id"], :name => "index_prerequisites_on_wantpro_id"
 
@@ -159,13 +167,14 @@ ActiveRecord::Schema.define(:version => 20130907235226) do
     t.string   "title"
     t.integer  "user_id"
     t.text     "description"
-    t.datetime "created_at",                                                    :null => false
-    t.datetime "updated_at",                                                    :null => false
-    t.decimal  "average_rating", :precision => 2, :scale => 1, :default => 0.0
-    t.integer  "num_rating",                                   :default => 0
-    t.integer  "rating_algo",                                  :default => 0
-    t.integer  "category",                                     :default => 0
-    t.integer  "numstudents",                                  :default => 0
+    t.datetime "created_at",                                                     :null => false
+    t.datetime "updated_at",                                                     :null => false
+    t.decimal  "average_rating",  :precision => 2, :scale => 1, :default => 0.0
+    t.integer  "num_rating",                                    :default => 0
+    t.integer  "rating_algo",                                   :default => 0
+    t.integer  "category",                                      :default => 0
+    t.integer  "numstudents",                                   :default => 0
+    t.integer  "numstudentspass",                               :default => 0
   end
 
   add_index "programs", ["rating_algo", "created_at"], :name => "index_programs_on_rating_algo_and_created_at"
@@ -192,9 +201,10 @@ ActiveRecord::Schema.define(:version => 20130907235226) do
   create_table "relationships", :force => true do |t|
     t.integer  "course_id"
     t.integer  "program_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.integer  "position"
+    t.integer  "prereqlevel", :default => 40
   end
 
   add_index "relationships", ["course_id"], :name => "index_relationships_on_course_id"

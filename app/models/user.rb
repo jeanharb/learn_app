@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :courseratings, dependent: :destroy
   has_many :programratings, dependent: :destroy
   has_many :completecourses, dependent: :destroy
+  has_many :completeprograms, dependent: :destroy
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
@@ -82,6 +83,26 @@ class User < ActiveRecord::Base
     else
       return false
     end
+  end
+
+  def countprogressprog(prog, user)
+    @program = Program.find(prog.id)
+    @count = @program.courses.count
+    @counting = 0
+    if @count > 0
+      @program.courses.each do |course|
+        @cour = Completecourse.find_by_course_id_and_user_id(course.id, user.id)
+        if !@cour.nil?
+          if @cour.passed == "true"
+            @counting += 1
+          end
+        end
+      end
+      @progress = ((@counting.to_f/@count.to_f)*100).round
+    else
+      @progress = 0
+    end
+    completeprograms.create!(program_id: prog.id, progress: @progress)
   end
 
   private

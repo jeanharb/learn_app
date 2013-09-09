@@ -45,11 +45,15 @@ class ExamresultsController < ApplicationController
 			@completed = Completecourse.where("user_id = ?", current_user).where("course_id = ?", @course.id)
 			if !@completed.exists?
 				current_user.finishcourse!(@course)
+				setprereqcolor(@course)
+				countpassedcourse(@course)
 				@completedcourse = 1
 			else
 				@finished = Completecourse.find_by_user_id_and_course_id(current_user.id, @course.id)
 				@finished.passed = "true"
 				@finished.save
+				setprereqcolor(@course)
+				countpassedcourse(@course)
 				@completedcourse = 1
 			end
 		else
@@ -61,6 +65,8 @@ class ExamresultsController < ApplicationController
 		if params.has_key?(:program)
 			@program = Program.find_by_id(params[:program])
 			if @completedcourse == 1
+				current_user.countprogressprog(@program, current_user)
+		  		countpassedprog(@program)
 				redirect_to prereq_tree_program_path(@program)
 			else
 				redirect_to course_path(@course, :program => params[:program])

@@ -15,16 +15,42 @@ module SessionsHelper
 		end
 	end
 
+	def setprereqcolor(cour)
+		@rela = Relationship.where("course_id = ?", cour.id)
+		@rela.each do |change|
+			change.prereqcolor = "green"
+			change.save
+		end
+	end
+
+	def countpassedcourse(course)
+		@num = Completecourse.where("course_id = ?", course.id).where("passed = ?", "true")
+		if !@num.nil?
+			@num = @num.count
+			@course = Course.find(course.id)
+			@course.numstudentspass = @num
+			@course.save
+		end
+	end
+
+	def countpassedprog(prog)
+		@num = Completeprogram.where("program_id = ?", prog.id).where("progress = ?", 100)
+		if !@num.nil?
+			@num = @num.count
+			@program = Program.find(prog.id)
+			@program.numstudentspass = @num
+			@program.save
+		end
+	end
+
 	def countcoursestudents(course)
 	    @num = Courseregistration.where("takencourse_id = ?", course.id)
 	    if !@num.nil?
 	    	@num = @num.count
-	    else
-	    	@num = 0
+	    	@course = Course.find(course.id)
+		    @course.numstudents = @num
+		    @course.save
 	    end
-	    @course = Course.find(course.id)
-	    @course.numstudents = @num
-	    @course.save
 	  end
 
 	  def countprogstudents(prog)

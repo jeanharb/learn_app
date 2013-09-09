@@ -20,130 +20,87 @@ class ProgramsController < ApplicationController
 	end
 
 	def prereq_tree
-		require 'json'
 		@program = Program.find(params[:id])
+		@allrela = @program.relationships
+		@allpre = @program.prerequisites
 		@courses = @program.courses
-		@allprereqs = []
-		@allprer = []
+		@courselevels = {}
 		@nothingcourse = []
-		@bottomcourse = []
-		@topcourse = []
-		@middlecourse = []
-		@passedcourses = []
 		@doneunder = []
+		@passedcourses = []
 		@coursestop = {}
 		@coursesbottom = {}
-		@courses.each do |course|
-			if current_user.passedcourse?(current_user, course)
-				@passedcourses << course.id
+		@relation = []
+		@allrela.each do |rel|
+			@courselevels[Course.find(rel.course_id)] = rel.prereqlevel
+			if rel.prereqlevel == 40
+				@nothingcourse << Course.find(rel.course_id)
 			end
 		end
-		@courses.each do |course|
-			if @coursestop[course.id].nil?
-				@coursestop[course.id] = []
-			end
-			@coursesbottom[course.id] = []
-			@coursewant = Prerequisite.where("want_id = ?", course.id).where("wantpro_id = ?", @program.id)
-			@courseneeded = Prerequisite.where("required_id = ?", course.id).where("wantpro_id = ?", @program.id)
-			if @courseneeded.exists?
-				if @coursewant.exists?
-					@middlecourse << course
-					@howmany = 0
-					@coursewant.each do |prer|
-						if @passedcourses.include?(prer.required_id)
-							@howmany += 1
-						end
-					end
-					if @howmany == @coursewant.count
-						@doneunder << course.id
-					end
-				else
-					@doneunder << course.id
-					@bottomcourse << course
-				end
+		@allpre.each do |pre|
+			@coursesbottom[pre.want_id] = []
+			if @coursestop[pre.required_id].nil?
+				@coursestop[pre.required_id] = [pre.want_id]
 			else
-				if @coursewant.exists?
-					@topcourse << [course, []]
-					@howmany = 0
-					@coursewant.each do |prer|
-						if @passedcourses.include?(prer.required_id)
-							@howmany += 1
-						end
-					end
-					if @howmany == @coursewant.count
-						@doneunder << course.id
-					end
-				else
-					@nothingcourse << course
-				end
+				@coursestop[pre.required_id] << pre.want_id
 			end
-			@coursewant.each do |prer|
-				@course_pre = Course.find(prer.required_id)
-				if @coursestop[@course_pre.id].nil?
-					@coursestop[@course_pre.id] = []
-				end
-				@coursestop[@course_pre.id] << course.id
-				@coursesbottom[course.id] << @course_pre.id
-				@first = "#" + course.id.to_s
-				@second = "#" + @course_pre.id.to_s
-				@allprereqs << [@first, @second]
-				@allprer << [course, @course_pre]
+			if @coursesbottom[pre.want_id].nil?
+				@coursesbottom[pre.want_id] = [pre.required_id]
+			else
+				@coursesbottom[pre.want_id] << pre.required_id
 			end
+			@relation << [pre.want_id, pre.required_id]
 		end
-
-		@courselevels = {}
-		@coursele = {}
-		def findlevels(bottom, number)
-			bottom.each do |a|
-				@level = number
-				if @courselevels[a].nil?
-					@courselevels.merge!(a => @level)
-					@coursele.merge!(a.id => @level)
-				elsif @courselevels[a] < @level
-					@courselevels.merge!(a => @level)
-					@coursele.merge!(a.id => @level)
-				end
-				@under = Prerequisite.where("required_id = ?", a.id).where("wantpro_id = ?", @program.id)
-				@underarray = []
-				@under.each do |prereq|
-					@underarray << Course.find(prereq.want_id)
-				end
-				findlevels(@underarray, @level+1)
-			end
-		end
-		findlevels(@bottomcourse, 0)
+		@courses.each do |course|
+	        if current_user.passedcourse?(current_user, course)
+	        	@passedcourses << course.id
+	        end
+	    end
+		@courses.each do |course|
+	        if !@passedcourses.include?(course.id)
+	        	@coursewant = []
+	        	@courseneeded = []
+	        	@relation.each do |rel|
+	        		if rel[0] == course.id
+	        	    	@coursewant << rel[1]
+	        		end
+	        		if rel[1] == course.id
+	        	  		@courseneeded << rel[0]
+	        		end
+	        	end
+	        	if @coursewant.count > 0
+		        	@howmany = 0
+		        	@coursewant.each do |prer|
+		        	    if @passedcourses.include?(prer)
+		        	    	@howmany += 1
+		        	    end
+		        	end
+		        	if @howmany == @coursewant.count
+		        	    @doneunder << course.id
+		        	end
+		    	else
+		    		@doneunder << course.id
+		    	end
+		    end
+	    end
 		@highestlevel = 0
 		@courselevels.each do |key, value|
-			if value > @highestlevel
+			if value > @highestlevel and value != 40
 				@highestlevel = value
 			end
 		end
-		@bottomcourse.each do |pre|
-			@lowest = 40
-			@allprer.each do |each|
-				@eee = each[0]
-				if each[1].id == pre.id
-					if (@coursele[@eee.id] - 1) < @lowest
-						@lowest = @coursele[@eee.id] - 1
-					end
+		@allprereqs = []
+		@courses.each do |course|
+			@coursewant = []
+			@relation.each do |rel|
+				if rel[0] == course.id
+					@coursewant << rel[1]
 				end
 			end
-			if @lowest != 40
-				@courselevels[pre] = @lowest
-			end
-		end
-		@middlecourse.each do |pre|
-			@lowest = 40
-			@allprer.each do |each|
-				@eee = each[0]
-				if each[1].id == pre.id
-					if (@coursele[@eee.id] - 1) < @lowest
-						@lowest = @coursele[@eee.id] - 1
-					end
-				end
-			end
-			if @lowest != 40
-				@courselevels[pre] = @lowest
+			@coursewant.each do |prer|
+				@first = "#" + course.id.to_s
+				@second = "#" + prer.to_s
+				@allprereqs << [@first, @second]
 			end
 		end
 	end
