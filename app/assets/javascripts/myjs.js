@@ -156,15 +156,19 @@ $(function(){
 		var alltop1 = alltop;
 		var allbottom1 = allbottom;
 		var selected_id = parseInt($(this).parent().attr("id"));
-		for (i = 0; i < alltop1[selected_id].length; i++){
-			var number = '#' + alltop1[selected_id][i].toString();
-			$(number).addClass('class-select-top');
-			$(number).darken();
+		if (allbottom1[selected_id] != undefined){
+			for (i = 0; i < allbottom1[selected_id].length; i++){
+				var number = '#' + allbottom1[selected_id][i].toString();
+				$(number).addClass('class-select-bottom');
+				$(number).darken();
+			}
 		}
-		for (i = 0; i < allbottom1[selected_id].length; i++){
-			var number = '#' + allbottom1[selected_id][i].toString();
-			$(number).addClass('class-select-bottom');
-			$(number).darken();
+		if (alltop1[selected_id] != undefined){
+			for (i = 0; i < alltop1[selected_id].length; i++){
+				var number = '#' + alltop1[selected_id][i].toString();
+				$(number).addClass('class-select-top');
+				$(number).darken();
+			}
 		}
 	});
 });

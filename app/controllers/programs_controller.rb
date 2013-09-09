@@ -20,6 +20,7 @@ class ProgramsController < ApplicationController
 	end
 
 	def prereq_tree
+		require 'json'
 		@program = Program.find(params[:id])
 		@allrela = @program.relationships
 		@allpre = @program.prerequisites
@@ -38,7 +39,6 @@ class ProgramsController < ApplicationController
 			end
 		end
 		@allpre.each do |pre|
-			@coursesbottom[pre.want_id] = []
 			if @coursestop[pre.required_id].nil?
 				@coursestop[pre.required_id] = [pre.want_id]
 			else
