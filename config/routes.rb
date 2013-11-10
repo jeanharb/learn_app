@@ -1,4 +1,5 @@
 LearnApp::Application.routes.draw do
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :admin
   resources :relationships, only: [:create, :destroy, :index]
@@ -61,6 +62,10 @@ LearnApp::Application.routes.draw do
   match '/signout',       to: "sessions#destroy", via: :delete
   match '/about',         to: "static_pages#about"
   match '/help',          to: "static_pages#help"
+  
+#  constraints(Subdomain) do
+#    match '/' => 'forums#show'
+#  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

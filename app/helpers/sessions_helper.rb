@@ -15,13 +15,13 @@ module SessionsHelper
 		end
 	end
 
-	def setprereqcolor(cour)
-		@rela = Relationship.where("course_id = ?", cour.id)
-		@rela.each do |change|
-			change.prereqcolor = "green"
-			change.save
-		end
-	end
+	#def setprereqcolor(cour)
+	#	@rela = Relationship.where("course_id = ?", cour.id)
+	#	@rela.each do |change|
+	#		change.prereqcolor = "green"
+	#		change.save
+	#	end
+	#end
 
 	def countpassedcourse(course)
 		@num = Completecourse.where("course_id = ?", course.id).where("passed = ?", "true")
