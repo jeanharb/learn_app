@@ -1215,7 +1215,7 @@ input[type='checkbox']:checked {
 	position: relative;
 	z-index: 40;
 	left: 604px;
-	top: 13px;
+	top: 28px;
 	width: 309px;
 }
 
@@ -1229,7 +1229,7 @@ input[type='checkbox']:checked {
 
 .search-menu{
 	background: white;
-	border: 1px #ccc solid;
+	border: 1px #e7e7e7 solid;
 	border-top: none;
 	padding: 10px;
 	font-size: 0.8em;
@@ -1334,7 +1334,7 @@ img.background{
 	float: right;
 	margin-right: -10px;
 	z-index: 100;
-	margin-top: 7px;
+	margin-top: 9px;
 	li {
 		list-style-type: none;
 		margin-right: 10px;
@@ -1352,8 +1352,12 @@ img.background{
 }
 
 .nav-right > li > a {
-	color: #eee;
+	color: #777;
 	padding: 9px 10px 9px 10px;
+}
+
+.nav-right > li > a:hover{
+	color: #4286c1;
 }
 
 .red{
@@ -1382,7 +1386,7 @@ img.background{
 	position: relative;
 	z-index: 40;
 	width: 75px;
-	margin-top: 13px;
+	margin-top: 28px;
 	margin-left: 926px;
 	background: white;
 }
@@ -1390,7 +1394,7 @@ img.background{
 .dropdown-menu{
 	color: #444;
 	z-index: 10;
-	margin-top: 7px;
+	margin-top: 27px;
 	font-size: 0.9em;
 	li:not(.red){
 		a{
@@ -1400,8 +1404,8 @@ img.background{
 		margin-left: -40px;
 		width: 72px;
 		list-style-type: none;
-		border-left: #ccc 1px solid;
-		border-right: #ccc 1px solid;
+		border-left: #e7e7e7 1px solid;
+		border-right: #e7e7e7 1px solid;
 	}
 	li a{
 			width: 71px;
@@ -1411,7 +1415,7 @@ img.background{
 			display: block;
 	}
 	li:not(.red):hover{
-		background: #ddd;
+		background: #f7f7f7;
 	}
 }
 
@@ -1419,10 +1423,10 @@ img.background{
 	.btn-primary{
 		z-index: 100;
 		background: white;
-		border: 1px solid #ccc;
+		border: 1px solid #d7d7d7;
 	}
 	:hover{
-		background: #ccc;
+		background: #f8f8f8;
 		cursor: pointer;
 		cursor: hand;
 	}
@@ -1436,28 +1440,29 @@ img.background{
 }
 
 #email-box{
-	margin-left: 22px;
+	margin-left: 24px;
 	margin-bottom: 5px;
 }
 
 #barcolor{
-	background: #6B0103;
+	background: #f8f8f8;
 	z-index: -1;
 	width: 100%;
-	height: 45px;
+	height: 55px;
 	position: absolute;
+	border-bottom: #e7e7e7 1px solid;
 }
 
 .navbar {
 	font-family: "Helvetica Neue";
 	height: 35px;
-	color: #eee;
+	color: #777;
 	width: 1000px;
 	margin: auto;
 	top: 0;
 	left: 0;
 	padding-top: 10px;
-	background: #6B0103;
+	background: #f8f8f8;
 	z-index: 3;
 }
 
@@ -1468,24 +1473,28 @@ img.background{
 #navbar-logo {
 	font-size: 1em;
 	position: relative;
-	top: 4px;
+	top: 9px;
 	a {
 		padding: 9px 10px 9px 10px;
 		text-decoration: none;
-		color: #eee;
+		color: #777;
 	}
 	:hover{
 		background-color: rgba(255, 255, 255, 0.2);
 		z-index: 31;
-		-o-transition: .5s;
-	  	-ms-transition: .5s;
-	  	-moz-transition: .5s;
-	  	-webkit-transition: .5s;
-	  	transition: .5s;
+		-o-transition: .3s;
+	  	-ms-transition: .3s;
+	  	-moz-transition: .3s;
+	  	-webkit-transition: .3s;
+	  	transition: .3s;
 	  	a {
 	  		text-decoration: none;
 	  	}
 	}
+}
+
+#navbar-logo > a:hover{
+	color: black;
 }
 
 #signin{
@@ -1495,7 +1504,7 @@ img.background{
 	float: right;
 	margin-right: 0px;
 	padding: 10px 10px 9px 10px;
-	top: -2px;
+	top: 3px;
 }
 
 #newusr{
@@ -1508,10 +1517,10 @@ img.background{
 	position: relative;
 	float: right;
 	right: -60px;
-	top: 35px;
+	top: 46px;
 	z-index: 40;
 	padding: 10px 20px 10px 20px;
-	border: solid #ccc 1px;
+	border: solid #e7e7e7 1px;
 	border-top: none;
 	font-size: 0.7em;
 	color: black;
@@ -1525,21 +1534,27 @@ img.background{
 #signin:hover{
 	cursor: pointer;
 	cursor: hand;
+	-o-transition: .3s;
+  	-ms-transition: .3s;
+  	-moz-transition: .3s;
+  	-webkit-transition: .3s;
+  	transition: .3s;
+	color: #4286c1;
 }
 
 .navhov > a {
-	color: #eee;
+	color: #777;
 	text-decoration: none;
 }
 
 .navhov:hover{
 	background-color: rgba(255, 255, 255, 0.2);
 	z-index: 31;
-	-o-transition: .5s;
-  	-ms-transition: .5s;
-  	-moz-transition: .5s;
-  	-webkit-transition: .5s;
-  	transition: .5s;
+	-o-transition: .3s;
+  	-ms-transition: .3s;
+  	-moz-transition: .3s;
+  	-webkit-transition: .3s;
+  	transition: .3s;
   	a {
   		background-color: rgba(255, 255, 255, 0.2);
   		text-decoration: none;
@@ -1553,11 +1568,11 @@ img.background{
 .navhov-list > li > a:hover{
 	background-color: rgba(255, 255, 255, 0.2);
 	z-index: 31;
-	-o-transition: .5s;
-  	-ms-transition: .5s;
-  	-moz-transition: .5s;
-  	-webkit-transition: .5s;
-  	transition: .5s;
+	-o-transition: .25s;
+  	-ms-transition: .25s;
+  	-moz-transition: .25s;
+  	-webkit-transition: .25s;
+  	transition: .25s;
 }
 
 #new_user{
@@ -1583,13 +1598,19 @@ img.background{
 	}
 }
 
+#session_email, #session_password{
+	border: 1px solid #c7c7c7;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
 .signup_menu_chose{
 	input{
 		width: 300px;
 		margin-bottom: 20px;
 		-moz-border-radius: 5px;
 		border-radius: 5px;
-		border: solid 1px #ccc;
+		border: solid 1px #e7e7e7;
 		padding: 5px;
 	}
 }
@@ -1655,7 +1676,7 @@ body{
 	width: 1000px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: -45px;
+	margin-top: -35px;
 	padding-bottom: -100px;
 	a{
 		z-index: 10;
@@ -1693,7 +1714,8 @@ html{
 	font-family: "Helvetica Neue";
 	width: 100%;
 	height: 100px;
-	background: #ccc;
+	background: #f8f8f8;
+	border-top: #e7e7e7 1px solid;
 	color: white;
 	z-index: 30;
 	bottom: 0;
