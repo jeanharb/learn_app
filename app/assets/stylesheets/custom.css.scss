@@ -1022,7 +1022,6 @@ input[type='checkbox']:checked {
 }
 
 .anti-star{
-	background: white;
 	color: #F9D423;
 	overflow: hidden;
 	float: left;
@@ -1038,6 +1037,7 @@ input[type='checkbox']:checked {
 	padding: 1px;
 	width: 80px;
 	display: block;
+	background: #F7F7f2;
 }
 
 .star-right{
