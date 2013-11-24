@@ -1527,8 +1527,95 @@ img.background{
 	background: white;
 }
 
-.homepage-main{
+.homehome{
+	width: 100%;
+	height: 650px;
+}
+
+.home_1{
+	margin-top: -6px;
+	background-image: url("Private-library.jpg");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.home_2{
+	background-image: url("Reading.jpg");
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.home_3{
+	background: rgba(16,127,201,0.7);
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.home_cont1{
+	padding-top: 16%;
+}
+
+.homepage{
+	width: 100%;
+	p{
+		width: 100%;
+	}
+}
+
+.homepage-main1{
+	margin-left: 55%;
+	border-radius: 5px;
+	width: 450px;
+	moz-border-radius: 5px;
+	padding: 10px;
+	background: rgba(30,30,30,0.7);
 	z-index: 5;
+	color: white;
+	font-size: 26px;
+	a{
+		color:white;
+	}
+}
+
+.home_cont3, .home_cont2{
+	padding-top: 100px;
+}
+
+.homepage-main3{
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 5px;
+	font-weight: 100;
+	width: 800px;
+	moz-border-radius: 5px;
+	padding: 10px;
+	z-index: 5;
+	color: white;
+	a{
+		color:white;
+	}
+	p{
+		margin-bottom: 10px;
+	}
+}
+
+.homepage-main2{
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 5px;
+	font-weight: 100;
+	width: 800px;
+	moz-border-radius: 5px;
+	padding: 10px;
+	background: rgba(30,30,30,0.7);
+	z-index: 5;
+	color: white;
+	a{
+		color:white;
+	}
+	p{
+		margin-bottom: 10px;
+	}
 }
 
 #signin:hover{
@@ -1670,13 +1757,16 @@ body{
 	min-height: 100%;
 }
 
+.not_home{
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 #body-container{
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	line-height: 1.428571429;
 	left: 0;
-	width: 1000px;
-	margin-left: auto;
-	margin-right: auto;
 	margin-top: -35px;
 	padding-bottom: -100px;
 	a{

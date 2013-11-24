@@ -4,6 +4,8 @@ class StaticPagesController < ApplicationController
   	if signed_in?
   		@user = current_user
   		@categories = Category.order_by('title ASC').all
+    else
+      @home_page = true
   	end
   end
 

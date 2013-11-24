@@ -11,7 +11,7 @@
 <body>
 	<div id="all-container">
 		<%= render 'layouts/header' %>
-		<div id="body-container">
+		<div id="body-container" class="<%= @home_page ? 'homepage' : 'not_home'%>" >
 			<div id="body-info">
 				<% flash.each do |key, value| %>
 					<div id="welcome"><%= value %></div>
