@@ -13,7 +13,7 @@
 		<%= course.title %>
 		</span>
 		<span class="smaller">
-			Created by <%= User.find_by_id(course.user_id).name %>
+			By <%= User.find_by_id(course.user_id).name %>
 		</span>
 		<!--<% if !courcreator?(course) %>
 		<% if is_admin? %>

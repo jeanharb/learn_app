@@ -10,11 +10,11 @@
 			<% end %>
 		</div>
 		<div>
-		<span class="courstitle-list">
+		<h2>
 			<%= program.title %>
-		</span>
+		</h2>
 		<span class="smaller">
-			Created by <%= User.find_by_id(program.user_id).name %>
+			By <%= User.find_by_id(program.user_id).name %>
 		</span>
 		<!--<% if !courcreator?(program) %>
 		<% if is_admin? %>
@@ -28,14 +28,13 @@
 		<% end %>-->
 		</div>
 		<div>
-			Number of courses: <%= program.courses.count %>
+			Courses: <%= program.courses.count %> &nbsp &nbsp Students: <%= program.numstudents %> 
 		</div>
-		<div>Number of students: <%= program.numstudents %></div>
 		<div class="list-star">
 			<% if program.average_rating == 0 %>
 				Not rated
 			<% else %>
-				<%= program.average_rating %> stars (<%= program.num_rating%>)
+				<span><%= program.average_rating %> stars (<%= program.num_rating%>)</span>
 			<% end %>
 		</div>
 	</div>

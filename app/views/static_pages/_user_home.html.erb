@@ -1,6 +1,5 @@
 <% provide(:title, "Home Page") %>
-<p>Welcome back!</p>
-<p>Here's a list of all categories!</p>
+<p>Here's a list of all categories.</p>
 <div class="homepage-list">
 	<% @categories.each do |cat| %>
 	<%= link_to category_path(cat) do %>
@@ -9,7 +8,7 @@
 				<img src="data:<%= cat.imagetype %>;base64,<%= cat.image.to_s %>" />
 			</div>
 			<h2><%= cat.title %></h2>
-			<div>Number of Programs: <%= cat.numprog %></div>
+			<div class="home-cour-list">Number of Programs: <%= cat.numprog %></div>
 			<div>Number of Courses: <%= cat.numcour %></div>
 		</div>
 		<% end %>

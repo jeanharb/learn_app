@@ -55,15 +55,15 @@
 }
 
 .category-image{
-	width: 150px;
-	height: 150px;
+	width: 100px;
+	height: 100px;
 	float: left;
 	overflow: hidden;
-	border-bottom-left-radius: 6px;
-	border-top-left-radius: 6px;
+	border-bottom-left-radius: 3px;
+	border-top-left-radius: 3px;
 	img{
-		width: 150px;
-		height: 150px;
+		width: 100px;
+		height: 100px;
 	}
 	margin-right: 10px;
 }
@@ -75,15 +75,21 @@
 	}
 }
 
+.home-cour-list{
+	margin-top: 5px;
+}
+
 .course-list{
 	list-style-type: none;
 	float: left;
 	margin-top: 10px;
-	height: 150px;
-	width: 1000px;
+	margin-right: 20px;
+	height: 100px;
+	width: 300px;
+	padding-right: 10px;
 	border: 1px solid #555;
-	border-radius: 8px;
-	moz-border-radius: 8px;
+	border-radius: 4px;
+	moz-border-radius: 4px;
 	color: black;
 	a div{
 		color: #555;
@@ -93,12 +99,21 @@
 	}
 	div{
 		color: black;
+		font-size: 14px;
 	}
 	a{
 		text-decoration: none;
 	}
 	a:hover{
 		text-decoration: underline;
+	}
+	h2{
+		font-size: 20px;
+		margin-top: 5px;
+		margin-bottom: -5px;
+	}
+	.smaller{
+		margin-top: 0px;
 	}
 }
 
@@ -108,7 +123,7 @@
 	border: none;
 	h1{
 		float: left;
-		width: 400px;
+		width: 1000px;
 		margin-bottom: 40px;
 	}
 }
@@ -646,8 +661,11 @@ input[type='checkbox']:checked {
 
 .list-star{
 	font-size: 0.7em;
-	width: 70px;
+	width: 90px;
 	display: inline-block;
+	span{
+		display: inline-block;
+	}
 }
 
 .subcon{
@@ -1565,7 +1583,7 @@ img.background{
 .homepage-main1{
 	margin-left: 55%;
 	border-radius: 5px;
-	width: 450px;
+	width: 420px;
 	moz-border-radius: 5px;
 	padding: 10px;
 	background: rgba(30,30,30,0.7);
@@ -1590,14 +1608,15 @@ img.background{
 	padding-top: 100px;
 }
 
-.homepage-main3{
+.homepage-main2{
 	margin-left: auto;
 	margin-right: auto;
 	border-radius: 5px;
-	font-weight: 100;
+	font-weight: 300;
 	width: 800px;
 	moz-border-radius: 5px;
 	padding: 10px;
+	background: rgba(30,30,30,0.7);
 	z-index: 5;
 	color: white;
 	a{
@@ -1608,15 +1627,14 @@ img.background{
 	}
 }
 
-.homepage-main2{
+.homepage-main3{
 	margin-left: auto;
 	margin-right: auto;
 	border-radius: 5px;
-	font-weight: 100;
+	font-weight:300;
 	width: 800px;
 	moz-border-radius: 5px;
 	padding: 10px;
-	background: rgba(30,30,30,0.7);
 	z-index: 5;
 	color: white;
 	a{
