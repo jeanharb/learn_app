@@ -1573,7 +1573,13 @@ img.background{
 	color: white;
 	font-size: 26px;
 	a{
+		font-size: 18px;
 		color:white;
+		padding: 7px;
+		background: rgba(16,127,201,1);
+		border: 1px solid rgba(0,96,170,1);
+		border-radius: 5px;
+		moz-border-radius: 5px;
 	}
 }
 
