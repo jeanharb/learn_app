@@ -1213,10 +1213,11 @@ input[type='checkbox']:checked {
 #userdb{
 	clear: both;
 	float: left;
+	margin-left: auto;
+	margin-right: auto;
 	position: relative;
-	margin-left: 20px;
 	margin-top: 50px;
-	width: 950px;
+	width: 1000px;
 	li{
 		list-style-type: none;
 		border-bottom: #ccc 1px solid;

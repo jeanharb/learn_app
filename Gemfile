@@ -7,6 +7,8 @@ gem 'pg_search'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'acts_as_list'
 gem 'gon'
+gem 'googlecharts'
+gem 'whenever', :require => false
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

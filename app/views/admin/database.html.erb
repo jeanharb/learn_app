@@ -1,5 +1,14 @@
 <% provide(:title, "Database") %>
 <div id="data-space2">&nbsp</div>
+<div id="database_chart">
+	<%= image_tag(Gchart.line :size => '1000x260', 
+                   :title => 'Number of Users',
+                   :data => @ids,
+                   :axis_with_labels => [['x'], ['y']],
+                   :axis_labels => [@names, @num_array],
+                   :bg => 'F7F7f2'
+                   )%>
+</div>
 <div id="data-left">
 	<div>
 		STATISTICS

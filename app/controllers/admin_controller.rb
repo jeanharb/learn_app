@@ -3,6 +3,11 @@ class AdminController < ApplicationController
 
 	def database
 		@users = User.all
+		@numbs = NumberUsers.all
+		@ids = @numbs.map{|h| h.num_users }
+		@max_num = @ids.map.max.to_f/4
+		@num_array = Array.new(5){ |i| (i*@max_num).to_i.to_s }
+		@names = @numbs.map{|h| h.date }
 		@cat = Category.new
 		@categories = Category.all
 	end
