@@ -4,10 +4,14 @@
 	<%= image_tag(Gchart.line :size => '1000x260', 
                    :title => 'Number of Users',
                    :data => @ids,
+                   :bar_color => 'FF0000',
                    :axis_with_labels => [['x'], ['y']],
                    :axis_labels => [@names, @num_array],
                    :bg => 'F7F7f2'
                    )%>
+</div>
+<div>
+	<%= button_to "Count # Users", {:action => "add_number"} %>
 </div>
 <div id="data-left">
 	<div>

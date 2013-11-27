@@ -1,5 +1,5 @@
 class AdminController < ApplicationController
-	before_filter :admin_user, only: [:database, :addcategory]
+	before_filter :admin_user, only: [:database, :addcategory, :add_number]
 
 	def database
 		@users = User.all
@@ -10,6 +10,11 @@ class AdminController < ApplicationController
 		@names = @numbs.map{|h| h.date }
 		@cat = Category.new
 		@categories = Category.all
+	end
+
+	def add_number
+		NumberUsers.add_number
+		redirect_to database_path
 	end
 
 	def addcategory

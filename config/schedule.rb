@@ -18,6 +18,8 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-every 1.day, :at => '9:10 pm' do
-  runner "NumberUsers.add_number"
-end
+
+
+#every 1.day, :at => '1:30 am' do
+#  runner "NumberUsers.add_number"
+#end

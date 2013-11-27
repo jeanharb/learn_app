@@ -37,6 +37,7 @@ LearnApp::Application.routes.draw do
   end
 
   root to: "static_pages#home"
+  match '/admin/add_number', to: "admin#add_number"
   match '/numberusers',   to: "static_pages#latest_number_users"
   match '/addcourses',    to: "programs#addcourses"
   match '/viewfile',      to: "notes#view"
