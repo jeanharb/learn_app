@@ -158,8 +158,7 @@ class ExamsController < ApplicationController
 		if params.has_key?(:complete)
 			redirect_to course_path(@course)
 		else
-			redirect_to newexam_course_path(@course, exam: @exam.id, question_num: @question)
-		end
+			redirect_to newexam_course_path(@course, exam: @exam.id, question_num: @question)		end
 	end
 
 	def listorder_up

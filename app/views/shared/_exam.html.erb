@@ -1,4 +1,4 @@
-<%= form_tag exams_path do %>
+<%= form_tag(exams_path, :method => :post) do %>
 	<% if params.has_key?(:errors) %> 
 		<div id="error_explanation">
 			<div class="alert alert-error">
@@ -14,7 +14,7 @@
 	<% if params.has_key?(:exam) %>
 		<h1><%= @exam.name %></h1>
 	<% else %>
-		<div class="exam-name">
+		<div class="exam-name exam-fields">
 			<%= label_tag "Exam name :" %>
 			<% if params.has_key?(:exam_name) %>
 				<%= text_field_tag "exam_name", "#{params[:exam_name]}" %>
@@ -22,7 +22,7 @@
 				<%= text_field_tag "exam_name" %>
 			<% end %>
 		</div>
-		<div>
+		<div class="exam-fields">
 			<%= label_tag "Minimum grade to pass :" %>
 			<% if params.has_key?(:grade_num) %>
 				<%= text_field_tag "grade_num", "#{params[:grade_num]}" %>
@@ -39,6 +39,6 @@
 		<%= hidden_field_tag "exam", params[:exam] %>
 		<%= hidden_field_tag "question_num", params[:question_num] %>
 	<% end %>
-	<%= submit_tag "Add Question", :addquestion => "yes", :class => "add_question"%>
+	<%= submit_tag "Add Question", :addquestion => "yes", :class => "add_question" %>
 	<%= submit_tag "Complete Exam", :name => "complete",:class => "add_question"%>
 <% end %>

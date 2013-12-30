@@ -1,21 +1,25 @@
 <%= fields_for :question do |ques| %>
   <li class="exam-question-li">
-	<div class="exam-question">
+	<div class="exam-question exam-fields">
+		<span id="ques-num">
 		<% if params.has_key?(:question_num) %>
 			<%= params[:question_num].to_i.ordinalize %>
 		<% else %>
 			<%= 1.ordinalize %>
 		<% end %>
 	    <%= ques.label "Question :" %>
+		</span>
 	    <% if params.has_key?(:question_name) %>
-			<%= ques.text_field :name, :value => "#{params[:question_name]}" %>
+			<%= ques.text_area :name, :value => "#{params[:question_name]}" %>
 		<% else %>
-			<%= ques.text_field :name %>
+			<%= ques.text_area :name %>
 		<% end %>
 	</div>
 	<ul id="answer-list">
 		<%= render 'answers/answer' %>
 	</ul>
-	<%= link_to "Add Answer", "#add", :class => "add-answer" %>
+	<div id="add-answer">
+		<%= link_to "Add Answer", "#add", :class => "add-answer" %>
+	</div>
   </li>
 <% end %>
