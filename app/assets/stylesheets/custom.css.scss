@@ -1544,6 +1544,7 @@ img.background{
 	font-size: 1em;
 	position: relative;
 	top: 9px;
+	margin-right: 0px;
 	a {
 		padding: 9px 10px 9px 10px;
 		text-decoration: none;
@@ -1561,6 +1562,11 @@ img.background{
 	  		text-decoration: none;
 	  	}
 	}
+}
+
+#logo-beta{
+	margin-left: -11px;
+	font-size: 9px;
 }
 
 #navbar-logo > a:hover{
