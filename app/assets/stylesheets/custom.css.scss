@@ -55,17 +55,13 @@
 }
 
 .category-image{
-	width: 100px;
-	height: 100px;
+	width: 310px;
+	height: 150px;
 	float: left;
-	overflow: hidden;
-	border-bottom-left-radius: 3px;
-	border-top-left-radius: 3px;
 	img{
-		width: 100px;
-		height: 100px;
+		width: 100%;
+		height: 100%;
 	}
-	margin-right: 10px;
 }
 
 .cat-list{
@@ -79,17 +75,19 @@
 	margin-top: 5px;
 }
 
+.cours-cont{
+	margin-left: 10px;
+}
+
 .course-list{
+	background: #eee;
 	list-style-type: none;
 	float: left;
 	margin-top: 10px;
 	margin-right: 20px;
-	height: 100px;
+	height: 300px;
 	width: 300px;
 	padding-right: 10px;
-	border: 1px solid #555;
-	border-radius: 4px;
-	moz-border-radius: 4px;
 	color: black;
 	a div{
 		color: #555;
@@ -111,6 +109,7 @@
 		font-size: 20px;
 		margin-top: 5px;
 		margin-bottom: -5px;
+		margin-right: 10px;
 	}
 	.smaller{
 		margin-top: 0px;
@@ -1524,7 +1523,7 @@ img.background{
 }
 
 .navbar {
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	height: 35px;
 	color: #777;
 	width: 1000px;
@@ -1839,7 +1838,7 @@ body{
 }
 
 #body-container{
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	line-height: 1.428571429;
 	left: 0;
 	margin-top: -35px;
@@ -1874,15 +1873,51 @@ html{
 	height: 100px;
 }
 
+#footer-about{
+	width: 250px;
+	height: 100px;
+	display: inline;
+	float: left;
+	margin-top: 5px;
+	div{
+		display: inline;
+		margin-right: 20px;
+	}
+}
+
+#footer-cont{
+	float: right;
+	width: 355px;
+	margin-right: 130px;
+}
+
+#footer-social{
+	width: 100px;
+	height: 100px;
+	display: inline;
+	float: right;
+	div{
+		margin-top: 5px;
+	}
+}
+
 #footer{
 	clear: both;
 	position: relative;
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 13px;
 	width: 100%;
 	height: 100px;
 	background: #F7F7f2;
 	border-top: #e7e7e7 1px solid;
-	color: white;
+	color: #555;
 	z-index: 30;
 	bottom: 0;
+	a{
+		text-decoration: none;
+		color: #555;
+	}
+	a:hover{
+		text-decoration: underline;
+	}
 }

@@ -7,9 +7,11 @@
 			<div class="category-image">
 				<img src="data:<%= cat.imagetype %>;base64,<%= cat.image.to_s %>" />
 			</div>
-			<h2><%= cat.title %></h2>
-			<div class="home-cour-list">Number of Programs: <%= cat.numprog %></div>
-			<div>Number of Courses: <%= cat.numcour %></div>
+			<div class="cours-cont">
+				<h2><%= cat.title %></h2>
+				<div class="home-cour-list">Number of Programs: <%= cat.numprog %></div>
+				<div>Number of Courses: <%= cat.numcour %></div>
+			</div>
 		</div>
 		<% end %>
 	<% end %>
