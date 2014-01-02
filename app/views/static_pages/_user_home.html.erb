@@ -1,6 +1,6 @@
 <% provide(:title, "Home Page") %>
-<p>Here's a list of all categories.</p>
 <div class="homepage-list">
+	<h1>The Different Fields</h1>
 	<% @categories.each do |cat| %>
 	<%= link_to category_path(cat) do %>
 		<div class="course-list">

@@ -1,6 +1,7 @@
 <% provide(:title, "All Programs") %>
 <div class="courses">
 <h1>Here's a list of all programs!</h1>
+<p>Sorted: rating algo</p>
 <% @programs.each do |program| %>
 	<%= link_to(program_path(program)) do %>
 	<div class="course-list">
@@ -9,33 +10,35 @@
 				<img src="data:<%= Category.find_by_id(program.category).imagetype %>;base64,<%= Category.find_by_id(program.category).image.to_s %>" />
 			<% end %>
 		</div>
-		<div>
-		<h2>
-			<%= program.title %>
-		</h2>
-		<span class="smaller">
-			By <%= User.find_by_id(program.user_id).name %>
-		</span>
-		<!--<% if !courcreator?(program) %>
-		<% if is_admin? %>
-		<span class="delete-btn smaller">
-		<%= link_to "delete", program, method: :delete, 
-									  data: { confirm: "You sure?" },
-									  title: program.title,
-									  :admin => "yes" %>
-		</span>
-		<% end %>
-		<% end %>-->
-		</div>
-		<div>
-			Courses: <%= program.courses.count %> &nbsp &nbsp Students: <%= program.numstudents %> 
-		</div>
-		<div class="list-star">
-			<% if program.average_rating == 0 %>
-				Not rated
-			<% else %>
-				<span><%= program.average_rating %> stars (<%= program.num_rating%>)</span>
+		<div class="cours-cont">
+			<div>
+			<h2>
+				<%= program.title %>
+			</h2>
+			<span class="smaller">
+				By <%= User.find_by_id(program.user_id).name %>
+			</span>
+			<!--<% if !courcreator?(program) %>
+			<% if is_admin? %>
+			<span class="delete-btn smaller">
+			<%= link_to "delete", program, method: :delete, 
+										  data: { confirm: "You sure?" },
+										  title: program.title,
+										  :admin => "yes" %>
+			</span>
 			<% end %>
+			<% end %>-->
+			</div>
+			<div>
+				Courses: <%= program.courses.count %> &nbsp &nbsp Students: <%= program.numstudents %> 
+			</div>
+			<div class="list-star">
+				<% if program.average_rating == 0 %>
+					Not rated
+				<% else %>
+					<span><%= program.average_rating %> stars (<%= program.num_rating%>)</span>
+				<% end %>
+			</div>
 		</div>
 	</div>
 	<% end %>
