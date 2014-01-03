@@ -23,7 +23,7 @@ class Course < ActiveRecord::Base
   validates :user_id, presence: true
   validates :description, presence: true
   validates :title, presence: true
-  validates :short_desc, presence: true, length: { maximum: 200 }
+  validates :short_desc, presence: true, length: { maximum: 300 }
   validates :average_rating, :numericality => {:greater_than_or_equal_to => 0, :less_than_or_equal_to => 5}
   validates :rating_algo, :numericality => {:integer => true}
 
