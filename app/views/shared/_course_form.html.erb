@@ -10,7 +10,15 @@
 </div>
 <div class="course_form" id="courdes">
 	<div>
-		<%= f.label "Course Description :" %>
+		<%= f.label "Short Description :" %>
+	</div>
+	<div id="course-des-short">
+		<%= f.text_area :short_desc %>
+	</div>
+</div>
+<div class="course_form" id="courdes">
+	<div>
+		<%= f.label "Full Description :" %>
 	</div>
 	<div id="course-des">
 		<%= f.text_area :description %>

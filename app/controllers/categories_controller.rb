@@ -28,8 +28,12 @@ class CategoriesController < ApplicationController
 
   	def show
   		@cat = Category.find(params[:id])
-  		@programs = Program.where("category = ?", @cat.id)
-  		@courses = Course.where("category = ?", @cat.id)
+  		@programs_1 = Program.where("category = ?", @cat.id)
+  		@courses_1 = Course.where("category = ?", @cat.id)
+  		@prog_size = @programs_1.size
+  		@cour_size = @courses_1.size
+  		@programs = @programs_1.first(4)
+  		@courses = @courses_1.first(4)
   	end
 
 	private

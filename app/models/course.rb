@@ -1,5 +1,5 @@
 class Course < ActiveRecord::Base
-  attr_accessible :description, :title, :average_rating, :num_rating, :rating_algo, :category, :numstudentspass
+  attr_accessible :short_desc, :description, :title, :average_rating, :num_rating, :rating_algo, :category, :numstudentspass
   belongs_to :user
   has_many :notes, order: :position, dependent: :destroy
   has_many :reverse_carts, foreign_key: "coursefollow_id", class_name: "Cart", dependent: :destroy
@@ -23,6 +23,7 @@ class Course < ActiveRecord::Base
   validates :user_id, presence: true
   validates :description, presence: true
   validates :title, presence: true
+  validates :short_desc, presence: true, length: { maximum: 200 }
   validates :average_rating, :numericality => {:greater_than_or_equal_to => 0, :less_than_or_equal_to => 5}
   validates :rating_algo, :numericality => {:integer => true}
 

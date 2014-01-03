@@ -28,7 +28,13 @@
 	</span>
 	</div>
 	<div>
-		<%= f.label "Program Description :" %>
+		<%= f.label "Short Description :" %>
+	<span>
+		<%= f.text_area :short_desc %>
+	</span>
+	</div>
+	<div>
+		<%= f.label "Full Description :" %>
 	<span>
 		<%= f.text_area :description %>
 	</span>

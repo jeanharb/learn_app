@@ -11,30 +11,29 @@
 			<% end %>
 		</div>
 		<div class="cours-cont">
-			<div><span class="courstitle-list">
-			<%= course.title %>
-			</span>
-			<span class="smaller">
-				By <%= User.find_by_id(course.user_id).name %>
-			</span>
-			<!--<% if !courcreator?(course) %>
-			<% if is_admin? %>
-			<span class="delete-btn smaller">
-			<%= link_to "delete", course, method: :delete, 
-										  data: { confirm: "You sure?" },
-										  title: course.title,
-										  :admin => "yes" %>
-			</span>
-			<% end %>
-			<% end %> -->
+			<div class="cours-top">
+				<span class="courstitle-list">
+					<%= course.title %>
+				</span>
+				<span class="smaller">
+					By <%= User.find_by_id(course.user_id).name %>
+				</span>
 			</div>
-			<div>Number of students: <%= course.numstudents %></div>
-			<div class="list-star">
-				<% if course.average_rating == 0 %>
-					Not rated
-				<% else %>
-					<%= course.average_rating %> stars (<%= course.num_rating%>)
-				<% end %>
+			<div class="cours-middle"><%= course.short_desc %></div>
+			<div class="cours-stats">
+				<span>
+					Students: <%= course.numstudents %> &nbsp&nbsp
+				</span>
+				<span>
+					Rating: 
+				</span>
+				<span class="list-star">
+					<% if course.average_rating == 0 %>
+						Not rated
+					<% else %>
+						<%= course.average_rating %> stars (<%= course.num_rating%>)
+					<% end %>
+				</span>
 			</div>
 		</div>
 	</div>

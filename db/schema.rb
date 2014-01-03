@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131127002937) do
+ActiveRecord::Schema.define(:version => 20140103061726) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(:version => 20131127002937) do
     t.integer  "category",                                      :default => 0
     t.integer  "numstudents",                                   :default => 0
     t.integer  "numstudentspass",                               :default => 0
+    t.string   "short_desc"
   end
 
   add_index "courses", ["rating_algo", "created_at"], :name => "index_courses_on_rating_algo_and_created_at"
@@ -182,6 +183,7 @@ ActiveRecord::Schema.define(:version => 20131127002937) do
     t.integer  "category",                                      :default => 0
     t.integer  "numstudents",                                   :default => 0
     t.integer  "numstudentspass",                               :default => 0
+    t.string   "short_desc"
   end
 
   add_index "programs", ["rating_algo", "created_at"], :name => "index_programs_on_rating_algo_and_created_at"

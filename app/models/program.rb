@@ -1,5 +1,5 @@
 class Program < ActiveRecord::Base
-  attr_accessible :description, :title, :average_rating, :num_rating, :rating_algo, :category
+  attr_accessible :short_desc, :description, :title, :average_rating, :num_rating, :rating_algo, :category
   belongs_to :user
   has_many :relationships, foreign_key: "program_id", dependent: :destroy
   has_many :courses, order: :position, through: :relationships, source: :course
@@ -17,6 +17,7 @@ class Program < ActiveRecord::Base
   validates :user_id, presence: true
   validates :description, presence: true
   validates :title, presence: true
+  validates :short_desc, presence: true, length: { maximum: 200 }
   validates :average_rating, :numericality => {:greater_than_or_equal_to => 0, :less_than_or_equal_to => 5}
   validates :rating_algo, :numericality => {:integer => true}
 

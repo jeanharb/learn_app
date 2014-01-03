@@ -3,8 +3,8 @@
 	<h1>The Different Fields</h1>
 	<% @categories.each do |cat| %>
 	<%= link_to category_path(cat) do %>
-		<div class="course-list">
-			<div class="category-image">
+		<div class="course-list-2">
+			<div class="category-image-2">
 				<img src="data:<%= cat.imagetype %>;base64,<%= cat.image.to_s %>" />
 			</div>
 			<div class="cours-cont">

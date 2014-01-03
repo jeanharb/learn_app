@@ -5,39 +5,53 @@
 		<%= link_to "Return to all categories", root_path %>
 	</div>
 </h1>
-<div class="cat-program cat-lists">
+<div class="cat-lists">
 	<h1>PROGRAMS</h1>
-	<% @programs.each do |prog| %>
-		<%= link_to program_path(prog) do %>
-		<div>
-			<div><%= prog.title %></div>
-			<div>By <%= User.find(prog.user_id).name %></div>
-			<div class="list-star">
-				<% if prog.average_rating == 0 %>
-					Not rated
-				<% else %>
-					<%= prog.average_rating %> stars (<%= prog.num_rating%>)
-				<% end %>
+	<% if @prog_size > 0 %>
+		<div class="cat-list-cont">
+		<% @programs.each do |prog| %>
+			<%= link_to program_path(prog) do %>
+			<div>
+				<div><%= prog.title %></div>
+				<div>By <%= User.find(prog.user_id).name %></div>
+				<div class="list-star">
+					<% if prog.average_rating == 0 %>
+						Not rated
+					<% else %>
+						<%= prog.average_rating %> stars (<%= prog.num_rating%>)
+					<% end %>
+				</div>
 			</div>
-		</div>
+			<% end %>
 		<% end %>
+		<% if @prog_size > 4 %>
+			<div class="see_all_link">See all</div>
+		<% end %>
+		</div>
 	<% end %>
 </div>
-<div class="cat-course cat-lists">
+<div class="cat-lists">
 	<h1>COURSES</h1>
-	<% @courses.each do |course| %>
-		<%= link_to course_path(course) do %>
-		<div>
-			<div><%= course.title %></div>
-			<div>By <%= User.find(course.user_id).name %></div>
-			<div class="list-star">
-				<% if course.average_rating == 0 %>
-					Not rated
-				<% else %>
-					<%= course.average_rating %> stars (<%= course.num_rating%>)
-				<% end %>
+	<% if @cour_size > 0 %>
+		<div class="cat-list-cont">
+		<% @courses.each do |course| %>
+			<%= link_to course_path(course) do %>
+			<div>
+				<div><%= course.title %></div>
+				<div>By <%= User.find(course.user_id).name %></div>
+				<div class="list-star">
+					<% if course.average_rating == 0 %>
+						Not rated
+					<% else %>
+						<%= course.average_rating %> stars (<%= course.num_rating%>)
+					<% end %>
+				</div>
 			</div>
-		</div>
+			<% end %>
 		<% end %>
+		<% if @cour_size > 4 %>
+			<div class="see_all_link">See all</div>
+		<% end %>
+		</div>
 	<% end %>
 </div>
