@@ -139,6 +139,7 @@ class ProgramsController < ApplicationController
 				@a+=1
 			end
 		end
+		@levelcourses.delete(40)
 		@aaa = 0
 		@optimal = {}
 		@posi = {}
