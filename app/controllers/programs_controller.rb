@@ -139,14 +139,63 @@ class ProgramsController < ApplicationController
 				@a+=1
 			end
 		end
-		@distances = 0
-		@total_distance = 0
-		@allpre.each do |pre|
-			first = pre.required_id
-			sec = pre.want_id
-			@total_distance += (((@positions[first][0]-@positions[sec][0])**2)+((@positions[first][1]-@positions[sec][1])**2))**0.5		
-		end
+		@aaa = 0
+		@optimal = {}
+		@posi = {}
+		@min = 100000
 
+		def dis(a)
+			@qqq = 0
+			@allpre.each do |pre|
+				first = pre.required_id
+				sec = pre.want_id
+				@qqq += (((a[first][0]-a[sec][0])**2)+((a[first][1]-a[sec][1])**2))**0.5
+			end
+			return @qqq
+		end
+		def dista (levels, row, col, c, p)
+    		if (row<levels.length-1)
+    			if (col<levels[row].length)
+    				@tem = c.clone
+    				c.each do |num|
+    					@tem.delete(num)
+    					@tem1 = p.clone
+    					@tem1[levels[row][col]] = [row, num]
+						dista(levels, row, col+1, @tem, @tem1)
+    					@tem = c.clone
+    				end
+	      		else
+		      		@ar1 = []
+				  	for i in 0..@levelcourses[row+1].length-1
+				 		@ar1 << i
+				 	end
+		      		dista(levels, row+1, 0, @ar1, p)
+	      		end
+      		else
+      			if (col<levels[row].length)
+    				@tem = c.clone
+    				c.each do |num|
+    					@tem.delete(num)
+    					@tem1 = p.clone
+    					@tem1[levels[row][col]] = [row, num]
+						dista(levels, row, col+1, @tem, @tem1)
+    					@tem = c.clone
+    				end
+	      		else
+		      		@zz = dis(p)
+	      			if @zz < @min
+	      				@min = @zz
+	      				@optimal = p
+	      			end
+	      		end
+    		end
+  		end
+  		@ar = []
+  		for i in 0..@levelcourses[0].length-1
+  			@ar << i
+  		end
+		dista(@levelcourses, 0, 0, @ar, @posi)
+		@total_distance = dis(@positions)
 	end
 
 	def index
