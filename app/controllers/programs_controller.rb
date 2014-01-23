@@ -155,41 +155,43 @@ class ProgramsController < ApplicationController
 			return @qqq
 		end
 		def dista (levels, row, col, c, p)
-    		if (row<levels.length-1)
-    			if (col<levels[row].length)
-    				@tem = c.clone
-    				c.each do |num|
-    					@tem.delete(num)
-    					@tem1 = p.clone
-    					@tem1[levels[row][col]] = [row, num]
-						dista(levels, row, col+1, @tem, @tem1)
-    					@tem = c.clone
-    				end
+			if @min > 55
+	    		if (row<levels.length-1)
+	    			if (col<levels[row].length)
+	    				@tem = c.clone
+	    				c.each do |num|
+	    					@tem.delete(num)
+	    					@tem1 = p.clone
+	    					@tem1[levels[row][col]] = [row, num]
+							dista(levels, row, col+1, @tem, @tem1)
+	    					@tem = c.clone
+	    				end
+		      		else
+			      		@ar1 = []
+					  	for i in 0..@levelcourses[row+1].length-1
+					 		@ar1 << i
+					 	end
+			      		dista(levels, row+1, 0, @ar1, p)
+		      		end
 	      		else
-		      		@ar1 = []
-				  	for i in 0..@levelcourses[row+1].length-1
-				 		@ar1 << i
-				 	end
-		      		dista(levels, row+1, 0, @ar1, p)
-	      		end
-      		else
-      			if (col<levels[row].length)
-    				@tem = c.clone
-    				c.each do |num|
-    					@tem.delete(num)
-    					@tem1 = p.clone
-    					@tem1[levels[row][col]] = [row, num]
-						dista(levels, row, col+1, @tem, @tem1)
-    					@tem = c.clone
-    				end
-	      		else
-		      		@zz = dis(p)
-	      			if @zz < @min
-	      				@min = @zz
-	      				@optimal = p.clone
-	      			end
-	      		end
-    		end
+	      			if (col<levels[row].length)
+	    				@tem = c.clone
+	    				c.each do |num|
+	    					@tem.delete(num)
+	    					@tem1 = p.clone
+	    					@tem1[levels[row][col]] = [row, num]
+							dista(levels, row, col+1, @tem, @tem1)
+	    					@tem = c.clone
+	    				end
+		      		else
+			      		@zz = dis(p)
+		      			if @zz < @min
+		      				@min = @zz
+		      				@optimal = p.clone
+		      			end
+		      		end
+	    		end
+	    	end
   		end
   		@ar = []
   		for i in 0..@levelcourses[0].length-1
