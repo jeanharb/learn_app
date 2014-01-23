@@ -13,7 +13,7 @@
 </div>
 <div id="prereq-indie">
 	<div class="independent-list">
-	Independant courses:
+	Distance: <%= @min %> Independant courses:
 	<% if @nothingcourse.empty? %>
 		None.
 	<% end %>
@@ -41,7 +41,7 @@
 		</div>
 	</div>
 </div>
-<div id="jquery-find">&nbsp Distance: <%= @min %></div>
+<div id="jquery-find">&nbsp</div>
 <div id="myelement">
 <% (@lays).each do |i| %>
 	<div class="prereq-level">

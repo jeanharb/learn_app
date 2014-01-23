@@ -155,7 +155,7 @@ class ProgramsController < ApplicationController
 			return @qqq
 		end
 		def dista (levels, row, col, c, p)
-			if @min > 54
+			if @min > 53
 	    		if (row<levels.length-1)
 	    			if (col<levels[row].length)
 	    				@tem = c.clone
