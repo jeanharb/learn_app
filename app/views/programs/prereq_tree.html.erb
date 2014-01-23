@@ -41,29 +41,27 @@
 		</div>
 	</div>
 </div>
-<div id="jquery-find">&nbsp </div>
+<div id="jquery-find">&nbsp</div>
 <div id="myelement">
 <% (0..@highestlevel).each do |i| %>
 	<div class="prereq-level">
-		<% @courselevels.each do |key, value| %>
-			<% if value == (@highestlevel-i) %>
-				<% if @passedcourses.include?(key.id) %>
-					<div class="prereq-green all-prereqs" id="<%=key.id%>">
+		<% @layers[i].each do |key| %>
+			<% if @passedcourses.include?(key.id) %>
+				<div class="prereq-green all-prereqs" id="<%=key.id%>">
+					<%= link_to key.title, course_path(key, :program => params[:id]) %>
+					<div class="green-test"></div>
+				</div>
+			<% else %>
+				<% if @doneunder.include?(key.id) %>
+					<div class="prereq-blue all-prereqs" id="<%=key.id%>">
 						<%= link_to key.title, course_path(key, :program => params[:id]) %>
 						<div class="green-test"></div>
 					</div>
 				<% else %>
-					<% if @doneunder.include?(key.id) %>
-						<div class="prereq-blue all-prereqs" id="<%=key.id%>">
-							<%= link_to key.title, course_path(key, :program => params[:id]) %>
-							<div class="green-test"></div>
-						</div>
-					<% else %>
-						<div class="prereq-course all-prereqs" id="<%=key.id%>">
-							<%= link_to key.title, course_path(key, :program => params[:id]) %>
-							<div class="green-test"></div>
-						</div>
-					<% end %>
+					<div class="prereq-course all-prereqs" id="<%=key.id%>">
+						<%= link_to key.title, course_path(key, :program => params[:id]) %>
+						<div class="green-test"></div>
+					</div>
 				<% end %>
 			<% end %>
 		<% end %>

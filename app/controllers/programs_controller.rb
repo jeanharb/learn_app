@@ -186,7 +186,7 @@ class ProgramsController < ApplicationController
 		      		@zz = dis(p)
 	      			if @zz < @min
 	      				@min = @zz
-	      				@optimal = p
+	      				@optimal = p.clone
 	      			end
 	      		end
     		end
@@ -197,6 +197,16 @@ class ProgramsController < ApplicationController
   		end
 		dista(@levelcourses, 0, 0, @ar, @posi)
 		@total_distance = dis(@positions)
+		@layers = []
+		for i in 0..@highestlevel do
+			for j in 0..@levelcourses[i].length-1 do
+				if @layers[i] == nil
+					@layers[i] = [Course.find(@optimal.invert[[i,j]])]
+				else
+					@layers[i] << Course.find(@optimal.invert[[i,j]])
+				end
+			end
+		end
 	end
 
 	def index
