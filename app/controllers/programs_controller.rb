@@ -198,6 +198,7 @@ class ProgramsController < ApplicationController
 		dista(@levelcourses, 0, 0, @ar, @posi)
 		@total_distance = dis(@positions)
 		@layers = []
+		@lays = []
 		for i in 0..@highestlevel do
 			for j in 0..@levelcourses[i].length-1 do
 				if @layers[i] == nil
@@ -206,6 +207,7 @@ class ProgramsController < ApplicationController
 					@layers[i] << Course.find(@optimal.invert[[i,j]])
 				end
 			end
+			@lays << (@highestlevel-i)
 		end
 	end
 

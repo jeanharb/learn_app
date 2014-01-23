@@ -43,7 +43,7 @@
 </div>
 <div id="jquery-find">&nbsp</div>
 <div id="myelement">
-<% (0..@highestlevel).each do |i| %>
+<% (@lays).each do |i| %>
 	<div class="prereq-level">
 		<% @layers[i].each do |key| %>
 			<% if @passedcourses.include?(key.id) %>
