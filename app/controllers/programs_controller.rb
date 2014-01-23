@@ -103,6 +103,50 @@ class ProgramsController < ApplicationController
 				@allprereqs << [@first, @second]
 			end
 		end
+
+		@coursewidths = {}
+		@levelcourses = {}
+		@courselevels.each do |course, h|
+			if @coursewidths.has_key?(h)
+				@coursewidths[h]+=1
+			else
+				@coursewidths[h]=1
+			end
+			if @levelcourses.has_key?(h)
+				@levelcourses[h] << course.id
+			else
+				@levelcourses[h] = [course.id]
+			end
+		end
+		@maxwidth = 0
+		@coursewidths[40]=0
+		@coursewidths.each do |h, value|
+			@coursewidths[h]-=1
+			if value>@maxwidth
+				@maxwidth = value
+			end
+		end
+		@positions = {}
+		@levelcourses.each do |key, arr|
+			@size = arr.length/@maxwidth
+			if @size < 1
+				@a = 1
+			else
+				@a = 0
+			end 
+			arr.each do |cour|
+				@positions[cour] = [key, @a*@size]
+				@a+=1
+			end
+		end
+		@distances = 0
+		@total_distance = 0
+		@allpre.each do |pre|
+			first = pre.required_id
+			sec = pre.want_id
+			@total_distance += (((@positions[first][0]-@positions[sec][0])**2)+((@positions[first][1]-@positions[sec][1])**2))**0.5		
+		end
+
 	end
 
 	def index
