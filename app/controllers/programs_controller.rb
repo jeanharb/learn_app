@@ -219,8 +219,8 @@ class ProgramsController < ApplicationController
 	  								@temp1[l2] = @temp2.clone
 	  								@a1 = dis(@temp1)
 	  								if @a1 < current
-	  									if @min1 > @a1
-	  										@min1 = @a1
+	  									if @min > @a1
+	  										@min = @a1
 	  										@optimal = @temp1.clone
 	  									end
 	  									neighbors(levels, @a1, @temp1)
