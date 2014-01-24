@@ -212,7 +212,7 @@ class ProgramsController < ApplicationController
   			levels.each do |ll, l|
   				if l.length != 1
   					l.each do |l1|
-  						if Random.rand(@connections[l1]) >= 2
+  						if ( @connections[l1] > 4 || Random.rand(10) <= 3)
 	  						l.each do |l2|
 	  							if l2>l1
 	  								@temp1 = p.clone
@@ -242,7 +242,6 @@ class ProgramsController < ApplicationController
 		dista(@levelcourses, 0, 0, @ar, @posi)
 		neighbors(@levelcourses, @min, @optimal)
 		@optimal = @optimal1.clone
-		#@positions = ww(@optimal)
 		@total_distance = dis(@optimal)
 		@layers = []
 		@lays = []
