@@ -212,7 +212,7 @@ class ProgramsController < ApplicationController
   			levels.each do |ll, l|
   				if l.length != 1
   					l.each do |l1|
-  						if ( @connections[l1] > 4 || Random.rand(10) <= 3)
+  						if ( @connections[l1] > 4 || Random.rand(@connections[l1]*3) >= 3)
 	  						l.each do |l2|
 	  							if l2>l1
 	  								@temp1 = p.clone
