@@ -204,14 +204,13 @@ class ProgramsController < ApplicationController
 	    	end
   		end
 
-  		@optimal1 = {}
   		@min1 = 10000
 
   		def neighbors (levels, current, p)
   			levels.each do |ll, l|
   				if l.length != 1
   					l.each do |l1|
-  						if ( @connections[l1] > 4 || Random.rand(@connections[l1]*3) >= 4)
+  						if Random.rand(@connections[l1]) >= 2
 	  						l.each do |l2|
 	  							if l2>l1
 	  								@temp1 = p.clone
@@ -222,7 +221,7 @@ class ProgramsController < ApplicationController
 	  								if @a1 < current
 	  									if @min1 > @a1
 	  										@min1 = @a1
-	  										@optimal1 = @temp1.clone
+	  										@optimal = @temp1.clone
 	  									end
 	  									neighbors(levels, @a1, @temp1)
 	  								end
@@ -240,7 +239,6 @@ class ProgramsController < ApplicationController
   		end
 		dista(@levelcourses, 0, 0, @ar, @posi)
 		neighbors(@levelcourses, @min, @optimal)
-		@optimal = @optimal1.clone
 		@total_distance = dis(@optimal)
 		@layers = []
 		@lays = []
