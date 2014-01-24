@@ -115,131 +115,18 @@ class ProgramsController < ApplicationController
 			end
 		end
 
-		@coursewidths = {}
 		@levelcourses = {}
+		@optimal = {}
 		@courselevels.each do |course, h|
-			if @coursewidths.has_key?(h)
-				@coursewidths[h]+=1
-			else
-				@coursewidths[h]=1
-			end
 			if @levelcourses.has_key?(h)
 				@levelcourses[h] << course.id
 			else
 				@levelcourses[h] = [course.id]
 			end
-		end
-		@maxwidth = 0
-		@coursewidths[40]=0
-		@coursewidths.each do |h, value|
-			@coursewidths[h]-=1
-			if value>@maxwidth
-				@maxwidth = value
-			end
-		end
-		@levelcourses.delete(40)
-		@aaa = 0
-		@optimal = {}
-		@posi = {}
-		@min = 100000
-
-		def ww(a)
-			@c2 = {}
-			@levelcourses.each do |key, arr|
-				@a = (@maxwidth-arr.length)/2
-				arr.each do |cour|
-					@c2[cour] = [key, @a+a[cour][1]]
-				end
-			end
-			return @c2
+			@temp11 = Relationship.find_by_program_id_and_course_id(@program.id, course.id)
+			@optimal[course.id] = [@temp11.prereqlevel, @temp11.prereqpos]
 		end
 
-		def dis(a)
-			@qqq = 0
-			@c1 = ww(a)
-			@allpre.each do |pre|
-				first = pre.required_id
-				sec = pre.want_id
-				@qqq += (((@c1[first][0]-@c1[sec][0])**2)+((@c1[first][1]-@c1[sec][1])**2))**0.5
-			end
-			return @qqq
-		end
-		def dista (levels, row, col, c, p)
-			if @min > 55
-	    		if (row<levels.length-1)
-	    			if (col<levels[row].length)
-	    				@tem = c.clone
-	    				c.each do |num|
-	    					@tem.delete(num)
-	    					@tem1 = p.clone
-	    					@tem1[levels[row][col]] = [row, num]
-							dista(levels, row, col+1, @tem, @tem1)
-	    					@tem = c.clone
-	    				end
-		      		else
-			      		@ar1 = []
-					  	for i in 0..@levelcourses[row+1].length-1
-					 		@ar1 << i
-					 	end
-			      		dista(levels, row+1, 0, @ar1, p)
-		      		end
-	      		else
-	      			if (col<levels[row].length)
-	    				@tem = c.clone
-	    				c.each do |num|
-	    					@tem.delete(num)
-	    					@tem1 = p.clone
-	    					@tem1[levels[row][col]] = [row, num]
-							dista(levels, row, col+1, @tem, @tem1)
-	    					@tem = c.clone
-	    				end
-		      		else
-			      		@zz = dis(p)
-		      			if @zz < @min
-		      				@min = @zz
-		      				@optimal = p.clone
-		      			end
-		      		end
-	    		end
-	    	end
-  		end
-
-  		@min1 = 10000
-
-  		def neighbors (levels, current, p)
-  			levels.each do |ll, l|
-  				if l.length != 1
-  					l.each do |l1|
-  						if Random.rand(@connections[l1]) >= 2
-	  						l.each do |l2|
-	  							if l2>l1
-	  								@temp1 = p.clone
-	  								@temp2 = @temp1[l1].clone
-	  								@temp1[l1] = @temp1[l2].clone
-	  								@temp1[l2] = @temp2.clone
-	  								@a1 = dis(@temp1)
-	  								if @a1 < current
-	  									if @min > @a1
-	  										@min = @a1
-	  										@optimal = @temp1.clone
-	  									end
-	  									neighbors(levels, @a1, @temp1)
-	  								end
-	  							end
-	  						end
-	  					end
-  					end
-  				end
-  			end
-  		end
-
-  		@ar = []
-  		for i in 0..@levelcourses[0].length-1
-  			@ar << i
-  		end
-		dista(@levelcourses, 0, 0, @ar, @posi)
-		neighbors(@levelcourses, @min, @optimal)
-		@total_distance = dis(@optimal)
 		@layers = []
 		@lays = []
 		for i in 0..@highestlevel do

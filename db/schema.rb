@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140103061726) do
+ActiveRecord::Schema.define(:version => 20140124011042) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -214,6 +214,7 @@ ActiveRecord::Schema.define(:version => 20140103061726) do
     t.datetime "updated_at",                  :null => false
     t.integer  "position"
     t.integer  "prereqlevel", :default => 40
+    t.integer  "prereqpos",   :default => 0
   end
 
   add_index "relationships", ["course_id"], :name => "index_relationships_on_course_id"
