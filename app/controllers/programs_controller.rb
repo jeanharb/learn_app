@@ -148,7 +148,6 @@ class ProgramsController < ApplicationController
 			@levelcourses.each do |key, arr|
 				@a = (@maxwidth-arr.length)/2
 				arr.each do |cour|
-					print "A"
 					@c2[cour] = [key, @a+a[cour][1]]
 				end
 			end
@@ -212,7 +211,7 @@ class ProgramsController < ApplicationController
   			levels.each do |ll, l|
   				if l.length != 1
   					l.each do |l1|
-  						if ( @connections[l1] > 4 || Random.rand(@connections[l1]*3) >= 3)
+  						if ( @connections[l1] > 4 || Random.rand(@connections[l1]*3) >= 4)
 	  						l.each do |l2|
 	  							if l2>l1
 	  								@temp1 = p.clone
