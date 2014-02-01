@@ -1,97 +1,82 @@
 <span id="barcolor"></span>
-<div class="navbar">
-	<span id="navbar-logo">
-		<%= link_to "Learnocracy", root_path %>
-		<span id="logo-beta">
-			beta
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+	<div class="nav-container">
+		<span id="navbar-logo">
+			<%= link_to "Learnocracy", root_path %>
+			<span id="logo-beta">
+				beta
+			</span>
 		</span>
-	</span>
-	<span>
-		<% if signed_in? %>
-			<ul class="nav-right navhov-list">
-				<% if is_admin? %>
-				<li>
-					<%= link_to "Database", database_path %>
-				</li>
-				<% end %>
-				<li>
-					<%= link_to "My Courses", current_user %>
-				</li>
-				<li>
-					<%= link_to 'All Programs', programs_path %>
-				</li>
-				<li>
-					<%= link_to 'All Courses', courses_path %>
-				</li>
-				<li class="search-btn">
-					<%= link_to 'Search', "#" %>
-				</li>
-				<li id="fat-menu" class="dropdown click">
-					<a href="#">
-						Account
-					</a>
-				</li>
-			</ul>
-			<div id="search-menu">
-				<div class="search-menu">
-					<form method="post" action="/search">
-						Course/Program :  
-						<%= form_tag('/search') do %>
-							<%= text_field_tag 'fname' %>
-					  		<%= submit_tag 'Search', :class => 'search-btn' %>
-						<% end %>
-					</form>
-				</div>
-			</div>
-			<div class="menu-div">
-				<ul class="dropdown-menu">
-					<li>	
-						<%= link_to "Profile", current_user %>
+		<span>
+			<% if signed_in? %>
+				<ul class="nav-right navhov-list nav nav-pills">
+					<% if is_admin? %>
+					<li>
+						<%= link_to "Database", database_path %>
 					</li>
-					<% if current_user.creator or (current_user.programs.any? or current_user.courses.any?) %>
-						<li>
-							<%= link_to "My Creations", creations_path %>
-						</li>
-					<% end %>
-					<% if current_user.creator %>
-						<li>
-							<%= link_to "My Cart", "/cart" %>
-						</li>
 					<% end %>
 					<li>
-						<%= link_to "Settings", edit_user_path(current_user) %>
+						<%= link_to "My Courses", current_user %>
 					</li>
-					<li class="red">
-						<%= link_to "Sign out", signout_path, method: "delete" %>
+					<li>
+						<%= link_to 'All Programs', programs_path %>
+					</li>
+					<li>
+						<%= link_to 'All Courses', courses_path %>
+					</li>
+					<li>
+						<%= link_to 'Search', search_path %>
+					</li>
+					<li class="with_drop dropdown">
+						<a class="dropdown-toggle" href="#" id="dropdownMenu1" data-toggle="dropdown"> Main Menu
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu main_menu_drop">
+							<li>	
+								<%= link_to "Profile", current_user %>
+							</li>
+							<% if current_user.creator or (current_user.programs.any? or current_user.courses.any?) %>
+								<li>
+									<%= link_to "My Creations", creations_path %>
+								</li>
+							<% end %>
+							<% if current_user.creator %>
+								<li>
+									<%= link_to "My Cart", "/cart" %>
+								</li>
+							<% end %>
+							<li>
+								<%= link_to "Settings", edit_user_path(current_user) %>
+							</li>
+							<li class="divider1"></li>
+							<li class="red1">
+								<%= link_to "Sign out", signout_path, method: "delete" %>
+							</li>
+						</ul>
 					</li>
 				</ul>
-			</div>
-		<% else %>
-			<span id="signin" class="navhov">
-				Sign In
-			</span>
-			<div id="signin-menu">
-				<div class="signin">
-					<%= form_for(:session, url: sessions_path) do |f| %>
-					<div id="email-cont">
-						<span>
-							<%= f.label :email %>
-						</span>
-						<span id="email-box">
-							<%= f.text_field :email %>
-						</span>
-					</div>
-					<div id="pwbox">
-						<%= f.label :password %>
-						<%= f.password_field :password %>
-					</div>
-					<div id="signin-btn">
-						<%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
-					</div>
-					<div id="newusr">New user? <%= link_to "Sign up now!", signup_path %></div>
-					<% end %>
-				</div>
-			</div>
-		<% end %> 
-	</span>
-</div>
+			<% else %>
+				<ul class="nav-right navhov-list nav nav-pills">
+					<li class="with_drop dropdown">
+						<a class="dropdown-toggle" href="#" id="dropdownMenu1" data-toggle="dropdown"> Sign In
+							<span class="caret"></span>
+						</a>
+						<div class="dropdown-menu pull-right signin_menu">
+							<div class="signin_cont"> 
+								<%= form_for(:session, url: sessions_path) do |f| %>
+								<div class="form-group">
+									<input type="text" name="session[email]" class="form-control" placeholder="Email">
+									<div class="signin_divider"></div>
+									<input type="password" name="session[password]" class="form-control" placeholder="Password">
+								</div>
+								<%= f.submit "Sign in", class: "btn btn-default pull-right" %>
+								<div id="newusr">New user? <%= link_to "Sign up now!", signup_path %></div>
+								<% end %>
+							</div>
+						</div>
+					</li>
+				</ul>
+			<% end %> 
+		</span>
+	</div>
+</nav>
