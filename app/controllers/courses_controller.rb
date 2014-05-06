@@ -109,7 +109,8 @@ class CoursesController < ApplicationController
 			countcat(params[:course][:category])
 			redirect_to edit_course_path(@course)
 		else
-			render 'edit'
+			#render 'edit'
+			redirect_to edit_course_path(@course)  #MUST fix to send errors. compare with user creation automatic errors
 		end
 	end
 

@@ -1,3 +1,5 @@
 $("#cart-btn-course").html("<%= escape_javascript render('add_to_cart') %>");
-$("#add_registration").after(location.reload());
-$("#prog_add_registration").after(location.reload());
+$("#add_registration").html("<%= escape_javascript render('add_courseregistration') %>");
+$("#load_notes").html("<%= escape_javascript render(@notes) %>");
+$("#load_exams").html("<%= escape_javascript render('exams_partial') %>");
+$("#prog_add_registration").hide();

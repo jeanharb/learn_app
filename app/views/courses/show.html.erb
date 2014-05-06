@@ -76,7 +76,9 @@
 			<% if @notes.any? %>
 				<% if !@notes.nil? %>
 						<ul class="notes">
-							<%= render @notes %>
+							<div id="load_notes">
+								<%= render @notes %>
+							</div>
 						</ul>
 				<% end %>
 			<% end %>
@@ -91,27 +93,9 @@
 			<% if @exams.any? %>
 				<% if !@exams.nil? %>
 						<ul class="notes">
-							<% @exams.each do |exam| %>
-								<div>
-									<% if @see_exam %>
-										<% if params.has_key?(:program) %>
-											<span class="content"><%= link_to exam.name, exam_path(exam, program: params[:program]) %></span>
-										<% else %>
-											<span class="content"><%= link_to exam.name, exam_path(exam) %></span>
-										<% end %>
-									<% else %>
-										<span class="exam-hover"><%= exam.name %></span>
-									<% end %>
-									<% if current_user.examresults.where("exam_id = ?", exam.id).exists? %>
-										<% if current_user.examresults.find_by_exam_id(exam.id).passed == "false" %>
-											<span> - </span><span id="exam_failed">Failed (Grade Required <%= exam.grade %>%)</span>
-										<% else %>
-											<span> - </span><span id="exam_passed">Passed</span>
-										<% end %>
-										<span> (<%= current_user.examresults.find_by_exam_id(exam.id).finalgrade %>%)</span>
-									<% end %>
-								</div>
-							<% end %>
+							<div id="load_exams">
+								<%= render 'exams_partial' %>
+							</div>
 						</ul>
 				<% end %>
 			<% else %>

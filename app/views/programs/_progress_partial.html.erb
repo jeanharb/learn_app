@@ -1,0 +1,16 @@
+<% if !@cours_items.nil? and current_user.registered?(@program) %>
+	<div class="exams-container">
+		<div id="cou-title">
+			PROGRESS REPORT
+		</div>
+		<div class="files-bar"></div>
+		<div>&nbsp</div>
+		<div class="progress">
+			<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%=@progress%>" aria-valuemin="0" aria-valuemax="100" style="width: <%=@progress%>%">
+				<span class="sr-only">40% Complete (success)</span>
+			</div>
+		</div>
+			Completed <%= @total_course %> of <%= @cours_items.count %> courses.
+		</div>
+	</div>
+<% end %>

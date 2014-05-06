@@ -1,6 +1,6 @@
 <div class="files-btn-sub">
 	<%= form_for @note do |f| %>
-	<%= render 'shared/error_messages', object: f.object, :html => { :id => "myform" } %>
+		<%= render 'shared/error_messages', object: f.object, :html => { :id => "myform" } %>
 		<%= f.hidden_field :id, :value => params[:id] %>
 		<%= f.label "Create File" %>
 		<div>
