@@ -33,19 +33,13 @@
 	<div class="course-btns">
 		<% if current_user.creator %>
 			<div id="cart-btn-course">
-				<% if !(current_user.classincart?(@course)) %>
-					<%= render 'add_to_cart' %>
-				<% else %>
-					<%= render 'remove_from_cart' %>
-				<% end %>
+				<%= render 'add_to_cart' %>
 			</div>
 		<% end %>
 		<% if !params.has_key?(:program)%>
-			<% if current_user.courseregistered?(@course) %>
-				<%= render 'remove_courseregistration' %>
-			<% else %>
+			<div id="add_registration">
 				<%= render 'add_courseregistration' %>
-			<% end %>
+			</div>
 		<% else %>
 			<% if !current_user.registered?(@program) %>
 				<%= render 'programs/add_registration' %>

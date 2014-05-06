@@ -268,12 +268,14 @@ class Program < ActiveRecord::Base
           end
         end
       end
+    @ar = []
 
-      @ar = []
+    if(!(@levelcourses.length == 0))
       for i in 0..@levelcourses[0].length-1
         @ar << i
       end
-    dista(@levelcourses, 0, 0, @ar, @posi)
+      dista(@levelcourses, 0, 0, @ar, @posi)
+    end
     neighbors(@levelcourses, @min, @optimal)
     @optimal.each do |k, v|
       @rela = @allrela.find_by_course_id(k)

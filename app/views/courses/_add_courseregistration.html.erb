@@ -1,4 +1,16 @@
-<%= form_for(current_user.courseregistrations.build(takencourse_id: @course.id)) do |f| %>
-  <div><%= f.hidden_field :takencourse_id %></div>
-  <%= f.submit "Register", :class => "reg-btn reg-btn-add" %>
+<% if !current_user.courseregistered?(@course) %>
+	<%= form_for(current_user.courseregistrations.build(takencourse_id: @course.id)) do |f| %>
+  		<div>
+  			<%= f.hidden_field :takencourse_id %>
+  		</div>
+  		<%= f.submit "Register", :class => "reg-btn reg-btn-add" %>
+	<% end %>
+<% else %>
+	<%= form_for(current_user.courseregistrations.find_by_takencourse_id(@course.id), 
+			 html: { method: :delete }) do |f| %>
+	  <div>
+	  	<%= f.hidden_field :takencourse_id %>
+	  </div>
+	  <%= f.submit "Unregister", :class => "reg-btn reg-btn-rem" %>
+	<% end %>
 <% end %>

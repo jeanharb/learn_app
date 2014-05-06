@@ -129,15 +129,21 @@ class ProgramsController < ApplicationController
 
 		@layers = []
 		@lays = []
-		for i in 0..@highestlevel do
-			for j in 0..@levelcourses[i].length-1 do
-				if @layers[i] == nil
-					@layers[i] = [Course.find(@optimal.invert[[i,j]])]
-				else
-					@layers[i] << Course.find(@optimal.invert[[i,j]])
+		puts "HEHEHHHHHH"
+		puts @highestlevel
+		puts @levelcourses
+		
+		if (!(@highestlevel==0))
+			for i in 0..@highestlevel do
+				for j in 0..@levelcourses[i].length-1 do
+					if @layers[i] == nil
+						@layers[i] = [Course.find(@optimal.invert[[i,j]])]
+					else
+						@layers[i] << Course.find(@optimal.invert[[i,j]])
+					end
 				end
+				@lays << (@highestlevel-i)
 			end
-			@lays << (@highestlevel-i)
 		end
 	end
 

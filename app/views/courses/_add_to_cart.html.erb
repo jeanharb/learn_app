@@ -1,4 +1,13 @@
-<%= form_for(current_user.carts.build(coursefollow_id: @course.id)) do |f| %>
-  <div><%= f.hidden_field :coursefollow_id %></div>
-  <%= f.submit "Add to Cart", class: "cart-btn add-cart-btn" %>
+<% if !(current_user.classincart?(@course)) %>
+	<%= form_for(current_user.carts.build(coursefollow_id: @course.id), :remote => true) do |f| %>
+	  <div>
+	  	<%= f.hidden_field :coursefollow_id %>
+	  </div>
+	  <%= f.submit "Add to Cart", class: "cart-btn add-cart-btn" %>
+	<% end %>
+<% else %>
+	<%= form_for(current_user.carts.find_by_coursefollow_id(@course.id), 
+				 html: { method: :delete }, :remote => true) do |f| %>
+	  <%= f.submit "Remove from Cart", class: "cart-btn rem-cart-btn" %>
+	<% end %>
 <% end %>
