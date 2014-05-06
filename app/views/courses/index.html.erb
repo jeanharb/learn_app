@@ -10,7 +10,7 @@
 				<img src="data:<%= Category.find_by_id(course.category).imagetype %>;base64,<%= Category.find_by_id(course.category).image.to_s %>" />
 			<% end %>
 		</div>
-		<div class="cours-cont">
+		<div class="cours-list-cont">
 			<div class="cours-top">
 				<span class="courstitle-list">
 					<%= course.title %>
