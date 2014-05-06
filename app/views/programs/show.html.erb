@@ -9,11 +9,9 @@
 		</div>
 	</div>
 	<div class="course-btns">
-		<% if current_user.registered?(@program) %>
-			<%= render 'remove_registration' %>
-		<% else %>
+		<div id="prog_registration">
 			<%= render 'add_registration' %>
-		<% end %>
+		</div>
 		<% if progcreate %>
 			<div class="edit-cont">
 				<div class="edit-btn profile-btn">

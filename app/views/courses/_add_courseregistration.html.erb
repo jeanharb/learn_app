@@ -1,5 +1,5 @@
 <% if !current_user.courseregistered?(@course) %>
-	<%= form_for(current_user.courseregistrations.build(takencourse_id: @course.id)) do |f| %>
+	<%= form_for(current_user.courseregistrations.build(takencourse_id: @course.id), :remote => true) do |f| %>
   		<div>
   			<%= f.hidden_field :takencourse_id %>
   		</div>
@@ -7,7 +7,7 @@
 	<% end %>
 <% else %>
 	<%= form_for(current_user.courseregistrations.find_by_takencourse_id(@course.id), 
-			 html: { method: :delete }) do |f| %>
+			 html: { method: :delete }, :remote => true) do |f| %>
 	  <div>
 	  	<%= f.hidden_field :takencourse_id %>
 	  </div>

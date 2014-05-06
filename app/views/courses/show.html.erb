@@ -42,7 +42,9 @@
 			</div>
 		<% else %>
 			<% if !current_user.registered?(@program) %>
-				<%= render 'programs/add_registration' %>
+				<div id="prog_add_registration">
+					<%= render 'programs/add_registration' %>
+				</div>
 			<% end %>
 		<% end %>
 		<% if courcreator %>
