@@ -4,7 +4,7 @@ class CartsController < ApplicationController
 	def create
 		@course = Course.find_by_id(params[:cart][:coursefollow_id])
 		current_user.putincart(@course)
-		redirect_to course_path(@course)
+		render :toggle
 	end
 
 	def destroy
@@ -13,7 +13,7 @@ class CartsController < ApplicationController
 		if !params[:cart].nil?
 		  redirect_to '/cart'
 		else
-		  redirect_to course_path(@course)
+		  render :toggle
 		end
 	end
 end

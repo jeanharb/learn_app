@@ -1,0 +1,5 @@
+<%= form_for(current_user.registrations.build(takenprog_id: @program.id), :remote => true) do |f| %>
+  	<%= f.hidden_field :in_course, :value => @course.id %>
+  	<%= f.hidden_field :takenprog_id %>
+    <%= f.submit "Register to Program", :class => "reg-btn reg-btn-add" %>
+<% end %>

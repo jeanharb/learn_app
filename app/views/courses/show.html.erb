@@ -33,7 +33,7 @@
 	<div class="course-btns">
 		<% if current_user.creator %>
 			<div id="cart-btn-course">
-				<%= render 'add_to_cart' %>
+				<%= render 'carts/add_to_cart' %>
 			</div>
 		<% end %>
 		<% if !params.has_key?(:program)%>
@@ -41,11 +41,9 @@
 				<%= render 'add_courseregistration' %>
 			</div>
 		<% else %>
-			<% if !current_user.registered?(@program) %>
-				<div id="prog_add_registration">
-					<%= render 'programs/add_registration' %>
-				</div>
-			<% end %>
+			<div id="prog_add_registration">
+				<%= render 'registrations/add_registration_courses' %>
+			</div>
 		<% end %>
 		<% if courcreator %>
 			<div id="edit-btn-1">
@@ -77,7 +75,7 @@
 				<% if !@notes.nil? %>
 						<ul class="notes">
 							<div id="load_notes">
-								<%= render @notes %>
+								<%= render 'notes/note' %>
 							</div>
 						</ul>
 				<% end %>

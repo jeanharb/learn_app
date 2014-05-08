@@ -1,11 +1,8 @@
 <% if !current_user.registered?(@program) %>
 	<%= form_for(current_user.registrations.build(takenprog_id: @program.id), :remote => true) do |f| %>
-	  <div><%= f.hidden_field :takenprog_id %></div>
-	  <% if params[:controller] == "courses" %>
-	    <%= f.submit "Register to program", :class => "reg-btn reg-btn-add" %>
-	  <% else %>
+	  	<%= f.hidden_field :takenprog_id %>
+	  	<%= f.hidden_field :in_course, :value => "0" %>
 	  	<%= f.submit "Register", :class => "reg-btn reg-btn-add" %>
-	  <% end %>
 	<% end %>
 <% else %>
 	<%= form_for(current_user.registrations.find_by_takenprog_id(@program.id), 

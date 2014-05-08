@@ -206,7 +206,8 @@ class ProgramsController < ApplicationController
 			countcat(params[:program][:category])
 			redirect_to edit_program_path(@program)
 		else
-			render 'edit'
+			redirect_to edit_program_path(@program)
+			#render 'edit'
 		end
 	end
 

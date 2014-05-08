@@ -1,46 +1,48 @@
-<% if !note.filename.nil? %>
-<li>
-	<% if @see_exam %>
-		<% if note.contenttype == "application/pdf" or note.contenttype == "youtube" %>
-			<span class="content">
-				<% if params.has_key?(:program) %>
-					<%= link_to note.file_title, viewfile_path(id: note.id, program: @program.id) %>
+<% @notes.each do |note| %>
+	<% if !note.filename.nil? %>
+	<li>
+		<% if @see_exam %>
+			<% if note.contenttype == "application/pdf" or note.contenttype == "youtube" %>
+				<span class="content">
+					<% if params.has_key?(:program) %>
+						<%= link_to note.file_title, viewfile_path(id: note.id, program: @program.id) %>
+					<% else %>
+						<%= link_to note.file_title, viewfile_path(id: note.id) %>
+					<% end %>
+				</span>
+			<% else %>
+				<span class="content">
+					<%= note.file_title %>
+				</span>
+			<% end %>
+			<% if note.contenttype != "youtube" %>
+			<span class="smaller">
+				<% if note.content.length/1.3572/1000 > 1000 %>
+					<%= ((note.content.length/1.3572)/1000000).round(1) %>MB
 				<% else %>
-					<%= link_to note.file_title, viewfile_path(id: note.id) %>
+					<%= ((note.content.length/1.3572)/1000).round %>KB
 				<% end %>
 			</span>
+			<span class="smaller note-dwn">
+				<%= link_to "Download", download_note_path(note) %>
+			</span>
+			<% else %>
+				<span class="smaller">
+					 VIDEO
+				</span>
+			<% end %>
 		<% else %>
+		<span class="unclickable-file">
 			<span class="content">
 				<%= note.file_title %>
 			</span>
-		<% end %>
-		<% if note.contenttype != "youtube" %>
-		<span class="smaller">
-			<% if note.content.length/1.3572/1000 > 1000 %>
-				<%= ((note.content.length/1.3572)/1000000).round(1) %>MB
-			<% else %>
-				<%= ((note.content.length/1.3572)/1000).round %>KB
+			<% if note.contenttype == "youtube" %>
+				<span class="smaller">
+						 VIDEO
+				</span>
 			<% end %>
 		</span>
-		<span class="smaller note-dwn">
-			<%= link_to "Download", download_note_path(note) %>
-		</span>
-		<% else %>
-			<span class="smaller">
-				 VIDEO
-			</span>
 		<% end %>
-	<% else %>
-	<span class="unclickable-file">
-		<span class="content">
-			<%= note.file_title %>
-		</span>
-		<% if note.contenttype == "youtube" %>
-			<span class="smaller">
-					 VIDEO
-			</span>
-		<% end %>
-	</span>
+	</li>
 	<% end %>
-</li>
 <% end %>

@@ -5,13 +5,17 @@ class CourseregistrationsController < ApplicationController
 		@course = Course.find_by_id(params[:courseregistration][:takencourse_id])
 		current_user.courseregister!(@course)
 		countcoursestudents(@course)
-		redirect_to course_path(@course)
+		@exams = @course.exams
+		@notes = @course.notes
+		render :template => "courses/toggle_course", :locals => {:@notes => @notes, :@exams => @exams, :@see_exam => true}
 	end
 
 	def destroy
 		@course = Course.find_by_id(params[:courseregistration][:takencourse_id])
 		current_user.courseunregister!(@course)
 		countcoursestudents(@course)
-		redirect_to course_path(@course)
+		@exams = @course.exams
+		@notes = @course.notes
+		render :template => "courses/toggle_course", :locals => {:@notes => @notes, :@exams => @exams, :@see_exam => false}
 	end
 end

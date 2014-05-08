@@ -1,3 +1,3 @@
-$("#prog_registration").html("<%= escape_javascript render('add_registration') %>");
+$("#prog_registration").html("<%= escape_javascript (render :partial => 'add_registration' ) %>");
 $("#load_reviews").html("<%= escape_javascript render('reviews_partial') %>");
 $("#load_progress").html("<%= escape_javascript render('progress_partial') %>");
