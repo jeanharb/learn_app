@@ -39,6 +39,7 @@ class CoursesController < ApplicationController
 
 	def edit
 		@course = Course.find(params[:id])
+		@course_id = @course.id
 		@exams = @course.exams
 		@notes = @course.notes
     	@note = @course.notes.build
@@ -107,10 +108,9 @@ class CoursesController < ApplicationController
 		@course = Course.find(params[:id])
 		if @course.update_attributes(params[:course])
 			countcat(params[:course][:category])
-			redirect_to edit_course_path(@course)
+			render "course_edit_js"
 		else
-			#render 'edit'
-			redirect_to edit_course_path(@course)  #MUST fix to send errors. compare with user creation automatic errors
+			render "course_edit_js"
 		end
 	end
 

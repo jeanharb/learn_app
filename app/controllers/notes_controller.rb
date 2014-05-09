@@ -8,30 +8,15 @@ class NotesController < ApplicationController
     @error = 0
     @errors = []
     if params[:note].has_key?(:youtube)
-      if !((params[:note][:content].include? "youtube") and (params[:note][:content].include? "/watch?v="))
-        @errors << "Youtube link must be in 'youtube.com/watch?v=cmSbXsFE3l8' format."
-        @error = 1
-      end
-      if params[:note][:file_title].length < 3
-        @errors << "Video file title must be at least 3 characters long."
-        @error = 1
-      end
-      if !@errors.any?
         @link = params[:note][:content].match(/\/watch.*/)[0][9..-1]
         @position = @course.notes.count
         @note = @course.notes.build(:position => @position,:content => @link, :file_title => params[:note][:file_title], :filename => params[:note][:content], :contenttype => "youtube")
-      end
     else
-      if params[:note][:file_title].length < 3
-        @errors << "File title must be at least 3 characters long."
-      end
-      if !@errors.any?
         params[:note][:content].tempfile = Base64.encode64(open(params[:note][:content].tempfile).to_a.join)
         params[:note][:filename] = params[:note][:content].original_filename
         params[:note][:contenttype] = params[:note][:content].content_type
         @position = @course.notes.count
         @note = @course.notes.build(:position => @position, :content => params[:note][:content].tempfile, :file_title => params[:note][:file_title], :filename => params[:note][:filename], :contenttype => params[:note][:contenttype])
-      end
     end
     if @errors.any?
       if @error == 1
@@ -41,7 +26,7 @@ class NotesController < ApplicationController
       end
     else
       if @note.save
-        redirect_to edit_course_path(@course)
+        render "notes/edit_notes.js.erb", :locals => { :@course_id => @course.id, :@course => @course }
       else
         render root_path
       end
@@ -92,9 +77,13 @@ class NotesController < ApplicationController
 
   def destroy
     note = Note.find(params[:id])
+    @course = Course.find(note.course_id)
     note.remove_from_list
-    note.destroy
-    redirect_to edit_course_path(note.course_id)
+    respond_to do |format|
+      if note.destroy
+        format.js
+      end
+    end
   end
 
   private

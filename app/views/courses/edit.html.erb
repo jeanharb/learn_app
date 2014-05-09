@@ -19,39 +19,22 @@
 	</div>
 <% end %>
 <div class="course-edit-form-cont">
-<%= form_for @course do |f| %>
-<%= render 'shared/error_messages', object: f.object, :html => { :id => "myform" } %>
-	<div>
-		<%= f.label "Course Title :" %>
-	<span>
-		<%= f.text_field :title %>
-	</span>
+	<div id="course_edit_form">
+		<%= render "course_edit" %>
 	</div>
-	<div>
-		<%= f.label "Short Description :" %>
-	<span>
-		<%= f.text_area :short_desc %>
-	</span>
-	</div>
-	<div>
-		<%= f.label "Full Description :" %>
-	<span>
-		<%= f.text_area :description %>
-	</span>
-	</div>
-	<div>
-		<%= f.label "Course Category :" %>
-		<%= f.select :category, Category.all.collect {|category| [ category.title, category.id ] } %>
-	</div>
-	<div><%= f.submit "Update Course Info", class: "subcon" %></div>
-<% end %>
 </div>
 <div class="edit-note-list">
 	Notes and Videos
 <div class="course-edit-bar"></div>
 <div class="note_formform">
-	<%= render "shared/note_form" %>
-	<%= render "shared/youtube_form" %>
+	<div class="files-btn-sub">
+		<div id="note_edit_form">
+			<%= render "note_form" %>
+		</div>
+	</div>
+	<div id="vid_edit_form">
+		<%= render "shared/youtube_form" %>
+	</div>
 </div>
 <div class="vid_formform">
 <% if @notes.count > 0 %>
@@ -62,34 +45,9 @@
 	No files or videos created yet.
 <% end %>
 <ul class="notes">
-<% @notes.each_with_index do |note, i| %>
-	<% if !note.filename.nil? %>
-	<li>
-		<%= link_to (image_tag "arrow-up.png"), moveupfile_path(:id => note.id, :course => @course.id), {:class => "list_arrow"}%>
-		<%= link_to (image_tag "arrow-down.png"), movedownfile_path(:id => note.id, :course => @course.id), {:class => "list_arrow"}%>
-		<%= i+1 %>.
-		<% if note.contenttype == "application/pdf" or note.contenttype == "youtube" %>
-			<span class="content">
-				<%= link_to note.file_title, viewfile_path(id: note.id) %>
-			</span>
-		<% else %>
-			<span class="content">
-				<%= note.file_title %>
-			</span>
-		<% end %>
-		<% if note.contenttype == "youtube" %>
-			<span class="smaller">
-				 VIDEO
-			</span>
-		<% end %>
-		<span class="delete-btn">
-			<%= link_to "Delete", note_path(:id => note.id), 
-											method: :delete,
-											title: note.filename %>
-		</span>
-	</li>
-	<% end %>
-<% end %>
+<div id="list_note_det">
+	<%= render "notes/note_list" %>
+</div>
 </ul>
 </div>
 </div>

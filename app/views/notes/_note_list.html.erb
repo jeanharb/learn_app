@@ -1,0 +1,30 @@
+<% @notes.each_with_index do |note, i| %>
+	<% if !note.filename.nil? %>
+	<li class="one_file">
+		<%= link_to (image_tag "arrow-up.png"), moveupfile_path(:id => note.id, :course => @course_id), {:class => "list_arrow"}%>
+		<%= link_to (image_tag "arrow-down.png"), movedownfile_path(:id => note.id, :course => @course_id), {:class => "list_arrow"}%>
+		<%= i+1 %>.
+		<% if note.contenttype == "application/pdf" or note.contenttype == "youtube" %>
+			<span class="content">
+				<%= link_to note.file_title, viewfile_path(id: note.id) %>
+			</span>
+		<% else %>
+			<span class="content">
+				<%= note.file_title %>
+			</span>
+		<% end %>
+		<% if note.contenttype == "youtube" %>
+			<span class="smaller">
+				 VIDEO
+			</span>
+		<% end %>
+		<span class="delete-btn">
+			<%= link_to "Delete", note_path(:id => note.id),
+											method: :delete,
+											title: note.filename,
+											:remote => true,
+											:success => "$(this).up('.delete-btn').up('.one_file').remove();" %>
+		</span>
+	</li>
+	<% end %>
+<% end %>
