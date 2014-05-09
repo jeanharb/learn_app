@@ -25,7 +25,7 @@ class NotesController < ApplicationController
       end
     else
       if @note.save
-        @notes = @course.notes
+        @notes = @course.notes #Have to fix this
         render :template => "notes/new_notes_j", :locals => {:@new_note => @course.notes.build, :@notes => @notes, :@course_id => @course.id, :@course => @course}
       else
         render root_path
