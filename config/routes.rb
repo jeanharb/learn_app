@@ -46,8 +46,6 @@ LearnApp::Application.routes.draw do
   match '/movedowncourse',to: "courses#listorder_down"
   match '/moveupexam',    to: "exams#listorder_up"
   match '/movedownexam',  to: "exams#listorder_down"
-  match '/moveupfile',    to: "notes#listorder_up"
-  match '/movedownfile',  to: "notes#listorder_down"
   match '/cart',          to: "users#cart"
   match '/programs',      to: "programs#index"
   match '/newprogram',    to: "programs#new"

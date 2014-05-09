@@ -43,6 +43,7 @@ class CoursesController < ApplicationController
 		@exams = @course.exams
 		@notes = @course.notes
     	@note = @course.notes.build
+    	@new_note = @course.notes.build
     	@note_vid = @course.notes.build
 	end
 

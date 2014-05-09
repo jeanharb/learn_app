@@ -29,7 +29,7 @@
 <div class="note_formform">
 	<div class="files-btn-sub">
 		<div id="note_edit_form">
-			<%= render "note_form" %>
+			<%= render "notes/note_form" %>
 		</div>
 	</div>
 	<div id="vid_edit_form">
@@ -62,20 +62,9 @@
 	No exams created yet.
 <% end %>
 <ul class="notes">
-	<% @exams.each_with_index do |exam, i| %>
-		<div>
-			<span class="content">
-				<%= link_to (image_tag "arrow-up.png"), moveupexam_path(:id => exam.id, :course => @course.id), {:class => "list_arrow"}%>
-				<%= link_to (image_tag "arrow-down.png"), movedownexam_path(:id => exam.id, :course => @course.id), {:class => "list_arrow"}%>
-				<%= i+1 %>.
-				<%= link_to exam.name, exam_path(exam) %>
-			</span>
-			<span class="delete-btn">
-			<%= link_to "Delete", exam_path(:id => exam.id), method: :delete, 
-											title: exam.name %>
-			</span>
-		</div>
-	<% end %>
+	<div id="list_exam_det">
+		<%= render "exams/exam_list" %>
+	</div>
 </ul>
 </div>
 

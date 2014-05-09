@@ -158,28 +158,34 @@ class ExamsController < ApplicationController
 		if params.has_key?(:complete)
 			redirect_to course_path(@course)
 		else
-			redirect_to newexam_course_path(@course, exam: @exam.id, question_num: @question)		end
+			redirect_to newexam_course_path(@course, exam: @exam.id, question_num: @question)
+		end
 	end
 
-	def listorder_up
-	  @course = Course.find(params[:course])
-	  @exam = Exam.find(params[:id])
-	  @exam.move_higher
-	  redirect_to edit_course_path(@course)
-	end
-
-	def listorder_down
-	  @course = Course.find(params[:course])
-	  @exam = Exam.find(params[:id])
-	  @exam.move_lower
-	  redirect_to edit_course_path(@course)
-	end
+	def update
+    @exam = Exam.find(params[:id])
+    @course_id = @exam.course_id
+    @course = Course.find(@course_id)
+    @exams = @course.exams
+    if(params.has_key?(:exam))
+      @move = params[:exam][:move]
+      if(@move=="0")
+        @exam.move_lower
+      else
+        @exam.move_higher
+      end
+      render :template => "exams/update_js", :locals => {:@exams => @exams, :@course_id => @course_id}
+    end
+  end
 
 	def destroy
 		@exam = Exam.find(params[:id])
-		@course = @exam.course_id
-		@exam.destroy
-		redirect_to edit_course_path(@course)
+		@course_id = @exam.course_id
+		if @exam.destroy
+			@course = Course.find(@course_id)
+			@exams = @course.exams
+			render :template => "exams/update_js", :locals => {:@exams => @exams, :@course_id => @course_id}
+		end
 	end
 
 	private

@@ -7,15 +7,14 @@ class NotesController < ApplicationController
     @course = Course.find(params[:note][:id])
     @error = 0
     @errors = []
+    @position = @course.notes.count
     if params[:note].has_key?(:youtube)
         @link = params[:note][:content].match(/\/watch.*/)[0][9..-1]
-        @position = @course.notes.count
         @note = @course.notes.build(:position => @position,:content => @link, :file_title => params[:note][:file_title], :filename => params[:note][:content], :contenttype => "youtube")
     else
         params[:note][:content].tempfile = Base64.encode64(open(params[:note][:content].tempfile).to_a.join)
         params[:note][:filename] = params[:note][:content].original_filename
         params[:note][:contenttype] = params[:note][:content].content_type
-        @position = @course.notes.count
         @note = @course.notes.build(:position => @position, :content => params[:note][:content].tempfile, :file_title => params[:note][:file_title], :filename => params[:note][:filename], :contenttype => params[:note][:contenttype])
     end
     if @errors.any?
@@ -26,7 +25,8 @@ class NotesController < ApplicationController
       end
     else
       if @note.save
-        render "notes/edit_notes.js.erb", :locals => { :@course_id => @course.id, :@course => @course }
+        @notes = @course.notes
+        render :template => "notes/new_notes_j", :locals => {:@new_note => @course.notes.build, :@notes => @notes, :@course_id => @course.id, :@course => @course}
       else
         render root_path
       end
@@ -45,18 +45,20 @@ class NotesController < ApplicationController
     end
   end
 
-  def listorder_up
-    @course = Course.find(params[:course])
+  def update
     @note = Note.find(params[:id])
-    @note.move_higher
-    redirect_to edit_course_path(@course)
-  end
-
-  def listorder_down
-    @course = Course.find(params[:course])
-    @note = Note.find(params[:id])
-    @note.move_lower
-    redirect_to edit_course_path(@course)
+    @course_id = @note.course_id
+    @course = Course.find(@course_id)
+    @notes = @course.notes
+    if(params.has_key?(:note))
+      @move = params[:note][:move]
+      if(@move=="0")
+        @note.move_lower
+      else
+        @note.move_higher
+      end
+      render :template => "notes/destroy_js", :locals => {:@notes => @notes, :@course_id => @course_id}
+    end
   end
 
   def show
@@ -79,10 +81,10 @@ class NotesController < ApplicationController
     note = Note.find(params[:id])
     @course = Course.find(note.course_id)
     note.remove_from_list
-    respond_to do |format|
-      if note.destroy
-        format.js
-      end
+    if note.destroy
+      @notes = @course.notes
+      @course_id = @course.id
+      render :template => "notes/destroy_js", :locals => {:@notes => @notes, :@course_id => @course_id}
     end
   end
 

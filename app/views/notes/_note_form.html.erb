@@ -1,0 +1,13 @@
+<%= form_for(@new_note, :remote => true) do |f| %>
+	<%= render 'shared/error_messages', object: f.object, :html => { :id => "myform" } %>
+	<%= f.hidden_field :id, :value => @course_id %>
+	<%= f.label "Create File" %>
+	<div>
+	<%= f.label "File title : " %>
+	<%= f.text_field :file_title, class: "course-edit-field" %>
+	</div>
+	<div>
+	<%= f.file_field :content, :html => { :id => "myfile" } %>
+	</div>
+	<%= f.submit "Upload File", class: "subcon note-submit", :disable_with => "Uploading…" %>
+<% end %>

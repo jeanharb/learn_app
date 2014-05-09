@@ -1,8 +1,17 @@
 <% @notes.each_with_index do |note, i| %>
 	<% if !note.filename.nil? %>
 	<li class="one_file">
-		<%= link_to (image_tag "arrow-up.png"), moveupfile_path(:id => note.id, :course => @course_id), {:class => "list_arrow"}%>
-		<%= link_to (image_tag "arrow-down.png"), movedownfile_path(:id => note.id, :course => @course_id), {:class => "list_arrow"}%>
+	<%= form_for(note, :remote => true) do |f| %>
+  		<%= f.hidden_field :move, :value => "1" %>
+  		<%= f.submit "", :type => :image, :src => "/assets/arrow-up.png", :class => "list_arrow1" %>
+	<% end %>
+	<%= form_for(note, :remote => true) do |f| %>
+  		<%= f.hidden_field :move, :value => "0" %>
+  		<%= f.submit "", :type => :image, :src => "/assets/arrow-down.png", :class => "list_arrow1" %>
+	<% end %>
+
+
+
 		<%= i+1 %>.
 		<% if note.contenttype == "application/pdf" or note.contenttype == "youtube" %>
 			<span class="content">
@@ -22,8 +31,7 @@
 			<%= link_to "Delete", note_path(:id => note.id),
 											method: :delete,
 											title: note.filename,
-											:remote => true,
-											:success => "$(this).up('.delete-btn').up('.one_file').remove();" %>
+											:remote => true %>
 		</span>
 	</li>
 	<% end %>

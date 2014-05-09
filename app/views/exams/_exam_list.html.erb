@@ -1,0 +1,20 @@
+<% @exams.each_with_index do |exam, i| %>
+	<div>
+		<span class="content">
+			<%= form_for(exam, :remote => true) do |f| %>
+	  		<%= f.hidden_field :move, :value => "1" %>
+	  		<%= f.submit "", :type => :image, :src => "/assets/arrow-up.png", :class => "list_arrow1" %>
+	  		<% end %>
+	  		<%= form_for(exam, :remote => true) do |f| %>
+	  		<%= f.hidden_field :move, :value => "0" %>
+	  		<%= f.submit "", :type => :image, :src => "/assets/arrow-down.png", :class => "list_arrow1" %>
+	  		<% end %>
+			<%= i+1 %>.
+			<%= link_to exam.name, exam_path(exam) %>
+		</span>
+		<span class="delete-btn">
+		<%= link_to "Delete", exam_path(:id => exam.id), method: :delete, :remote => true,
+										title: exam.name %>
+		</span>
+	</div>
+<% end %>
