@@ -151,7 +151,6 @@ class CoursesController < ApplicationController
   		if !@course.exams.any?
   			if !Completecourse.where("user_id = ?", current_user.id).where("course_id = ?", @course.id).exists?
   				current_user.finishcourse!(@course)
-  				countpassedcourse(@course)
   				if params.has_key?(:program)
 		  			@program = Program.find_by_id(params[:program])
 		  			current_user.countprogressprog(@program, current_user)
@@ -159,6 +158,7 @@ class CoursesController < ApplicationController
 		  		end
   			end
   		end
+  		countpassedcourse(@course)
   		if params.has_key?(:program)
   			@program = Program.find_by_id(params[:program])
   			redirect_to prereq_tree_program_path(@program)
