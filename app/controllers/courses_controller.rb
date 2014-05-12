@@ -94,7 +94,15 @@ class CoursesController < ApplicationController
     		@prereqs = Prerequisite.where("want_id = ?", @course.id).where("wantpro_id = ?", @program.id)
     		@prereqs.each do |prereq|
     			@course_need = Course.find_by_id(prereq.required_id)
-    			@courses.append(@course_need)
+    			@passing = Completecourse.where("user_id = ?", current_user).where("course_id = ?", @course_need.id)
+    			if @passing.exists?
+	    			@passed_course = Completecourse.find_by_user_id_and_course_id(current_user.id, @course_need.id)
+	    			if !(@passed_course.passed == "true")
+	    				@courses.append(@course_need)
+	    			end
+	    		else
+	    			@courses.append(@course_need)
+	    		end
     		end
     	end
     	if @program_in
