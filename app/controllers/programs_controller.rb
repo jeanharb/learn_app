@@ -204,10 +204,9 @@ class ProgramsController < ApplicationController
 		@program = Program.find(params[:id])
 		if @program.update_attributes(params[:program])
 			countcat(params[:program][:category])
-			redirect_to edit_program_path(@program)
+			render "program_edit_js"
 		else
-			redirect_to edit_program_path(@program)
-			#render 'edit'
+			render "program_edit_js"
 		end
 	end
 
@@ -223,10 +222,11 @@ class ProgramsController < ApplicationController
 	end
 
 	def destroycourse
-		@program = Program.find(params[:id])
-		@course = Course.find(params[:course])
+		@program = Program.find(params[:course][:program])
+		@course = Course.find(params[:course][:course])
+		@courses = @program.courses
 		@program.removeclass!(@course)
-		redirect_to edit_program_path(@program)
+		render :template => "programs/course_move_js", :locals => {:@courses => @courses}
 	end
 
 	def destroy

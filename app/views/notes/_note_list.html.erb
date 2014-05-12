@@ -9,30 +9,27 @@
   		<%= f.hidden_field :move, :value => "0" %>
   		<%= f.submit "", :type => :image, :src => "/assets/arrow-down.png", :class => "list_arrow1" %>
 	<% end %>
-
-
-
-		<%= i+1 %>.
-		<% if note.contenttype == "application/pdf" or note.contenttype == "youtube" %>
-			<span class="content">
-				<%= link_to note.file_title, viewfile_path(id: note.id) %>
-			</span>
-		<% else %>
-			<span class="content">
-				<%= note.file_title %>
-			</span>
-		<% end %>
-		<% if note.contenttype == "youtube" %>
-			<span class="smaller">
-				 VIDEO
-			</span>
-		<% end %>
-		<span class="delete-btn">
-			<%= link_to "Delete", note_path(:id => note.id),
-											method: :delete,
-											title: note.filename,
-											:remote => true %>
+	<%= i+1 %>.
+	<% if note.contenttype == "application/pdf" or note.contenttype == "youtube" %>
+		<span class="content">
+			<%= link_to note.file_title, viewfile_path(id: note.id) %>
 		</span>
+	<% else %>
+		<span class="content">
+			<%= note.file_title %>
+		</span>
+	<% end %>
+	<% if note.contenttype == "youtube" %>
+		<span class="smaller">
+			 VIDEO
+		</span>
+	<% end %>
+	<span class="delete-btn">
+		<%= link_to "Delete", note_path(:id => note.id),
+										method: :delete,
+										title: note.filename,
+										:remote => true %>
+	</span>
 	</li>
 	<% end %>
 <% end %>

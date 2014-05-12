@@ -1,0 +1,27 @@
+<% @courses.each_with_index do |course, i| %>
+	<div>
+		<span class="content">
+			<%= form_for(course, :remote => true) do |f| %>
+		  		<%= f.hidden_field :move, :value => "1" %>
+		  		<%= f.hidden_field :program, :value => @program.id %>
+		  		<%= f.hidden_field :course, :value => course.id %>
+		  		<%= f.submit "", :type => :image, :src => "/assets/arrow-up.png", :class => "list_arrow1" %>
+			<% end %>
+			<%= form_for(course, :remote => true) do |f| %>
+		  		<%= f.hidden_field :move, :value => "0" %>
+		  		<%= f.hidden_field :program, :value => @program.id %>
+		  		<%= f.hidden_field :course, :value => course.id %>
+		  		<%= f.submit "", :type => :image, :src => "/assets/arrow-down.png", :class => "list_arrow1" %>
+			<% end %>
+			<%= i+1 %>.
+			<%= link_to course.title, course_path(course, :program => @program.id) %>
+			<span class="delete-btn-div">
+			<%= form_for(course, remote: true, :url => { :action => 'destroycourse' }) do |f| %>
+		  		<%= f.hidden_field :program, :value => @program.id %>
+		  		<%= f.hidden_field :course, :value => course.id %>
+		  		<%= f.submit "Remove", :class => "delete_btn_c" %>
+			<% end %>
+			</span>
+		</span>
+	</div>
+<% end %>

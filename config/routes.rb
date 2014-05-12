@@ -26,7 +26,8 @@ LearnApp::Application.routes.draw do
   end
   resources :programs do
     member do
-      get :courses, :wants, :required_courses, :students, :prereq_tree, :destroycourse
+      get :courses, :wants, :required_courses, :students, :prereq_tree
+      put :destroycourse
     end
     collection do
       get :prerequisites, :removeprerequisites

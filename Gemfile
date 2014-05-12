@@ -9,6 +9,7 @@ gem 'acts_as_list'
 gem 'gon'
 gem 'googlecharts'
 gem 'whenever', :require => false
+gem 'remotipart', '~> 1.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

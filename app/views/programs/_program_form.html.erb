@@ -1,0 +1,26 @@
+<%= form_for(@program, :remote => true) do |f| %>
+<%= render 'shared/error_messages', object: f.object, :html => { :id => "myform" } %>
+	<div>
+		<%= f.label "Program Title :" %>
+	<span>
+		<%= f.text_field :title %>
+	</span>
+	</div>
+	<div>
+		<%= f.label "Short Description :" %>
+	<span>
+		<%= f.text_area :short_desc %>
+	</span>
+	</div>
+	<div>
+		<%= f.label "Full Description :" %>
+	<span>
+		<%= f.text_area :description %>
+	</span>
+	</div>
+	<div>
+		<%= f.label "Program Category :" %>
+		<%= f.select :category, Category.all.collect {|category| [ category.title, category.id ] } %>
+	</div>
+	<div><%= f.submit "Update Program Info", class: "subcon", :disable_with => "Updating…" %></div>
+<% end %>

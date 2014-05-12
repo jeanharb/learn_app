@@ -107,7 +107,17 @@ class CoursesController < ApplicationController
 
 	def update
 		@course = Course.find(params[:id])
-		if @course.update_attributes(params[:course])
+		if params[:course].has_key?(:move)
+			@move = params[:course][:move]
+			@program = Program.find(params[:course][:program])
+			@relationship = Relationship.find_by_program_id_and_course_id(params[:course][:program], params[:course][:course])
+			if(@move=="0")
+				@relationship.move_lower
+			else
+				@relationship.move_higher
+			end
+			render :template => "programs/course_move_js", :locals => {:@courses => @program.courses}
+		elsif @course.update_attributes(params[:course])
 			countcat(params[:course][:category])
 			render "course_edit_js"
 		else
@@ -117,8 +127,11 @@ class CoursesController < ApplicationController
 
 	def destroy
 		@course = Course.find(params[:id])
-		@course.destroy
-		redirect_to creations_path
+		if @course.destroy
+	  	  	redirect_to creations_path
+	  	else
+	  		redirect_to creations_path
+	    end
 	end
 
 	def classincart?(course)

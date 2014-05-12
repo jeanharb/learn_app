@@ -1173,6 +1173,21 @@ input[type='checkbox']:checked {
 	color: red;
 }
 
+.delete-btn-div form{
+	display: inline;
+}
+
+.delete_btn_c{
+	font-size: 0.7em;
+	color: red;
+	border: none;
+	background: none;
+}
+
+.delete_btn_c:hover{
+	text-decoration: underline;
+}
+
 .delete-btn a{
 	color: red;
 	text-decoration: none;

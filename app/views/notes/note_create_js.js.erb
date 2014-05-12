@@ -1,0 +1,2 @@
+$("#list_note_det").html("<%= escape_javascript (render :partial => 'notes/note_list', :locals => {:@notes => @notes1, :@course_id => @course_id1} ) %>");
+$("#note_edit_form").html("<%= escape_javascript (render :partial => 'notes/note_form', :locals => {:@course_id => @course_id1, :@course => @course1} ) %>");
