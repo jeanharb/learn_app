@@ -10,27 +10,27 @@
 			<%= @course.title %><span class="smaller"> by <%= @course.user.name %></span>
 		</h1>
 	<% end %>
-	<% if params.has_key?(:program) %>
-		<% if @not_passed == "yes" %>
+	<% if @notpassed == "yes" %>
+		<% if params.has_key?(:program) %>
 			<% if @courses.count > 0 %>
-			<div class="progcount">
-				Prerequisites to complete:
-			</div>
+				<div class="progcount">
+					Prerequisites to complete:
+				</div>
 				<% @courses.each do |prereq| %>
 					<div class="prereq-list-style"><%= link_to prereq.title, course_path(prereq, :program => @program.id) %></div>
 				<% end %>
 			<% end %>
 		<% else %>
-			<div class="passed_this_class">
-				You have passed this class!
-			</div>
+			<% if @course.programs.count > 0 %>
+				<div class="progcount">
+					This course is registered in <%= pluralize(@course.programs.count, 'program') %>.
+				</div>
+			<% end %>
 		<% end %>
 	<% else %>
-		<% if @course.programs.count > 0 %>
-		<div class="progcount">
-			This course is registered in <%= pluralize(@course.programs.count, 'program') %>.
+		<div class="passed_this_class">
+			You have passed this class!
 		</div>
-		<% end %>
 	<% end %>
 	<div id="class-des">
 		<%= @course.description %>
