@@ -129,9 +129,6 @@ class ProgramsController < ApplicationController
 
 		@layers = []
 		@lays = []
-		puts "HEHEHHHHHH"
-		puts @highestlevel
-		puts @levelcourses
 		
 		if (!(@highestlevel==0))
 			for i in 0..@highestlevel do
