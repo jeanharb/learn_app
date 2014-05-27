@@ -20,7 +20,7 @@
 	</div>
 	<div>
 		<%= f.label "Course Category :" %>
-		<%= f.select :category, Category.all.collect {|category| [ category.title, category.id ] } %>
+		<%= f.select :category, Category.order_by('title ASC').all.collect {|category| [ category.title, category.id ] } %>
 	</div>
 	<div><%= f.submit "Update Course Info", class: "subcon", :disable_with => "Updating…" %></div>
 <% end %>
